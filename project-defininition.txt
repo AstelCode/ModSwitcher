@@ -1,0 +1,262 @@
+Definicion:
+
+crear un sistema para crear y compartir paquetes 
+de mods y shader que se puedan instalar en el juego de forma
+automática y sin necesidad de descargar los mods uno por uno.
+Este sistema debe porder connectarse a diferentes repositorios
+y permitir la instalación de mods de diferentes autores. Asimismo,
+debe tener un una base de datos para almacenar los paquetes de
+mods y los repositorios que se tengan link directo a ellos.
+El sistema debe permitir agregar commentarios a los paquetes y
+a los mods que se instalan. También los mods debe incluir una gia
+de como usarlos pueden ser videos o tutoriales por lo tanto deben 
+ser markdowns. 
+
+Cada mod tiene dependencias que se deben instalar antes de que
+el mod se pueda instalar. 
+
+Pueden existir conflictos entre mods que tienen dependencias
+en común.
+
+El sistema debe permitir que los administradores puedan crear
+repositorios de mods y compartirlos con otros usuarios. 
+
+El sistema debe permitir que los usuarios puedan compartir sus
+paquetes de mods con otros usuarios. 
+
+El sistema debe permitir que los usuarios puedan instalar paquetes
+de mods que ya existen en el sistema. 
+
+El sistema debe permitir que los usuarios puedan ver los paquetes
+que tienen instalados en el sistema.
+
+Los mods pueden aser asignados o otros adminsitradores si el creador
+el elimino su cuenta.
+
+
+
+=========================BASE DE DATOS=======================
+
+User:
+    id: string (uuid)
+    username: string
+    password: string
+    email: string
+    avatar?: File
+    createdAt: Date
+    updatedAt: Date
+    role: string ("ADMIN","USER","SUPERADMIN")
+    activationCode: string
+    recoveryTokenHash: string
+    mods:Mod[]
+    packs:Pack[]
+    shaders:Shader[]
+    installations: UserInstallation[]
+
+UserInstallation
+    id: string (uuid)
+
+    user: User
+
+    name: string
+
+    minecraftPath: string
+
+    syncStatus: ("SYNCED","LOCAL_CHANGES","CONFLICT")
+    activePackVersion?: PackVersion
+    activeShaderFile?: ShaderFile
+
+    activeMods: ModFile[]      // Mods agregados manualmente
+    disableMods: ModFile[]     // Mods del pack deshabilitados
+
+    lastSyncAt?: Date
+
+    createdAt: Date
+    updatedAt: Date
+
+
+    
+MinecraftVersion:
+    id: string (uuid)
+    major: number
+    minor: number
+    patch: number
+
+MinecraftLoader:
+    id: string (uuid)
+    name: string;
+    icon?: File
+    files: MinecraftLoaderFile[]
+
+MinecraftLoaderFile:
+    id: string (uuid)
+    file: File
+    version: string
+    minecraftVersion: MinecraftVersion
+    createdAt: Date
+    updatedAt: Date
+    
+
+ExternalIds: 
+    id: string (uuid)
+    externalId: string
+    externalType: string ("CURSEFORGE","MODRINTH")
+    url?: string
+
+Mod:
+    id: string (uuid)
+    name: string
+    description: string
+    author?: User 
+    files: ModFile[]
+    icon?: File
+    images: File[]
+    comments: Comment[]
+    ids: ExternalIds[]
+
+ModDependency:
+    id: string (uuid)
+    mod: ModFile
+    minVersion: string
+    maxVersion: string
+    dependencyMod: Mod
+    dependencyFile?: ModFile
+    role: string ("REQUIRED","OPTIONAL")
+
+ModConflict:
+    id: string (uuid)
+    mod: ModFile
+    conflicMod: ModFile
+    comment: string
+
+ModFile:
+    id: string (uuid)
+    mod: Mod
+    version: string
+    minecraftVersion: MinecraftVersion
+    loader: MinecraftLoader
+    file: File
+    createdAt: Date
+    updatedAt: Date
+
+ShaderLoader:
+    id: string (uuid) 
+    name: string 
+    icon?:File
+    files: ShaderLoaderFile[]
+    createdAt: Date
+    updatedAt: Date
+
+
+
+ShaderLoaderFile:
+    id: string (uuid)
+    file: File
+    version: string
+    minecraftVersion: MinecraftVersion
+    minecraftLoader: MinecraftLoader
+    loader: ShaderLoader
+    createdAt: Date
+    updatedAt: Date
+    
+
+Shader:
+    id: string (uuid)
+    name: string
+    description: string
+    author?: User 
+    createdAt: Date
+    updatedAt: Date
+    comments: Comment[]
+    files: ShaderFile[]
+    images: File[]
+    icon?: File
+    externalIds: ExternalIds[]
+
+ShaderFile:
+    id: string (uuid)
+    shader: Shader
+    version: string
+    minecraftVersion: MinecraftVersion
+    loader: ShaderLoader
+    file: File
+    createdAt: Date
+    updatedAt: Date
+
+
+
+File:
+    id: string (uuid)
+    externalUrl?:string
+    localFile?: LocalFile
+    role: string ("IMAGE","JAR","ZIP")
+    createdAt: Date
+    updatedAt: Date
+
+LocalFile:
+    id: string (uuid)
+    name: string
+    size: number
+    mimeType: string
+    path: string
+    url: string
+    bucket: string
+    extension: string
+    createdAt: Date
+    updatedAt: Date
+    sha256: string (para comparar contenido)
+    
+
+Pack
+    id: string (uuid)
+    name: string
+    description: string
+    author?: User
+    icon?: File
+    images: File[]
+    externalIds: ExternalId[]
+    versions: PackVersion[]
+    comments: Comment[]
+    createdAt: Date
+    updatedAt: Date
+
+PackVersion
+    id: string (uuid)
+    pack: Pack
+
+    version: string           // 1.0.0
+
+    minecraftVersion: MinecraftVersion
+    minecraftLoader: MinecraftLoader
+
+    mods: PackMod[]
+    shaders: PackShader[]
+
+    createdAt: Date
+    updatedAt: Date
+
+
+PackMod
+    id: string (uuid)
+
+    packVersion: PackVersion
+    modFile: ModFile
+
+    optional: boolean
+    loadOrder?: number
+
+PackShader
+    id: string (uuid)
+
+    packVersion: PackVersion
+    shaderFile: ShaderFile
+
+Comments:
+    id: string (uuid)
+    author: User
+    content: string
+    createdAt: Date
+    updatedAt: Date
+    shader?: Shader
+    mod?: Mod
+    pack?: Pack
