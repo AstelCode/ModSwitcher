@@ -20,12 +20,19 @@ export interface ShaderUpdateData {
   iconId?: string;
   externalIdsId?: string;
 }
+export interface ShaderInclude {
+  author?: boolean;
+  images?: boolean;
+  icon?: boolean;
+  externalIds?: boolean;
+}
 export interface ShaderRepository {
   getAll(data?: {
     filter?: ShaderFilter;
     pagination?: ShaderPagination;
+    include?: ShaderInclude;
   }): Promise<Shader[]>;
-  getById(id: string): Promise<Shader | undefined>;
+  getById(id: string, include?: ShaderInclude): Promise<Shader | undefined>;
   create(shader: Shader): Promise<Shader>;
   update(id: string, shader: ShaderUpdateData): Promise<Shader>;
   delete(id: string): Promise<void>;

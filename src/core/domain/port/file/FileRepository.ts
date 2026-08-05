@@ -11,6 +11,9 @@ export interface FileUpdateData {
   externalUrl?: string;
   localFileId?: string;
   role?: string;
+  shaderId?: string;
+  modId?: string;
+  packId?: string;
 }
 export interface FileRepository {
   getAll(data?: {

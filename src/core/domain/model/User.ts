@@ -3,22 +3,25 @@ import { Mod, ModJson } from "./Mod/Mod";
 import { Pack, PackJson } from "./pack/Pack";
 import { Shader, ShaderJson } from "./shader/Shader";
 import { UserInstalation, UserInstalationJson } from "./UserInstalation";
-
+export type UserRole = "admin" | "user" | "superuser";
+export type UserStatus = "active" | "inactive" | "banned";
 export interface UserArgs {
   id?: string;
   username: string;
   password: string;
   email: string;
   avatar?: FileModel;
-  createdAt: Date;
-  updatedAt: Date;
-  role: string;
+  avatarId?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  role: UserRole;
   activationCode: string;
-  recoveryTokenHash: string;
+  recoveryTokenHash?: string;
   mods?: Mod[];
   packs?: Pack[];
   shaders?: Shader[];
   installations?: UserInstalation[];
+  status?: UserStatus;
 }
 export interface UserPersistence {
   username: string;
@@ -27,9 +30,10 @@ export interface UserPersistence {
   avatarId?: string;
   createdAt: Date;
   updatedAt: Date;
-  role: string;
+  role: UserRole;
   activationCode: string;
-  recoveryTokenHash: string;
+  recoveryTokenHash?: string;
+  status?: UserStatus;
 }
 export interface UserJson {
   id: string;
@@ -39,13 +43,14 @@ export interface UserJson {
   avatar?: FileJson;
   createdAt: Date;
   updatedAt: Date;
-  role: string;
+  role: UserRole;
   activationCode: string;
-  recoveryTokenHash: string;
+  recoveryTokenHash?: string;
   mods?: ModJson[];
   packs?: PackJson[];
   shaders?: ShaderJson[];
   installations?: UserInstalationJson[];
+  status?: UserStatus;
 }
 export class User {
   id?: string;
@@ -53,15 +58,17 @@ export class User {
   password: string;
   email: string;
   avatar?: FileModel;
-  createdAt: Date;
-  updatedAt: Date;
-  role: string;
+  avatarId?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  role: UserRole;
   activationCode: string;
-  recoveryTokenHash: string;
+  recoveryTokenHash?: string;
   mods?: Mod[];
   packs?: Pack[];
   shaders?: Shader[];
   installations?: UserInstalation[];
+  status?: UserStatus;
   constructor(args: UserArgs) {
     this.id = args.id;
     this.username = args.username;
@@ -77,6 +84,16 @@ export class User {
     this.packs = args.packs;
     this.shaders = args.shaders;
     this.installations = args.installations;
+    this.status = args.status;
+    this.avatarId = args.avatar?.id ?? args.avatarId;
+  }
+  getId(): string {
+    if (!this.id) throw new Error("User must have an id");
+    return this.id;
+  }
+  getAvatarId(): string {
+    if (!this.avatarId) throw new Error("User must have an avatarId");
+    return this.avatarId;
   }
   toPersistence(): UserPersistence {
     if (!this.username) throw new Error("User must have a username");
@@ -93,12 +110,13 @@ export class User {
       username: this.username,
       password: this.password,
       email: this.email,
-      avatarId: this.avatar?.id,
+      avatarId: this.avatar?.id ?? this.avatarId,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
       role: this.role,
       activationCode: this.activationCode,
       recoveryTokenHash: this.recoveryTokenHash,
+      status: this.status,
     };
   }
   toJson(): UserJson {
@@ -113,10 +131,6 @@ export class User {
       throw new Error("User must have an activationCode");
     if (!this.recoveryTokenHash)
       throw new Error("User must have a recoveryTokenHash");
-    //if (!this.mods) throw new Error("User must have mods");
-    //if (!this.packs) throw new Error("User must have packs");
-    //if (!this.shaders) throw new Error("User must have shaders");
-    //if (!this.installations) throw new Error("User must have installations");
     return {
       id: this.id,
       username: this.username,
@@ -134,6 +148,7 @@ export class User {
       installations: this.installations?.map((installation) =>
         installation.toJson(),
       ),
+      status: this.status,
     };
   }
 }

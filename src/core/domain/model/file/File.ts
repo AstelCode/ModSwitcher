@@ -1,19 +1,31 @@
+import { Mod } from "../Mod/Mod";
+import { Pack } from "../pack/Pack";
+import { Shader } from "../shader/Shader";
 import { LocalFile, LocalFileJson, LocalFilePersistence } from "./LocalFile";
 
 export interface FileArgs {
   id?: string;
+  name: string;
+  role: string;
+  shader?: Shader;
+  shaderId?: string;
+  mod?: Mod;
+  modId?: string;
+  pack?: Pack;
+  packId?: string;
   externalUrl?: string;
   localFile?: LocalFile;
-  role: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 export interface FilePersistence {
   externalUrl?: string;
+  name: string;
   localFile?: LocalFilePersistence;
   role: string;
-  createdAt: Date;
-  updatedAt: Date;
+  shaderId?: string;
+  modId?: string;
+  packId?: string;
 }
 export interface FileJson {
   id: string;
@@ -25,11 +37,18 @@ export interface FileJson {
 }
 export class FileModel {
   id?: string;
+  name: string;
   externalUrl?: string;
   localFile?: LocalFile;
   role: string;
-  createdAt: Date;
-  updatedAt: Date;
+  mod?: Mod;
+  modId?: string;
+  pack?: Pack;
+  packId?: string;
+  shader?: Shader;
+  shaderId?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
   constructor(args: FileArgs) {
     this.id = args.id;
     this.externalUrl = args.externalUrl;
@@ -37,14 +56,24 @@ export class FileModel {
     this.role = args.role;
     this.createdAt = args.createdAt;
     this.updatedAt = args.updatedAt;
+    this.name = args.name;
+    this.mod = args.mod;
+    this.modId = args.mod?.id ?? args.modId;
+    this.pack = args.pack;
+    this.packId = args.pack?.id ?? args.packId;
+    this.shader = args.shader;
+    this.shaderId = args.shader?.id ?? args.shaderId;
+  }
+  getId(): string {
+    if (!this.id) throw new Error("File must have an id");
+    return this.id;
   }
   toPersistence(): FilePersistence {
     return {
       externalUrl: this.externalUrl,
       localFile: this.localFile?.toPersistence(),
+      name: this.name,
       role: this.role,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt,
     };
   }
   toJson(): FileJson {

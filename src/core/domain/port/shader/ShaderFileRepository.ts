@@ -16,12 +16,22 @@ export interface ShaderFileUpdateData {
   minecraftVersionId?: string;
   shaderId?: string;
 }
+export interface ShaderFileInclude {
+  file?: boolean;
+  loader?: boolean;
+  minecraftVersion?: boolean;
+  shader?: boolean;
+}
 export interface ShaderFileRepository {
   getAll(data?: {
     filter?: ShaderFileFilter;
     pagination?: ShaderFilePagination;
+    include?: ShaderFileInclude;
   }): Promise<ShaderFile[]>;
-  getById(id: string): Promise<ShaderFile | undefined>;
+  getById(
+    id: string,
+    include?: ShaderFileInclude,
+  ): Promise<ShaderFile | undefined>;
   create(shaderFile: ShaderFile): Promise<ShaderFile>;
   update(id: string, shaderFile: ShaderFileUpdateData): Promise<ShaderFile>;
   delete(id: string): Promise<void>;

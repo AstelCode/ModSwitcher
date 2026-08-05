@@ -9,10 +9,14 @@ import { ShaderLoader, ShaderLoaderJson } from "../loaders/ShaderLoader";
 export interface ShaderFileArgs {
   id?: string;
   shader?: Shader;
+  shaderId?: string;
   version: string;
-  minecraftVersion: MinecraftVersion;
-  loader: ShaderLoader;
-  file: FileModel;
+  minecraftVersion?: MinecraftVersion;
+  minecraftVersionId?: string;
+  loader?: ShaderLoader;
+  loaderId?: string;
+  file?: FileModel;
+  fileId?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -38,9 +42,13 @@ export class ShaderFile {
   id?: string;
   shader?: Shader;
   version: string;
-  minecraftVersion: MinecraftVersion;
-  loader: ShaderLoader;
-  file: FileModel;
+  minecraftVersion?: MinecraftVersion;
+  minecraftVersionId?: string;
+  loader?: ShaderLoader;
+  loaderId?: string;
+  file?: FileModel;
+  fileId?: string;
+  shaderId?: string;
   createdAt?: Date;
   updatedAt?: Date;
   constructor(args: ShaderFileArgs) {
@@ -52,26 +60,36 @@ export class ShaderFile {
     this.file = args.file;
     this.createdAt = args.createdAt;
     this.updatedAt = args.updatedAt;
+    this.shaderId = args.shader?.id ?? args.shaderId;
+    this.minecraftVersionId =
+      args.minecraftVersion?.id ?? args.minecraftVersionId;
+    this.loaderId = args.loader?.id ?? args.loaderId;
+    this.fileId = args.file?.id ?? args.fileId;
+  }
+  getId(): string {
+    if (!this.id) throw new Error("ShaderFile must have an id");
+    return this.id;
+  }
+  getFileId(): string {
+    if (!this.fileId) throw new Error("ShaderFile must have a file id");
+    return this.fileId;
   }
   toPersistence(): ShaderFilePersistence {
-    if (this.file == null) throw new Error("ShaderFile must have a file");
     if (this.version == null) throw new Error("ShaderFile must have a version");
-    if (this.minecraftVersion == null)
-      throw new Error("ShaderFile must have a minecraftVersion");
-    if (this.loader == null) throw new Error("ShaderFile must have a loader");
-    if (!this.file.id) throw new Error("ShaderFile must have a file id");
-    if (!this.minecraftVersion.id)
+    if (!this.shaderId) throw new Error("ShaderFile must have a shader id");
+    if (!this.loaderId) throw new Error("ShaderFile must have a loader id");
+    if (!this.fileId) throw new Error("ShaderFile must have a file id");
+    if (!this.minecraftVersionId)
       throw new Error("ShaderFile must have a minecraftVersion id");
-    if (!this.loader.id) throw new Error("ShaderFile must have a loader id");
-    if (!this.shader?.id) throw new Error("ShaderFile must have a shader id");
     return {
-      fileId: this.file.id,
-      shaderId: this.shader?.id,
-      minecraftVersionId: this.minecraftVersion.id,
+      fileId: this.fileId,
+      shaderId: this.shaderId,
+      minecraftVersionId: this.minecraftVersionId,
       version: this.version,
-      loaderId: this.loader.id,
+      loaderId: this.loaderId,
     };
   }
+
   toJson(): ShaderFileJson {
     if (this.id == null) throw new Error("ShaderFile must have an id");
     if (!this.shader) throw new Error("ShaderFile must have a shader");

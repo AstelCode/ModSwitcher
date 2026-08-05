@@ -1,4 +1,4 @@
-import { Mod } from "../../model/Mod/Mod";
+import { Mod, ModStatus } from "../../model/Mod/Mod";
 
 export interface ModFilter {
   name?: string;
@@ -7,6 +7,7 @@ export interface ModFilter {
   imagesId?: string;
   iconId?: string;
   externalIdsId?: string;
+  status?: ModStatus;
 }
 export interface ModPagination {
   limit?: number;
@@ -19,13 +20,21 @@ export interface ModUpdateData {
   imagesId?: string;
   iconId?: string;
   externalIdsId?: string;
+  status?: ModStatus;
+}
+interface ModInclude {
+  author?: boolean;
+  images?: boolean;
+  icon?: boolean;
+  externalIds?: boolean;
 }
 export interface ModRepository {
   getAll(data?: {
     filter?: ModFilter;
     pagination?: ModPagination;
+    include?: ModInclude;
   }): Promise<Mod[]>;
-  getById(id: string): Promise<Mod | undefined>;
+  getById(id: string, include?: ModInclude): Promise<Mod | undefined>;
   create(mod: Mod): Promise<Mod>;
   update(id: string, mod: ModUpdateData): Promise<Mod>;
   delete(id: string): Promise<void>;

@@ -8,22 +8,27 @@ import { FileModel, FilePersistence, FileJson } from "../file/File";
 import { User, UserJson } from "../User";
 import { ModFile, ModFileJson } from "./ModFile";
 
+export type ModStatus = "published" | "draft" | "rejected";
 export interface ModArgs {
   id?: string;
   name: string;
   description: string;
   author?: User;
+  authorId?: string;
   files?: ModFile[];
   icon?: FileModel;
+  iconId?: string;
   images?: FileModel[];
   comments?: CommentModel[];
   externalIds?: ExternalId[];
   createdAt?: Date;
   updatedAt?: Date;
+  status: ModStatus;
 }
 export interface ModPersistence {
   name: string;
   description: string;
+  status: ModStatus;
   authorId?: string;
   images: FilePersistence[];
   iconId?: string;
@@ -33,6 +38,7 @@ export interface ModJson {
   id: string;
   name: string;
   description: string;
+  status: ModStatus;
   author?: UserJson;
   createdAt: Date;
   updatedAt: Date;
@@ -47,13 +53,16 @@ export class Mod {
   name: string;
   description: string;
   author?: User;
+  authorId?: string;
   createdAt?: Date;
   updatedAt?: Date;
   comments?: CommentModel[];
   files?: ModFile[];
   images?: FileModel[];
   icon?: FileModel;
+  iconId?: string;
   externalIds?: ExternalId[];
+  status: ModStatus;
   constructor(args: ModArgs) {
     this.id = args.id;
     this.name = args.name;
@@ -66,6 +75,21 @@ export class Mod {
     this.images = args.images;
     this.icon = args.icon;
     this.externalIds = args.externalIds;
+    this.authorId = args.author?.id ?? args.authorId;
+    this.status = args.status;
+    this.iconId = args.icon?.id ?? args.iconId;
+  }
+  getId(): string {
+    if (!this.id) throw new Error("Mod must have an id");
+    return this.id;
+  }
+  getIconId(): string {
+    if (!this.iconId) throw new Error("Mod must have an icon");
+    return this.iconId;
+  }
+  getImagesIds(): string[] {
+    if (!this.images) throw new Error("Mod must have images");
+    return this.images.map((image) => image.getId());
   }
   toPersistence(): ModPersistence {
     if (!this.name) throw new Error("Mod must have a name");
@@ -76,15 +100,18 @@ export class Mod {
     if (!this.files) throw new Error("Mod must have files");
     if (!this.images) throw new Error("Mod must have images");
     if (!this.externalIds) throw new Error("Mod must have externalIds");
+    if (!this.iconId) throw new Error("Mod must have an icon");
+    if (!this.authorId) throw new Error("Mod must have an author");
     return {
       iconId: this.icon?.id,
       name: this.name,
       description: this.description,
       images: this.images.map((image) => image.toPersistence()),
-      authorId: this.author?.id,
+      authorId: this.authorId,
       externalIds: this.externalIds.map((externalId) =>
         externalId.toPersistence(),
       ),
+      status: this.status,
     };
   }
   toJson(): ModJson {
@@ -107,6 +134,7 @@ export class Mod {
       images: this.images?.map((image) => image.toJson()),
       icon: this.icon?.toJson(),
       externalIds: this.externalIds?.map((externalId) => externalId.toJson()),
+      status: this.status,
     };
   }
 }

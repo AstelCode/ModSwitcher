@@ -18,12 +18,16 @@ export interface ModFileUpdateData {
   minecraftVersionId?: string;
   version?: string;
 }
+export interface ModFileInclude {
+  file?: boolean;
+}
 export interface ModFileRepository {
   getAll(data?: {
     filter?: ModFileFilter;
     pagination?: ModFilePagination;
+    include?: ModFileInclude;
   }): Promise<ModFile[]>;
-  getById(id: string): Promise<ModFile | undefined>;
+  getById(id: string, include?: ModFileInclude): Promise<ModFile | undefined>;
   create(modFile: ModFile): Promise<ModFile>;
   update(id: string, modFile: ModFileUpdateData): Promise<ModFile>;
   delete(id: string): Promise<void>;

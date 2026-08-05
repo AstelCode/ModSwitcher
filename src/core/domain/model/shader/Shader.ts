@@ -13,12 +13,14 @@ export interface ShaderArgs {
   name: string;
   description: string;
   author?: User;
+  authorId?: string;
   createdAt?: Date;
   updatedAt?: Date;
   comments?: CommentModel[];
   files?: ShaderFile[];
   images?: FileModel[];
   icon?: FileModel;
+  iconId?: string;
   externalIds?: ExternalId[];
 }
 export interface ShaderPersistence {
@@ -47,12 +49,14 @@ export class Shader {
   name: string;
   description: string;
   author?: User;
+  authorId?: string;
   createdAt?: Date;
   updatedAt?: Date;
   comments?: CommentModel[];
   files?: ShaderFile[];
   images?: FileModel[];
   icon?: FileModel;
+  iconId?: string;
   externalIds?: ExternalId[];
   constructor(args: ShaderArgs) {
     this.id = args.id;
@@ -66,6 +70,20 @@ export class Shader {
     this.images = args.images;
     this.icon = args.icon;
     this.externalIds = args.externalIds;
+    this.iconId = args.icon?.id ?? args.iconId;
+    this.authorId = args.author?.id ?? args.authorId;
+  }
+  getId(): string {
+    if (!this.id) throw new Error("Shader must have an id");
+    return this.id;
+  }
+  getIconId(): string {
+    if (!this.iconId) throw new Error("Shader must have an icon");
+    return this.iconId;
+  }
+  getImagesIds(): string[] {
+    if (!this.images) throw new Error("Shader must have images");
+    return this.images.map((image) => image.getId());
   }
   toPersistence(): ShaderPersistence {
     if (!this.name) throw new Error("Shader must have a name");
@@ -77,11 +95,11 @@ export class Shader {
     if (!this.images) throw new Error("Shader must have images");
     if (!this.externalIds) throw new Error("Shader must have externalIds");
     return {
-      iconId: this.icon?.id,
+      iconId: this.iconId,
       name: this.name,
       description: this.description,
       images: this.images.map((image) => image.toPersistence()),
-      authorId: this.author?.id,
+      authorId: this.authorId,
       externalIds: this.externalIds.map((externalId) =>
         externalId.toPersistence(),
       ),

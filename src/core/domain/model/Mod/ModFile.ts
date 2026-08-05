@@ -7,15 +7,22 @@ import {
   MinecraftVersion,
   MinecraftVersionJson,
 } from "../loaders/MinecraftVersion";
+import { User } from "../User";
 import { Mod } from "./Mod";
 
 export interface ModFileArgs {
   id?: string;
   mod?: Mod;
+  modId?: string;
+  author?: User;
+  authorId?: string;
   version: string;
-  minecraftVersion: MinecraftVersion;
-  loader: MinecraftLoader;
-  file: FileModel;
+  minecraftVersion?: MinecraftVersion;
+  minecraftVersionId?: string;
+  loader?: MinecraftLoader;
+  loaderId?: string;
+  file?: FileModel;
+  fileId?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -26,6 +33,7 @@ export interface ModFilePersistence {
   modId: string;
   minecraftVersionId: string;
   version: string;
+  authorId?: string;
 }
 export interface ModFileJson {
   id: string;
@@ -37,41 +45,61 @@ export interface ModFileJson {
   updatedAt: Date;
 }
 export class ModFile {
+  author?: User;
+  authorId?: string;
   id?: string;
-  file: FileModel;
+  file?: FileModel;
+  fileId?: string;
   version: string;
-  minecraftVersion: MinecraftVersion;
-  loader: MinecraftLoader;
+  minecraftVersion?: MinecraftVersion;
+  minecraftVersionId?: string;
+  loader?: MinecraftLoader;
+  loaderId?: string;
   createdAt?: Date;
   updatedAt?: Date;
   mod?: Mod;
+  modId?: string;
   constructor(args: ModFileArgs) {
     this.id = args.id;
     this.file = args.file;
+    this.fileId = args.file?.id ?? args.fileId;
     this.version = args.version;
     this.minecraftVersion = args.minecraftVersion;
     this.loader = args.loader;
     this.createdAt = args.createdAt;
     this.updatedAt = args.updatedAt;
     this.mod = args.mod;
+    this.modId = args.mod?.id ?? args.modId;
+    this.loaderId = args.loader?.id ?? args.loaderId;
+    this.minecraftVersionId =
+      args.minecraftVersion?.id ?? args.minecraftVersionId;
+    this.author = args.author;
+    this.authorId = args.author?.id ?? args.authorId;
+  }
+  getId(): string {
+    if (!this.id) throw new Error("ModFile must have an id");
+    return this.id;
+  }
+  getFileId(): string {
+    if (!this.fileId) throw new Error("ModFile must have a file id");
+    return this.fileId;
   }
   toPersistence(): ModFilePersistence {
-    if (this.file == null) throw new Error("ModFile must have a file");
     if (this.version == null) throw new Error("ModFile must have a version");
-    if (this.minecraftVersion == null)
-      throw new Error("ModFile must have a minecraftVersion");
-    if (this.loader == null) throw new Error("ModFile must have a loader");
-    if (!this.file.id) throw new Error("ModFile must have a file id");
-    if (!this.minecraftVersion.id)
-      throw new Error("ModFile must have a minecraftVersion id");
-    if (!this.loader.id) throw new Error("ModFile must have a loader id");
-    if (!this.mod?.id) throw new Error("ModFile must have a mod id");
+    if (!this.loaderId) throw new Error("ModFile must have a loader id");
+    if (!this.modId) throw new Error("ModFile must have a mod id");
+    if (!this.fileId) throw new Error("ModFile must have a file id");
+    if (!this.version) throw new Error("ModFile must have a version");
+    if (!this.minecraftVersionId)
+      throw new Error("ModFile must have a version");
+    if (!this.authorId) throw new Error("ModFile must have an author id");
     return {
-      fileId: this.file.id,
-      modId: this.mod?.id,
-      minecraftVersionId: this.minecraftVersion.id,
+      fileId: this.fileId,
+      modId: this.modId,
+      minecraftVersionId: this.minecraftVersionId,
       version: this.version,
-      loaderId: this.loader.id,
+      loaderId: this.loaderId,
+      authorId: this.authorId,
     };
   }
   toJson(): ModFileJson {

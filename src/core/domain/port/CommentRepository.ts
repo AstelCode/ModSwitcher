@@ -1,3 +1,5 @@
+import { CommentModel } from "../model/Comment";
+
 export interface CommentFilter {
   authorId?: string;
   content?: string;
@@ -20,13 +22,24 @@ export interface CommentUpdateData {
   modId?: string;
   packId?: string;
 }
+
+export interface CommentInclude {
+  author?: boolean;
+  shader?: boolean;
+  mod?: boolean;
+  pack?: boolean;
+}
 export interface CommentRepository {
   getAll(data?: {
     filter?: CommentFilter;
     pagination?: CommentPagination;
-  }): Promise<Comment[]>;
-  getById(id: string): Promise<Comment | undefined>;
-  create(comment: Comment): Promise<Comment>;
-  update(id: string, comment: CommentUpdateData): Promise<Comment>;
+    include?: CommentInclude;
+  }): Promise<CommentModel[]>;
+  getById(
+    id: string,
+    include?: CommentInclude,
+  ): Promise<CommentModel | undefined>;
+  create(comment: CommentModel): Promise<CommentModel>;
+  update(id: string, comment: CommentUpdateData): Promise<CommentModel>;
   delete(id: string): Promise<void>;
 }

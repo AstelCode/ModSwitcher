@@ -5,19 +5,21 @@ import { User, UserJson } from "./User";
 
 export interface CommentArgs {
   id?: string;
-  author: User;
+  author?: User;
+  authorId: string;
   content: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   shader?: Shader;
+  shaderId?: string;
   mod?: Mod;
+  modId?: string;
   pack?: Pack;
+  packId?: string;
 }
 export interface CommentPersistence {
   authorId: string;
   content: string;
-  createdAt: Date;
-  updatedAt: Date;
   shaderId?: string;
   modId?: string;
   packId?: string;
@@ -34,13 +36,17 @@ export interface CommentJson {
 }
 export class CommentModel {
   id?: string;
-  author: User;
+  author?: User;
+  authorId?: string;
   content: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   shader?: Shader;
+  shaderId?: string;
   mod?: Mod;
+  modId?: string;
   pack?: Pack;
+  packId?: string;
   constructor(args: CommentArgs) {
     this.id = args.id;
     this.author = args.author;
@@ -50,26 +56,26 @@ export class CommentModel {
     this.shader = args.shader;
     this.mod = args.mod;
     this.pack = args.pack;
+    this.authorId = args.author?.id ?? args.authorId;
+    this.shaderId = args.shader?.id ?? args.shaderId;
+    this.modId = args.mod?.id ?? args.modId;
+    this.packId = args.pack?.id ?? args.packId;
   }
   toPersistence(): CommentPersistence {
-    if (this.author == null) throw new Error("Comment must have an author");
-    if (this.content == null) throw new Error("Comment must have a content");
-    if (this.createdAt == null)
-      throw new Error("Comment must have a createdAt");
-    if (this.updatedAt == null)
-      throw new Error("Comment must have a updatedAt");
-    if (this.shader == null) throw new Error("Comment must have a shader");
-    if (this.mod == null) throw new Error("Comment must have a mod");
-    if (this.pack == null) throw new Error("Comment must have a pack");
-    if (!this.author.id) throw new Error("Comment must have an author id");
+    if (!this.content) throw new Error("Comment must have a content");
+    if (!this.createdAt) throw new Error("Comment must have a createdAt");
+    if (!this.updatedAt) throw new Error("Comment must have a updatedAt");
+
+    if (!this.authorId) throw new Error("Comment must have an author");
+    if (!this.shaderId) throw new Error("Comment must have a shader");
+    if (!this.packId) throw new Error("Comment must have a mod");
+    if (!this.authorId) throw new Error("Comment must have a pack");
     return {
-      authorId: this.author.id,
+      authorId: this.authorId,
       content: this.content,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt,
-      shaderId: this.shader?.id,
-      modId: this.mod?.id,
-      packId: this.pack?.id,
+      shaderId: this.shaderId,
+      modId: this.modId,
+      packId: this.packId,
     };
   }
   toJson(): CommentJson {
