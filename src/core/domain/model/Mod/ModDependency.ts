@@ -1,6 +1,7 @@
 import { Mod, ModJson } from "./Mod";
 import { ModFile, ModFileJson } from "./ModFile";
 
+export type ModDependencyRole = "required" | "optional" | "incompatible";
 export interface ModDependencyArgs {
   id?: string;
   mod: ModFile;
@@ -8,7 +9,7 @@ export interface ModDependencyArgs {
   maxVersion: string;
   dependencyMod: Mod;
   dependencyFile?: ModFile;
-  role: string;
+  role: ModDependencyRole;
 }
 export interface ModDependencyPersistence {
   modId: string;

@@ -1,4 +1,4 @@
-export interface LoccalFileArgs {
+export interface LocalFileArgs {
   id?: string;
   name: string;
   size: number;
@@ -46,7 +46,7 @@ export class LocalFile {
   createdAt?: Date;
   updatedAt?: Date;
   sha256: string;
-  constructor(args: LoccalFileArgs) {
+  constructor(args: LocalFileArgs) {
     this.id = args.id;
     this.name = args.name;
     this.size = args.size;

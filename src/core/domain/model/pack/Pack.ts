@@ -7,7 +7,7 @@ import {
 import { FileModel, FilePersistence, FileJson } from "../file/File";
 import { User, UserJson } from "../User";
 import { PackVersion, PackVersionJson } from "./PackVersion";
-
+export type PackStatus = "published" | "draft" | "rejected";
 export interface PackArgs {
   id?: string;
   name: string;
@@ -22,6 +22,7 @@ export interface PackArgs {
   comments?: CommentModel[];
   createdAt?: Date;
   updatedAt?: Date;
+  status?: PackStatus;
 }
 export interface PackPersistence {
   name: string;
@@ -30,6 +31,7 @@ export interface PackPersistence {
   images: FilePersistence[];
   iconId?: string;
   externalIds: ExternalIdPersistence[];
+  status: PackStatus;
 }
 export interface PackJson {
   id: string;
@@ -40,6 +42,7 @@ export interface PackJson {
   images?: FileJson[];
   externalIds?: ExternalIdJson[];
   versions?: PackVersionJson[];
+  status?: PackStatus;
   comments?: CommentJson[];
   createdAt: Date;
   updatedAt: Date;
@@ -58,6 +61,7 @@ export class Pack {
   comments?: CommentModel[];
   createdAt?: Date;
   updatedAt?: Date;
+  status?: PackStatus;
   constructor(args: PackArgs) {
     this.id = args.id;
     this.name = args.name;
@@ -72,6 +76,7 @@ export class Pack {
     this.updatedAt = args.updatedAt;
     this.iconId = args.icon?.id ?? args.iconId;
     this.authorId = args.author?.id ?? args.authorId;
+    this.status = args.status;
   }
   getId(): string {
     if (!this.id) throw new Error("Pack must have an id");
@@ -93,6 +98,7 @@ export class Pack {
     if (!this.comments) throw new Error("Pack must have comments");
     if (!this.versions) throw new Error("Pack must have versions");
     if (!this.externalIds) throw new Error("Pack must have externalIds");
+    if (!this.status) throw new Error("Pack must have a status");
     return {
       iconId: this.iconId,
       name: this.name,
@@ -102,6 +108,7 @@ export class Pack {
       externalIds: this.externalIds.map((externalId) =>
         externalId.toPersistence(),
       ),
+      status: this.status,
     };
   }
   toJson(): PackJson {

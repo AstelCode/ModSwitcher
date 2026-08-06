@@ -1,0 +1,309 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/core/infrastructure/repositories/prisma/connection"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model LocalFile {
+  id        String   @id @default(uuid())
+  name      String
+  size      Int
+  mimeType  String
+  path      String
+  url       String
+  bucket    String
+  extension String
+  sha256    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  file File?
+}
+
+model File {
+  id          String  @id @default(uuid())
+  role        String
+  externalUrl String?
+
+  localFile   LocalFile? @relation(fields: [localFileid], references: [id])
+  localFileid String?    @unique
+
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  user            User?
+  minecraftLoader MinecraftLoader?
+  shaderLoader    ShaderLoader?
+
+  //* mods
+  modFile  ModFile?
+  modIcon  Mod?     @relation("mod_icon")
+  modImage Mod?     @relation("mod_image", fields: [modId], references: [id])
+  modId    String?
+
+  //* shaders
+  shaderFile ShaderFile?
+  shaders    Shader[]    @relation("shader_icon")
+  shadeIcon  Shader?     @relation("shader_image", fields: [shadeId], references: [id])
+  shadeId    String?
+
+  packsImage Pack[] @relation("pack_image")
+  packIcon   Pack?
+}
+
+enum UserStatus {
+  active
+  inactive
+  banned
+}
+
+enum UserRole {
+  admin
+  user
+  superuser
+}
+
+model User {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+  email    String @unique
+
+  avatar   File?   @relation(fields: [avatarId], references: [id])
+  avatarId String? @unique
+
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+  role              UserRole   @default(user)
+  activationCode    String?
+  recoveryTokenHash String?
+  status            UserStatus @default(inactive)
+
+  //mods       Mod[]  @relation("mod_author")
+  //packs      Pack[] @relation("pack_author")
+  //shaders    Shader[] @relation("shader_author")
+  //installations UserInstalation[] @relation("user_installation")  
+
+  mods    Mod[]
+  shaders Shader[]
+  packs   Pack[]
+}
+
+model MinecraftVersion {
+  id       String    @id @default(uuid())
+  major    Int
+  minor    Int
+  patch    Int
+  modFiles ModFile[]
+
+  shaderFiles  ShaderFile[]
+  packVersions PackVersion[]
+}
+
+model MinecraftLoader {
+  id        String    @id @default(uuid())
+  name      String
+  icon      File?     @relation(fields: [iconId], references: [id])
+  iconId    String?   @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  modFiles  ModFile[]
+
+  shaderFiles  ShaderFile[]
+  packVersions PackVersion[]
+}
+
+model ShaderLoader {
+  id        String   @id @default(uuid())
+  name      String
+  icon      File?    @relation(fields: [iconId], references: [id])
+  iconId    String?  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//TODO: agregar loader file and externalId models
+
+//* MOD
+
+model ModFile {
+  id                 String           @id @default(uuid())
+  file               File             @relation(fields: [fileId], references: [id])
+  fileId             String           @unique
+  // mod       Mod?     @relation(fields: [modId], references: [id])
+  version            String
+  minecraftVersion   MinecraftVersion @relation(fields: [minecraftVersionId], references: [id])
+  minecraftVersionId String
+  loader             MinecraftLoader  @relation(fields: [loaderId], references: [id])
+  loaderId           String
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  mod      Mod       @relation(fields: [modId], references: [id])
+  modId    String
+  packMods PackMod[]
+}
+
+enum ModStatus {
+  published
+  draft
+  rejected
+}
+
+model Mod {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  status      ModStatus @default(published)
+
+  author   User?   @relation(fields: [authorId], references: [id])
+  authorId String?
+
+  modFiles ModFile[]
+
+  icon   File?   @relation("mod_icon", fields: [iconId], references: [id])
+  iconId String? @unique
+
+  images File[] @relation("mod_image")
+
+  modConflictsFrom ModConflict[] @relation("mod_confict_from")
+
+  modConflictsTo ModConflict[] @relation("mod_confict_to")
+
+  modDependenciesFrom ModDependency[] @relation("mod_dependency_from")
+
+  modDependenciesTo ModDependency[] @relation("mod_dependency_to")
+}
+
+model ModConflict {
+  id            String   @id @default(uuid())
+  mod           Mod      @relation("mod_confict_from", fields: [modId], references: [id])
+  modId         String
+  conflictMod   Mod      @relation("mod_confict_to", fields: [conflictModId], references: [id])
+  conflictModId String
+  comment       String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+enum ModDependencyRol {
+  required
+  optional
+  incompatible
+}
+
+model ModDependency {
+  id              String           @id @default(uuid())
+  mod             Mod              @relation("mod_dependency_from", fields: [modId], references: [id])
+  modId           String
+  dependencyMod   Mod              @relation("mod_dependency_to", fields: [dependencyModId], references: [id])
+  dependencyModId String
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  minVersion      String
+  maxVersion      String
+  rol             ModDependencyRol @default(required)
+}
+
+//*shader
+model ShaderFile {
+  id                 String           @id @default(uuid())
+  file               File?            @relation(fields: [fileId], references: [id])
+  fileId             String?          @unique
+  shader             Shader?          @relation(fields: [shaderId], references: [id])
+  shaderId           String?
+  version            String
+  minecraftVersion   MinecraftVersion @relation(fields: [minecraftVersionId], references: [id])
+  minecraftVersionId String
+  loader             MinecraftLoader  @relation(fields: [loaderId], references: [id])
+  loaderId           String
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  packShaders PackShader[]
+}
+
+model Shader {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  author   User?   @relation(fields: [authorId], references: [id])
+  authorId String?
+
+  icon   File?   @relation("shader_icon", fields: [iconId], references: [id])
+  iconId String? @unique
+
+  images File[] @relation("shader_image")
+
+  shaderFiles ShaderFile[]
+}
+
+enum PackStatus {
+  published
+  draft
+  rejected
+}
+
+model Pack {
+  id          String     @id @default(cuid())
+  name        String
+  description String
+  author      User?      @relation(fields: [authorId], references: [id])
+  authorId    String?
+  icon        File?      @relation(fields: [iconId], references: [id])
+  iconId      String?    @unique
+  images      File[]     @relation("pack_image")
+  // externalIds ExternalId[] @relation("external_id_pack")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  status      PackStatus @default(published)
+
+  packVersions PackVersion[]
+}
+
+model PackVersion {
+  id                 String           @id @default(cuid())
+  pack               Pack             @relation(fields: [packId], references: [id])
+  packId             String
+  version            String
+  minecraftVersion   MinecraftVersion @relation(fields: [minecraftVersionId], references: [id])
+  minecraftVersionId String
+  minecraftLoader    MinecraftLoader  @relation(fields: [minecraftLoaderId], references: [id])
+  minecraftLoaderId  String
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  packMods PackMod[]
+
+  packShaders PackShader[]
+}
+
+model PackMod {
+  id            String      @id @default(cuid())
+  packVersion   PackVersion @relation(fields: [packVersionId], references: [id])
+  packVersionId String
+  modFile       ModFile     @relation(fields: [modFileId], references: [id])
+  modFileId     String
+  optional      Boolean
+  loadOrder     Int
+}
+
+model PackShader {
+  id            String      @id @default(cuid())
+  shaderFile    ShaderFile  @relation(fields: [shaderFileid], references: [id])
+  shaderFileid  String
+  packVersion   PackVersion @relation(fields: [packVersionId], references: [id])
+  packVersionId String
+}
