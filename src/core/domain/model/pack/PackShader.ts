@@ -4,7 +4,9 @@ import { PackVersion, PackVersionJson } from "./PackVersion";
 export interface PackShaderArgs {
   id?: string;
   packVersion?: PackVersion;
-  shaderFile: ShaderFile;
+  packVersionId?: string;
+  shaderFile?: ShaderFile;
+  shaderFileId?: string;
 }
 export interface PackShaderPersistence {
   packVersionId: string;
@@ -18,24 +20,28 @@ export interface PackShaderJson {
 export class PackShader {
   id?: string;
   packVersion?: PackVersion;
-  shaderFile: ShaderFile;
+  packVersionId?: string;
+  shaderFile?: ShaderFile;
+  shaderFileId?: string;
   constructor(args: PackShaderArgs) {
     this.id = args.id;
     this.packVersion = args.packVersion;
     this.shaderFile = args.shaderFile;
+    this.shaderFileId = args.shaderFile?.id ?? args.shaderFileId;
+    this.packVersionId = args.packVersion?.id ?? args.packVersionId;
   }
   toPersistence(): PackShaderPersistence {
     if (this.packVersion == null)
       throw new Error("PackShader must have a packVersion");
     if (this.shaderFile == null)
       throw new Error("PackShader must have a shaderFile");
-    if (!this.packVersion.id)
+    if (!this.packVersionId)
       throw new Error("PackShader must have a packVersion id");
-    if (!this.shaderFile.id)
+    if (!this.shaderFileId)
       throw new Error("PackShader must have a shaderFile id");
     return {
-      packVersionId: this.packVersion.id,
-      shaderFileId: this.shaderFile.id,
+      packVersionId: this.packVersionId,
+      shaderFileId: this.shaderFileId,
     };
   }
   toJson(): PackShaderJson {

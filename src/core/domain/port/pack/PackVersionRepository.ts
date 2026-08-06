@@ -20,13 +20,20 @@ export interface PackVersionUpdateData {
   modsId?: string;
   shadersId?: string;
 }
+export interface PackVersionInclude {
+  pack?: boolean;
+}
 export interface PackVersionRepository {
   getAll(data?: {
     filter?: PackVersionFilter;
     pagination?: PackVersionPagination;
+    include?: PackVersionInclude;
   }): Promise<PackVersion[]>;
   getById(id: string): Promise<PackVersion | undefined>;
-  create(packVersion: PackVersion): Promise<PackVersion>;
+  create(
+    packVersion: PackVersion,
+    include?: PackVersionInclude,
+  ): Promise<PackVersion>;
   update(id: string, packVersion: PackVersionUpdateData): Promise<PackVersion>;
   delete(id: string): Promise<void>;
 }

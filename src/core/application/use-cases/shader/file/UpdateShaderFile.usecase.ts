@@ -1,5 +1,5 @@
-import { UploadLocalFileInput } from "../../port/FileService";
-import { ServiceContext } from "../../port/ServiceContext";
+import { UploadLocalFileInput } from "../../../port/FileService";
+import { ServiceContext } from "../../../port/ServiceContext";
 
 type Deps = Pick<
   ServiceContext,

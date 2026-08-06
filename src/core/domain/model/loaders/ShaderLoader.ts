@@ -4,6 +4,7 @@ export interface ShaderLoaderArgs {
   id?: string;
   name: string;
   icon?: FileModel;
+  iconId?: string;
   files?: ShaderLoaderFile[];
   createdAt?: Date;
   updatedAt?: Date;
@@ -24,6 +25,7 @@ export class ShaderLoader {
   id?: string;
   name: string;
   icon?: FileModel;
+  iconId?: string;
   files?: ShaderLoaderFile[];
   createdAt?: Date;
   updatedAt?: Date;
@@ -34,15 +36,15 @@ export class ShaderLoader {
     this.files = args.files;
     this.createdAt = args.createdAt;
     this.updatedAt = args.updatedAt;
+    this.iconId = args.icon?.id ?? args.iconId;
   }
   toPersistence(): ShaderLoaderPersistence {
     if (!this.name) throw new Error("ShaderLoader must have a name");
     if (!this.icon) throw new Error("ShaderLoader must have an icon");
-    if (this.icon.id == null)
-      throw new Error("ShaderLoader icon must have an id");
+
     return {
       name: this.name,
-      iconId: this.icon?.id,
+      iconId: this.iconId,
     };
   }
   toJson(): ShaderLoaderJson {

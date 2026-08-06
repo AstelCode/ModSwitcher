@@ -3,29 +3,28 @@ import { ServiceContext } from "../../port/ServiceContext";
 
 type Deps = Pick<
   ServiceContext,
-  "userRepository" | "fileService" | "tokenService" | "modFileRepository"
+  "userRepository" | "fileService" | "tokenService" | "packRepository"
 >;
 
-export class UpdateModfileUseCase {
+export class AddPackImageUseCase {
   constructor(private readonly deps: Deps) {}
-
   async execute(
     token: string,
     args: {
       file?: UploadLocalFileInput;
       url?: string;
-      modFileId: string;
-      version: string;
-      minecraftVersionId: string;
-      loaderId: string;
+      packId: string;
     },
   ): Promise<void> {
-    const { userRepository, tokenService, modFileRepository, fileService } =
+    const { userRepository, tokenService, fileService, packRepository } =
       this.deps;
     const { userId } = await tokenService.verify(token);
     const user = await userRepository.getById(userId);
     if (!user) throw new Error("User not found");
-
+    if (user.role == "user") throw new Error("Unauthorized");
+    const pack = await packRepository.getById(args.packId);
+    if (!pack) throw new Error("Pack not found");
+    if (pack.authorId != user.getId()) throw new Error("Unauthorized");
     let data: string | UploadLocalFileInput;
     if (args.file) {
       data = args.file;
@@ -34,14 +33,8 @@ export class UpdateModfileUseCase {
     } else {
       throw new Error("No file or url provided");
     }
-    const modFile = await modFileRepository.getById(args.modFileId);
-    if (!modFile) throw new Error("ModFile not found");
-    if (modFile.authorId != user.getId()) throw new Error("Unauthorized");
-    await fileService.update(modFile.getFileId(), data);
-    await modFileRepository.update(args.modFileId, {
-      version: args.version,
-      minecraftVersionId: args.minecraftVersionId,
-      loaderId: args.loaderId,
+    await fileService.upload("pack_image", `${args.packId}_image`, data, {
+      packId: args.packId,
     });
   }
 }

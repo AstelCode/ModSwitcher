@@ -1,5 +1,5 @@
 import { ShaderFileJson } from "@/core/domain/model/shader/ShaderFile";
-import { ServiceContext } from "../../port/ServiceContext";
+import { ServiceContext } from "../../../port/ServiceContext";
 
 type Deps = Pick<
   ServiceContext,

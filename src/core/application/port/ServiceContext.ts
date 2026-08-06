@@ -16,6 +16,13 @@ import { ExternalIdRepository } from "@/core/domain/port/ExternalIdRepository";
 import { ModFileRepository } from "@/core/domain/port/mod/ModFileRepository";
 import { UuidService } from "./UuidService";
 import { ShaderFileRepository } from "@/core/domain/port/shader/ShaderFileRepository";
+import { PackVersionRepository } from "@/core/domain/port/pack/PackVersionRepository";
+import { PackShaderRepository } from "@/core/domain/port/pack/PackShaderRepository";
+import { PackModRepository } from "@/core/domain/port/pack/PackModRepository";
+import { MinecraftVersionRepository } from "@/core/domain/port/loaders/MinecraftVersionRepository";
+import { MinecraftLoaderRepository } from "@/core/domain/port/loaders/MinecraftLoaderRepository";
+import { MinecraftLoaderFileRepository } from "@/core/domain/port/loaders/MinecraftLoaderFileRepository";
+import { ShaderLoaderRepository } from "@/core/domain/port/loaders/ShaderLoaderRepository";
 
 export interface ServiceContext {
   tokenService: TokenService;
@@ -33,9 +40,16 @@ export interface ServiceContext {
   modFileRepository: ModFileRepository;
   modConflictRepository: ModConflictRepository;
   packRepository: PackRepository;
+  packModRepository: PackModRepository;
+  packShaderRepository: PackShaderRepository;
+  packVersionRepository: PackVersionRepository;
   shaderRepository: ShaderRepository;
   userInstalationRepository: UserInstalationRepository;
   fileRepository: FileRepository;
   externalIdRepository: ExternalIdRepository;
   shaderFileRepository: ShaderFileRepository;
+  minecraftVersionRepository: MinecraftVersionRepository;
+  minecraftLoaderRepository: MinecraftLoaderRepository;
+  minecraftLoaderFileRepository: MinecraftLoaderFileRepository;
+  shaderLoaderRepository: ShaderLoaderRepository;
 }

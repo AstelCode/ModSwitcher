@@ -12,12 +12,19 @@ export interface MinecraftLoaderUpdateData {
   name?: string;
   iconId?: string;
 }
+export interface MinecraftLoaderInclude {
+  icon?: boolean;
+}
 export interface MinecraftLoaderRepository {
   getAll(data?: {
     filter?: MinecraftLoaderFilter;
     pagination?: MinecraftLoaderPagination;
+    include?: MinecraftLoaderInclude;
   }): Promise<MinecraftLoader[]>;
-  getById(id: string): Promise<MinecraftLoader | undefined>;
+  getById(
+    id: string,
+    include?: MinecraftLoaderInclude,
+  ): Promise<MinecraftLoader | undefined>;
   create(minecraftLoader: MinecraftLoader): Promise<MinecraftLoader>;
   update(
     id: string,

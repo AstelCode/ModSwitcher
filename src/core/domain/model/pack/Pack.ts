@@ -13,7 +13,9 @@ export interface PackArgs {
   name: string;
   description: string;
   author?: User;
+  authorId?: string;
   icon?: FileModel;
+  iconId?: string;
   images?: FileModel[];
   externalIds?: ExternalId[];
   versions?: PackVersion[];
@@ -47,7 +49,9 @@ export class Pack {
   name: string;
   description: string;
   author?: User;
+  authorId?: string;
   icon?: FileModel;
+  iconId?: string;
   images?: FileModel[];
   externalIds?: ExternalId[];
   versions?: PackVersion[];
@@ -66,6 +70,20 @@ export class Pack {
     this.comments = args.comments;
     this.createdAt = args.createdAt;
     this.updatedAt = args.updatedAt;
+    this.iconId = args.icon?.id ?? args.iconId;
+    this.authorId = args.author?.id ?? args.authorId;
+  }
+  getId(): string {
+    if (!this.id) throw new Error("Pack must have an id");
+    return this.id;
+  }
+  getIconId(): string {
+    if (!this.iconId) throw new Error("Pack must have an icon");
+    return this.iconId;
+  }
+  getImagesIds(): string[] {
+    if (!this.images) throw new Error("Pack must have images");
+    return this.images.map((image) => image.getId());
   }
   toPersistence(): PackPersistence {
     if (!this.name) throw new Error("Pack must have a name");
@@ -76,11 +94,11 @@ export class Pack {
     if (!this.versions) throw new Error("Pack must have versions");
     if (!this.externalIds) throw new Error("Pack must have externalIds");
     return {
-      iconId: this.icon?.id,
+      iconId: this.iconId,
       name: this.name,
       description: this.description,
       images: this.images?.map((image) => image.toPersistence()) ?? [],
-      authorId: this.author?.id,
+      authorId: this.authorId,
       externalIds: this.externalIds.map((externalId) =>
         externalId.toPersistence(),
       ),

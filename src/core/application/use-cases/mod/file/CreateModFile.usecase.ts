@@ -1,26 +1,27 @@
-import { ShaderFile } from "@/core/domain/model/shader/ShaderFile";
-import { UploadLocalFileInput } from "../../port/FileService";
-import { ServiceContext } from "../../port/ServiceContext";
+import { ModFile } from "@/core/domain/model/Mod/ModFile";
+import { UploadLocalFileInput } from "../../../port/FileService";
+import { ServiceContext } from "../../../port/ServiceContext";
 
 type Deps = Pick<
   ServiceContext,
-  "userRepository" | "fileService" | "tokenService" | "shaderFileRepository"
+  "userRepository" | "modFileRepository" | "tokenService" | "fileService"
 >;
 
-export class CreateShaderFileUseCase {
+export class CreateModFileUseCase {
   constructor(private readonly deps: Deps) {}
+
   async execute(
     token: string,
     args: {
-      shaderId: string;
+      file?: UploadLocalFileInput;
+      url?: string;
+      modId: string;
       version: string;
       minecraftVersionId: string;
       loaderId: string;
-      file?: UploadLocalFileInput;
-      url?: string;
     },
   ): Promise<void> {
-    const { fileService, userRepository, tokenService, shaderFileRepository } =
+    const { userRepository, tokenService, modFileRepository, fileService } =
       this.deps;
     const { userId } = await tokenService.verify(token);
     const user = await userRepository.getById(userId);
@@ -34,18 +35,21 @@ export class CreateShaderFileUseCase {
     } else {
       throw new Error("No file or url provided");
     }
-    const shaderFileInfo = await fileService.upload(
-      "shader_file",
-      `${args.shaderId}_${args.version}_${args.loaderId}_${args.minecraftVersionId}`,
+
+    const file = await fileService.upload(
+      "mod",
+      `${args.modId}_${args.version}_${args.loaderId}`,
       data,
     );
-    const shaderFile = new ShaderFile({
-      shaderId: args.shaderId,
+
+    const modFile = new ModFile({
+      fileId: file.getId(),
+      modId: args.modId,
       version: args.version,
       minecraftVersionId: args.minecraftVersionId,
       loaderId: args.loaderId,
-      fileId: shaderFileInfo.id,
+      authorId: user.getId(),
     });
-    await shaderFileRepository.create(shaderFile);
+    await modFileRepository.create(modFile);
   }
 }

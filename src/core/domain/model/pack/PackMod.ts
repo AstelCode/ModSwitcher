@@ -4,15 +4,17 @@ import { PackVersion, PackVersionJson } from "./PackVersion";
 export interface PackModArgs {
   id?: string;
   packVersion?: PackVersion;
-  modFile: ModFile;
+  packVersionId?: string;
+  modFile?: ModFile;
+  modFileId?: string;
   optional: boolean;
-  loadOrder?: number;
+  //  loadOrder?: number;
 }
 export interface PackModPersistence {
   packVersionId: string;
   modFileId: string;
   optional: boolean;
-  loadOrder?: number;
+  // loadOrder?: number;
 }
 export interface PackModJson {
   id: string;
@@ -24,31 +26,39 @@ export interface PackModJson {
 export class PackMod {
   id?: string;
   packVersion?: PackVersion;
-  modFile: ModFile;
+  packVersionId?: string;
+  modFile?: ModFile;
+  modFileId?: string;
   optional: boolean;
-  loadOrder?: number;
+  //  loadOrder?: number;
   constructor(args: PackModArgs) {
     this.id = args.id;
     this.packVersion = args.packVersion;
     this.modFile = args.modFile;
     this.optional = args.optional;
-    this.loadOrder = args.loadOrder;
+    this.packVersionId = args.packVersion?.id ?? args.packVersionId;
+    this.modFileId = args.modFile?.id ?? args.modFileId;
+    //this.loadOrder = args.loadOrder;
+  }
+  getId(): string {
+    if (!this.id) throw new Error("PackMod must have an id");
+    return this.id;
   }
   toPersistence(): PackModPersistence {
     if (this.packVersion == null)
       throw new Error("PackMod must have a packVersion");
     if (this.modFile == null) throw new Error("PackMod must have a modFile");
     if (this.optional == null) throw new Error("PackMod must have an optional");
-    if (this.loadOrder == null)
+    /* if (this.loadOrder == null)
       throw new Error("PackMod must have a loadOrder");
-    if (!this.packVersion.id)
+  */ if (!this.packVersion.id)
       throw new Error("PackMod must have a packVersion id");
     if (!this.modFile.id) throw new Error("PackMod must have a modFile id");
     return {
       packVersionId: this.packVersion.id,
       modFileId: this.modFile.id,
       optional: this.optional,
-      loadOrder: this.loadOrder,
+      //   loadOrder: this.loadOrder,
     };
   }
   toJson(): PackModJson {
@@ -56,13 +66,13 @@ export class PackMod {
     if (!this.packVersion) throw new Error("PackMod must have a packVersion");
     if (!this.modFile) throw new Error("PackMod must have a modFile");
     if (!this.optional) throw new Error("PackMod must have an optional");
-    if (!this.loadOrder) throw new Error("PackMod must have a loadOrder");
+    //if (!this.loadOrder) throw new Error("PackMod must have a loadOrder");
     return {
       id: this.id,
       packVersion: this.packVersion.toJson(),
       modFile: this.modFile.toJson(),
       optional: this.optional,
-      loadOrder: this.loadOrder,
+      // loadOrder: this.loadOrder,
     };
   }
 }

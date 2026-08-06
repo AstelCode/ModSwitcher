@@ -1,4 +1,5 @@
-import { ServiceContext } from "../../port/ServiceContext";
+import { UploadLocalFileInput } from "../../../port/FileService";
+import { ServiceContext } from "../../../port/ServiceContext";
 
 type Deps = Pick<
   ServiceContext,
@@ -8,11 +9,16 @@ type Deps = Pick<
   | "fileService"
   | "modRepository"
 >;
-export class DeleteModImageUseCase {
+
+export class UpdateModIconUseCase {
   constructor(private readonly deps: Deps) {}
   async execute(
     token: string,
-    args: { modId: string; imageId: string },
+    args: {
+      file?: UploadLocalFileInput;
+      url?: string;
+      modId: string;
+    },
   ): Promise<void> {
     const { userRepository, tokenService, fileService, modRepository } =
       this.deps;
@@ -23,6 +29,22 @@ export class DeleteModImageUseCase {
     const mod = await modRepository.getById(args.modId);
     if (!mod) throw new Error("Mod not found");
     if (mod.authorId != user.getId()) throw new Error("Unauthorized");
-    await fileService.delete(args.imageId);
+    let data: string | UploadLocalFileInput;
+    if (args.file) {
+      data = args.file;
+    } else if (args.url) {
+      data = args.url;
+    } else {
+      throw new Error("No file or url provided");
+    }
+    const fileIcon = await fileService.upload(
+      "mod_image",
+      `${mod.getId()}_icon`,
+      data,
+      {
+        modId: args.modId,
+      },
+    );
+    await modRepository.update(mod.getId(), { iconId: fileIcon.id });
   }
 }

@@ -1,5 +1,5 @@
 import { ModFileJson } from "@/core/domain/model/Mod/ModFile";
-import { ServiceContext } from "../../port/ServiceContext";
+import { ServiceContext } from "../../../port/ServiceContext";
 
 type Deps = Pick<ServiceContext, "userRepository" | "modFileRepository">;
 

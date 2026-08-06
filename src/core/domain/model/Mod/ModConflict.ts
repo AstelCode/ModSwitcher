@@ -2,8 +2,10 @@ import { ModFile, ModFileJson } from "./ModFile";
 
 export interface ModConflictArgs {
   id?: string;
-  mod: ModFile;
-  conflicMod: ModFile;
+  mod?: ModFile;
+  modId?: string;
+  conflictMod?: ModFile;
+  conflictModId?: string;
   comment: string;
 }
 export interface ModConflictPersistence {
@@ -14,44 +16,45 @@ export interface ModConflictPersistence {
 export interface ModConflictJson {
   id: string;
   mod: ModFileJson;
-  conflicMod: ModFileJson;
+  conflictMod: ModFileJson;
   comment: string;
 }
 export class ModConflict {
   id?: string;
-  mod: ModFile;
-  conflicMod: ModFile;
+  mod?: ModFile;
+  modId?: string;
+  conflictMod?: ModFile;
+  conflictModId?: string;
   comment: string;
   constructor(args: ModConflictArgs) {
     this.id = args.id;
     this.mod = args.mod;
-    this.conflicMod = args.conflicMod;
+    this.conflictMod = args.conflictMod;
     this.comment = args.comment;
+    this.modId = args.mod?.id ?? args.modId;
+    this.conflictModId = args.conflictMod?.id ?? args.conflictModId;
   }
   toPersistence(): ModConflictPersistence {
-    if (this.mod == null) throw new Error("ModConflict must have a mod");
-    if (this.conflicMod == null)
-      throw new Error("ModConflict must have a conflicMod");
-    if (this.comment == null)
-      throw new Error("ModConflict must have a comment");
-    if (!this.mod.id) throw new Error("ModConflict must have a mod id");
-    if (!this.conflicMod.id)
-      throw new Error("ModConflict must have a conflicMod id");
+    if (!this.modId) throw new Error("ModConflict must have a modId");
+    if (!this.conflictModId)
+      throw new Error("ModConflict must have a conflicModId");
+    if (!this.comment) throw new Error("ModConflict must have a comment");
     return {
-      modId: this.mod.id,
-      conflicModId: this.conflicMod.id,
+      modId: this.conflictModId,
+      conflicModId: this.conflictModId,
       comment: this.comment,
     };
   }
   toJson(): ModConflictJson {
     if (!this.id) throw new Error("ModConflict must have an id");
     if (!this.mod) throw new Error("ModConflict must have a mod");
-    if (!this.conflicMod) throw new Error("ModConflict must have a conflicMod");
+    if (!this.conflictMod)
+      throw new Error("ModConflict must have a conflicMod");
     if (!this.comment) throw new Error("ModConflict must have a comment");
     return {
       id: this.id,
       mod: this.mod.toJson(),
-      conflicMod: this.conflicMod.toJson(),
+      conflictMod: this.conflictMod.toJson(),
       comment: this.comment,
     };
   }

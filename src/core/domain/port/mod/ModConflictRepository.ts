@@ -14,12 +14,20 @@ export interface ModConflictUpdateData {
   conflicModId?: string;
   comment?: string;
 }
+export interface ModConflictInclude {
+  mod?: boolean;
+  conflictMod?: boolean;
+}
 export interface ModConflictRepository {
   getAll(data?: {
     filter?: ModConflictFilter;
     pagination?: ModConflictPagination;
+    include?: ModConflictInclude;
   }): Promise<ModConflict[]>;
-  getById(id: string): Promise<ModConflict | undefined>;
+  getById(
+    id: string,
+    include?: ModConflictInclude,
+  ): Promise<ModConflict | undefined>;
   create(modConflict: ModConflict): Promise<ModConflict>;
   update(id: string, modConflict: ModConflictUpdateData): Promise<ModConflict>;
   delete(id: string): Promise<void>;

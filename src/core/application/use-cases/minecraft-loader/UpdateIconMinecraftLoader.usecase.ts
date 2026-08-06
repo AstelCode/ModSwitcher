@@ -4,31 +4,30 @@ import { ServiceContext } from "../../port/ServiceContext";
 type Deps = Pick<
   ServiceContext,
   | "userRepository"
-  | "fileRepository"
-  | "tokenService"
   | "fileService"
-  | "modRepository"
+  | "tokenService"
+  | "minecraftLoaderRepository"
 >;
-
-export class UpdateModIconUseCase {
+export class UpdateIconMinecraftLoaderUseCase {
   constructor(private readonly deps: Deps) {}
   async execute(
     token: string,
     args: {
       file?: UploadLocalFileInput;
       url?: string;
-      modId: string;
+      loaderId: string;
     },
   ): Promise<void> {
-    const { userRepository, tokenService, fileService, modRepository } =
-      this.deps;
+    const {
+      userRepository,
+      tokenService,
+      fileService,
+      minecraftLoaderRepository,
+    } = this.deps;
     const { userId } = await tokenService.verify(token);
     const user = await userRepository.getById(userId);
     if (!user) throw new Error("User not found");
     if (user.role == "user") throw new Error("Unauthorized");
-    const mod = await modRepository.getById(args.modId);
-    if (!mod) throw new Error("Mod not found");
-    if (mod.authorId != user.getId()) throw new Error("Unauthorized");
     let data: string | UploadLocalFileInput;
     if (args.file) {
       data = args.file;
@@ -37,14 +36,15 @@ export class UpdateModIconUseCase {
     } else {
       throw new Error("No file or url provided");
     }
-    const fileIcon = await fileService.upload(
-      "mod_image",
-      `${mod.getId()}_icon`,
+    const loader = await minecraftLoaderRepository.getById(args.loaderId);
+    if (!loader) throw new Error("Loader not found");
+    const iconFile = await fileService.upload(
+      "loader_icon",
+      `loader_${loader.name}`,
       data,
-      {
-        modId: args.modId,
-      },
     );
-    await modRepository.update(mod.getId(), { iconId: fileIcon.id });
+    await minecraftLoaderRepository.update(args.loaderId, {
+      iconId: iconFile.id,
+    });
   }
 }
