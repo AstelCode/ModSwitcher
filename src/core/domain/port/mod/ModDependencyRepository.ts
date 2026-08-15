@@ -1,4 +1,7 @@
-import { ModDependency } from "../../model/Mod/ModDependency";
+import {
+  ModDependency,
+  ModDependencyRole,
+} from "../../model/Mod/ModDependency";
 
 export interface ModDependencyFilter {
   modId?: string;
@@ -6,7 +9,7 @@ export interface ModDependencyFilter {
   maxVersion?: string;
   dependencyModId?: string;
   dependencyFileId?: string;
-  role?: string;
+  role?: ModDependencyRole;
 }
 export interface ModDependencyPagination {
   limit?: number;
@@ -18,14 +21,22 @@ export interface ModDependencyUpdateData {
   maxVersion?: string;
   dependencyModId?: string;
   dependencyFileId?: string;
-  role?: string;
+  role?: ModDependencyRole;
+}
+export interface ModDependencyInclude {
+  mod?: boolean;
+  dependencyMod?: boolean;
 }
 export interface ModDependencyRepository {
   getAll(data?: {
     filter?: ModDependencyFilter;
     pagination?: ModDependencyPagination;
+    include?: ModDependencyInclude;
   }): Promise<ModDependency[]>;
-  getById(id: string): Promise<ModDependency | undefined>;
+  getById(
+    id: string,
+    include?: ModDependencyInclude,
+  ): Promise<ModDependency | undefined>;
   create(modDependency: ModDependency): Promise<ModDependency>;
   update(
     id: string,

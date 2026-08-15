@@ -4,7 +4,6 @@ export interface ShaderFilter {
   name?: string;
   description?: string;
   authorId?: string;
-  imagesId?: string;
   iconId?: string;
   externalIdsId?: string;
 }
@@ -16,7 +15,6 @@ export interface ShaderUpdateData {
   name?: string;
   description?: string;
   authorId?: string;
-  imagesId?: string;
   iconId?: string;
   externalIdsId?: string;
 }

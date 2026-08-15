@@ -5,8 +5,6 @@ export interface PackVersionFilter {
   version?: string;
   minecraftVersionId?: string;
   minecraftLoaderId?: string;
-  modsId?: string;
-  shadersId?: string;
 }
 export interface PackVersionPagination {
   limit?: number;

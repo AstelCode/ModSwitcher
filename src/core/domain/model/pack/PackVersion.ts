@@ -31,8 +31,8 @@ export interface PackVersionPersistence {
   minecraftLoaderId: string;
   //mods: PackModPersistence[];
   //shaders: PackShaderPersistence[];
-  createdAt: Date;
-  updatedAt: Date;
+  //createdAt: Date;
+  //updatedAt: Date;
 }
 export interface PackVersionJson {
   id: string;
@@ -92,8 +92,8 @@ export class PackVersion {
       version: this.version,
       minecraftVersionId: this.minecraftVersionId,
       minecraftLoaderId: this.minecraftLoaderId,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt,
+      //  createdAt: this.createdAt,
+      //   updatedAt: this.updatedAt,
     };
   }
   toJson(): PackVersionJson {

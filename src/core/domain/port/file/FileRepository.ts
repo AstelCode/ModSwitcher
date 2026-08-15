@@ -15,12 +15,17 @@ export interface FileUpdateData {
   modId?: string;
   packId?: string;
 }
+
+export interface FileInclude {
+  localFile?: boolean;
+}
 export interface FileRepository {
   getAll(data?: {
     filter?: FileFilter;
     pagination?: FilePagination;
+    include?: FileInclude;
   }): Promise<File[]>;
-  getById(id: string): Promise<File | undefined>;
+  getById(id: string, indlude?: FileInclude): Promise<File | undefined>;
   create(file: File): Promise<File>;
   update(id: string, file: FileUpdateData): Promise<File>;
   delete(id: string): Promise<void>;

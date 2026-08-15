@@ -234,6 +234,7 @@ export type UserWhereInput = {
   mods?: Prisma.ModListRelationFilter
   shaders?: Prisma.ShaderListRelationFilter
   packs?: Prisma.PackListRelationFilter
+  comments?: Prisma.CommentListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -252,6 +253,7 @@ export type UserOrderByWithRelationInput = {
   mods?: Prisma.ModOrderByRelationAggregateInput
   shaders?: Prisma.ShaderOrderByRelationAggregateInput
   packs?: Prisma.PackOrderByRelationAggregateInput
+  comments?: Prisma.CommentOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -273,6 +275,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   mods?: Prisma.ModListRelationFilter
   shaders?: Prisma.ShaderListRelationFilter
   packs?: Prisma.PackListRelationFilter
+  comments?: Prisma.CommentListRelationFilter
 }, "id" | "username" | "email" | "avatarId">
 
 export type UserOrderByWithAggregationInput = {
@@ -324,6 +327,7 @@ export type UserCreateInput = {
   mods?: Prisma.ModCreateNestedManyWithoutAuthorInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutAuthorInput
   packs?: Prisma.PackCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -341,6 +345,7 @@ export type UserUncheckedCreateInput = {
   mods?: Prisma.ModUncheckedCreateNestedManyWithoutAuthorInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutAuthorInput
   packs?: Prisma.PackUncheckedCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUpdateInput = {
@@ -358,6 +363,7 @@ export type UserUpdateInput = {
   mods?: Prisma.ModUpdateManyWithoutAuthorNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutAuthorNestedInput
   packs?: Prisma.PackUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -375,6 +381,7 @@ export type UserUncheckedUpdateInput = {
   mods?: Prisma.ModUncheckedUpdateManyWithoutAuthorNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutAuthorNestedInput
   packs?: Prisma.PackUncheckedUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -465,6 +472,11 @@ export type UserMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
 }
 
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
 export type UserCreateNestedOneWithoutAvatarInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutAvatarInput, Prisma.UserUncheckedCreateWithoutAvatarInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutAvatarInput
@@ -553,6 +565,20 @@ export type UserUpdateOneWithoutPacksNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPacksInput, Prisma.UserUpdateWithoutPacksInput>, Prisma.UserUncheckedUpdateWithoutPacksInput>
 }
 
+export type UserCreateNestedOneWithoutCommentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentsInput
+  upsert?: Prisma.UserUpsertWithoutCommentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCommentsInput, Prisma.UserUpdateWithoutCommentsInput>, Prisma.UserUncheckedUpdateWithoutCommentsInput>
+}
+
 export type UserCreateWithoutAvatarInput = {
   id?: string
   username: string
@@ -567,6 +593,7 @@ export type UserCreateWithoutAvatarInput = {
   mods?: Prisma.ModCreateNestedManyWithoutAuthorInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutAuthorInput
   packs?: Prisma.PackCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutAvatarInput = {
@@ -583,6 +610,7 @@ export type UserUncheckedCreateWithoutAvatarInput = {
   mods?: Prisma.ModUncheckedCreateNestedManyWithoutAuthorInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutAuthorInput
   packs?: Prisma.PackUncheckedCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutAvatarInput = {
@@ -615,6 +643,7 @@ export type UserUpdateWithoutAvatarInput = {
   mods?: Prisma.ModUpdateManyWithoutAuthorNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutAuthorNestedInput
   packs?: Prisma.PackUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAvatarInput = {
@@ -631,6 +660,7 @@ export type UserUncheckedUpdateWithoutAvatarInput = {
   mods?: Prisma.ModUncheckedUpdateManyWithoutAuthorNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutAuthorNestedInput
   packs?: Prisma.PackUncheckedUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateWithoutModsInput = {
@@ -647,6 +677,7 @@ export type UserCreateWithoutModsInput = {
   avatar?: Prisma.FileCreateNestedOneWithoutUserInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutAuthorInput
   packs?: Prisma.PackCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutModsInput = {
@@ -663,6 +694,7 @@ export type UserUncheckedCreateWithoutModsInput = {
   status?: $Enums.UserStatus
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutAuthorInput
   packs?: Prisma.PackUncheckedCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutModsInput = {
@@ -695,6 +727,7 @@ export type UserUpdateWithoutModsInput = {
   avatar?: Prisma.FileUpdateOneWithoutUserNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutAuthorNestedInput
   packs?: Prisma.PackUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutModsInput = {
@@ -711,6 +744,7 @@ export type UserUncheckedUpdateWithoutModsInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutAuthorNestedInput
   packs?: Prisma.PackUncheckedUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateWithoutShadersInput = {
@@ -727,6 +761,7 @@ export type UserCreateWithoutShadersInput = {
   avatar?: Prisma.FileCreateNestedOneWithoutUserInput
   mods?: Prisma.ModCreateNestedManyWithoutAuthorInput
   packs?: Prisma.PackCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutShadersInput = {
@@ -743,6 +778,7 @@ export type UserUncheckedCreateWithoutShadersInput = {
   status?: $Enums.UserStatus
   mods?: Prisma.ModUncheckedCreateNestedManyWithoutAuthorInput
   packs?: Prisma.PackUncheckedCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutShadersInput = {
@@ -775,6 +811,7 @@ export type UserUpdateWithoutShadersInput = {
   avatar?: Prisma.FileUpdateOneWithoutUserNestedInput
   mods?: Prisma.ModUpdateManyWithoutAuthorNestedInput
   packs?: Prisma.PackUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutShadersInput = {
@@ -791,6 +828,7 @@ export type UserUncheckedUpdateWithoutShadersInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   mods?: Prisma.ModUncheckedUpdateManyWithoutAuthorNestedInput
   packs?: Prisma.PackUncheckedUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateWithoutPacksInput = {
@@ -807,6 +845,7 @@ export type UserCreateWithoutPacksInput = {
   avatar?: Prisma.FileCreateNestedOneWithoutUserInput
   mods?: Prisma.ModCreateNestedManyWithoutAuthorInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutPacksInput = {
@@ -823,6 +862,7 @@ export type UserUncheckedCreateWithoutPacksInput = {
   status?: $Enums.UserStatus
   mods?: Prisma.ModUncheckedCreateNestedManyWithoutAuthorInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutPacksInput = {
@@ -855,6 +895,7 @@ export type UserUpdateWithoutPacksInput = {
   avatar?: Prisma.FileUpdateOneWithoutUserNestedInput
   mods?: Prisma.ModUpdateManyWithoutAuthorNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPacksInput = {
@@ -871,6 +912,91 @@ export type UserUncheckedUpdateWithoutPacksInput = {
   status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
   mods?: Prisma.ModUncheckedUpdateManyWithoutAuthorNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserCreateWithoutCommentsInput = {
+  id?: string
+  username: string
+  password: string
+  email: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  role?: $Enums.UserRole
+  activationCode?: string | null
+  recoveryTokenHash?: string | null
+  status?: $Enums.UserStatus
+  avatar?: Prisma.FileCreateNestedOneWithoutUserInput
+  mods?: Prisma.ModCreateNestedManyWithoutAuthorInput
+  shaders?: Prisma.ShaderCreateNestedManyWithoutAuthorInput
+  packs?: Prisma.PackCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutCommentsInput = {
+  id?: string
+  username: string
+  password: string
+  email: string
+  avatarId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  role?: $Enums.UserRole
+  activationCode?: string | null
+  recoveryTokenHash?: string | null
+  status?: $Enums.UserStatus
+  mods?: Prisma.ModUncheckedCreateNestedManyWithoutAuthorInput
+  shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutAuthorInput
+  packs?: Prisma.PackUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutCommentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+}
+
+export type UserUpsertWithoutCommentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCommentsInput, Prisma.UserUncheckedUpdateWithoutCommentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCommentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCommentsInput, Prisma.UserUncheckedUpdateWithoutCommentsInput>
+}
+
+export type UserUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  activationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recoveryTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  avatar?: Prisma.FileUpdateOneWithoutUserNestedInput
+  mods?: Prisma.ModUpdateManyWithoutAuthorNestedInput
+  shaders?: Prisma.ShaderUpdateManyWithoutAuthorNestedInput
+  packs?: Prisma.PackUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  activationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  recoveryTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  mods?: Prisma.ModUncheckedUpdateManyWithoutAuthorNestedInput
+  shaders?: Prisma.ShaderUncheckedUpdateManyWithoutAuthorNestedInput
+  packs?: Prisma.PackUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 
@@ -882,12 +1008,14 @@ export type UserCountOutputType = {
   mods: number
   shaders: number
   packs: number
+  comments: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   mods?: boolean | UserCountOutputTypeCountModsArgs
   shaders?: boolean | UserCountOutputTypeCountShadersArgs
   packs?: boolean | UserCountOutputTypeCountPacksArgs
+  comments?: boolean | UserCountOutputTypeCountCommentsArgs
 }
 
 /**
@@ -921,6 +1049,13 @@ export type UserCountOutputTypeCountPacksArgs<ExtArgs extends runtime.Types.Exte
   where?: Prisma.PackWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CommentWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -938,6 +1073,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   mods?: boolean | Prisma.User$modsArgs<ExtArgs>
   shaders?: boolean | Prisma.User$shadersArgs<ExtArgs>
   packs?: boolean | Prisma.User$packsArgs<ExtArgs>
+  comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -991,6 +1127,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   mods?: boolean | Prisma.User$modsArgs<ExtArgs>
   shaders?: boolean | Prisma.User$shadersArgs<ExtArgs>
   packs?: boolean | Prisma.User$packsArgs<ExtArgs>
+  comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1007,6 +1144,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     mods: Prisma.$ModPayload<ExtArgs>[]
     shaders: Prisma.$ShaderPayload<ExtArgs>[]
     packs: Prisma.$PackPayload<ExtArgs>[]
+    comments: Prisma.$CommentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1418,6 +1556,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   mods<T extends Prisma.User$modsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$modsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   shaders<T extends Prisma.User$shadersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$shadersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShaderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   packs<T extends Prisma.User$packsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$packsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  comments<T extends Prisma.User$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1947,6 +2086,30 @@ export type User$packsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   take?: number
   skip?: number
   distinct?: Prisma.PackScalarFieldEnum | Prisma.PackScalarFieldEnum[]
+}
+
+/**
+ * User.comments
+ */
+export type User$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Comment
+   */
+  select?: Prisma.CommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Comment
+   */
+  omit?: Prisma.CommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommentInclude<ExtArgs> | null
+  where?: Prisma.CommentWhereInput
+  orderBy?: Prisma.CommentOrderByWithRelationInput | Prisma.CommentOrderByWithRelationInput[]
+  cursor?: Prisma.CommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[]
 }
 
 /**

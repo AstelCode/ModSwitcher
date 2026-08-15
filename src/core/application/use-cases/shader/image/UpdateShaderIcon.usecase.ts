@@ -30,6 +30,11 @@ export class UpdateShaderIconUseCase {
     } else {
       throw new Error("No file or url provided");
     }
+    if (user.getAvatarId()) {
+      await fileService.update(user.getAvatarId(), data);
+
+      return;
+    }
     const iconFile = await fileService.upload(
       "shader_icon",
       `${args.shaderId}_icon`,

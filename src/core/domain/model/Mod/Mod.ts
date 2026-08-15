@@ -29,8 +29,7 @@ export interface ModPersistence {
   name: string;
   description: string;
   status: ModStatus;
-  authorId?: string;
-  images: FilePersistence[];
+  authorId: string;
   iconId?: string;
   externalIds: ExternalIdPersistence[];
 }
@@ -106,7 +105,6 @@ export class Mod {
       iconId: this.icon?.id,
       name: this.name,
       description: this.description,
-      images: this.images.map((image) => image.toPersistence()),
       authorId: this.authorId,
       externalIds: this.externalIds.map((externalId) =>
         externalId.toPersistence(),

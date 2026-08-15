@@ -91,9 +91,10 @@ model User {
   //shaders    Shader[] @relation("shader_author")
   //installations UserInstalation[] @relation("user_installation")  
 
-  mods    Mod[]
-  shaders Shader[]
-  packs   Pack[]
+  mods     Mod[]
+  shaders  Shader[]
+  packs    Pack[]
+  comments Comment[]
 }
 
 model MinecraftVersion {
@@ -182,6 +183,8 @@ model Mod {
   modDependenciesFrom ModDependency[] @relation("mod_dependency_from")
 
   modDependenciesTo ModDependency[] @relation("mod_dependency_to")
+
+  comments Comment[]
 }
 
 model ModConflict {
@@ -248,6 +251,7 @@ model Shader {
   images File[] @relation("shader_image")
 
   shaderFiles ShaderFile[]
+  comments    Comment[]
 }
 
 enum PackStatus {
@@ -271,6 +275,7 @@ model Pack {
   status      PackStatus @default(published)
 
   packVersions PackVersion[]
+  comments     Comment[]
 }
 
 model PackVersion {
@@ -296,14 +301,30 @@ model PackMod {
   packVersionId String
   modFile       ModFile     @relation(fields: [modFileId], references: [id])
   modFileId     String
-  optional      Boolean
-  loadOrder     Int
+  //  optional      Boolean
+  // loadOrder     Int
 }
 
 model PackShader {
   id            String      @id @default(cuid())
-  shaderFile    ShaderFile  @relation(fields: [shaderFileid], references: [id])
-  shaderFileid  String
+  shaderFile    ShaderFile  @relation(fields: [shaderFileId], references: [id])
+  shaderFileId  String
   packVersion   PackVersion @relation(fields: [packVersionId], references: [id])
   packVersionId String
+  //  loadOrder     Int
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  shader    Shader?  @relation(fields: [shaderId], references: [id])
+  shaderId  String?
+  mod       Mod?     @relation(fields: [modId], references: [id])
+  modId     String?
+  pack      Pack?    @relation(fields: [packId], references: [id])
+  packId    String?
 }

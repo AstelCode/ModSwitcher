@@ -412,7 +412,8 @@ export const ModelName = {
   Pack: 'Pack',
   PackVersion: 'PackVersion',
   PackMod: 'PackMod',
-  PackShader: 'PackShader'
+  PackShader: 'PackShader',
+  Comment: 'Comment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -428,7 +429,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "localFile" | "file" | "user" | "minecraftVersion" | "minecraftLoader" | "shaderLoader" | "modFile" | "mod" | "modConflict" | "modDependency" | "shaderFile" | "shader" | "pack" | "packVersion" | "packMod" | "packShader"
+    modelProps: "localFile" | "file" | "user" | "minecraftVersion" | "minecraftLoader" | "shaderLoader" | "modFile" | "mod" | "modConflict" | "modDependency" | "shaderFile" | "shader" | "pack" | "packVersion" | "packMod" | "packShader" | "comment"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1616,6 +1617,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Comment: {
+      payload: Prisma.$CommentPayload<ExtArgs>
+      fields: Prisma.CommentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CommentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CommentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>
+        }
+        findFirst: {
+          args: Prisma.CommentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CommentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>
+        }
+        findMany: {
+          args: Prisma.CommentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>[]
+        }
+        create: {
+          args: Prisma.CommentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>
+        }
+        createMany: {
+          args: Prisma.CommentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CommentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>[]
+        }
+        delete: {
+          args: Prisma.CommentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>
+        }
+        update: {
+          args: Prisma.CommentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>
+        }
+        deleteMany: {
+          args: Prisma.CommentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CommentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CommentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>[]
+        }
+        upsert: {
+          args: Prisma.CommentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CommentPayload>
+        }
+        aggregate: {
+          args: Prisma.CommentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateComment>
+        }
+        groupBy: {
+          args: Prisma.CommentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CommentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CommentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CommentCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1846,9 +1921,7 @@ export type PackVersionScalarFieldEnum = (typeof PackVersionScalarFieldEnum)[key
 export const PackModScalarFieldEnum = {
   id: 'id',
   packVersionId: 'packVersionId',
-  modFileId: 'modFileId',
-  optional: 'optional',
-  loadOrder: 'loadOrder'
+  modFileId: 'modFileId'
 } as const
 
 export type PackModScalarFieldEnum = (typeof PackModScalarFieldEnum)[keyof typeof PackModScalarFieldEnum]
@@ -1856,11 +1929,25 @@ export type PackModScalarFieldEnum = (typeof PackModScalarFieldEnum)[keyof typeo
 
 export const PackShaderScalarFieldEnum = {
   id: 'id',
-  shaderFileid: 'shaderFileid',
+  shaderFileId: 'shaderFileId',
   packVersionId: 'packVersionId'
 } as const
 
 export type PackShaderScalarFieldEnum = (typeof PackShaderScalarFieldEnum)[keyof typeof PackShaderScalarFieldEnum]
+
+
+export const CommentScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  authorId: 'authorId',
+  shaderId: 'shaderId',
+  modId: 'modId',
+  packId: 'packId'
+} as const
+
+export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2002,13 +2089,6 @@ export type EnumPackStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
  * Reference to a field of type 'PackStatus[]'
  */
 export type ListEnumPackStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PackStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -2192,6 +2272,7 @@ export type GlobalOmitConfig = {
   packVersion?: Prisma.PackVersionOmit
   packMod?: Prisma.PackModOmit
   packShader?: Prisma.PackShaderOmit
+  comment?: Prisma.CommentOmit
 }
 
 /* Types for Logging */

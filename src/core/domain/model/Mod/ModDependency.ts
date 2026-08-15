@@ -17,7 +17,7 @@ export interface ModDependencyPersistence {
   maxVersion: string;
   dependencyModId: string;
   dependencyFileId?: string;
-  role: string;
+  role: ModDependencyRole;
 }
 export interface ModDependencyJson {
   id: string;
@@ -26,7 +26,7 @@ export interface ModDependencyJson {
   maxVersion: string;
   dependencyMod: ModJson;
   dependencyFile?: ModFileJson;
-  role: string;
+  role: ModDependencyRole;
 }
 
 export class ModDependency {
@@ -36,7 +36,7 @@ export class ModDependency {
   maxVersion: string;
   dependencyMod: Mod;
   dependencyFile?: ModFile;
-  role: string;
+  role: ModDependencyRole;
   constructor(args: ModDependencyArgs) {
     this.id = args.id;
     this.mod = args.mod;

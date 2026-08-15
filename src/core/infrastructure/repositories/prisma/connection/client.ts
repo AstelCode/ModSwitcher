@@ -121,3 +121,8 @@ export type PackMod = Prisma.PackModModel
  * 
  */
 export type PackShader = Prisma.PackShaderModel
+/**
+ * Model Comment
+ * 
+ */
+export type Comment = Prisma.CommentModel

@@ -1,5 +1,5 @@
-import { UploadLocalFileInput } from "../../port/FileService";
-import { ServiceContext } from "../../port/ServiceContext";
+import { UploadLocalFileInput } from "@/core/application/port/FileService";
+import { ServiceContext } from "@/core/application/port/ServiceContext";
 
 type Deps = Pick<
   ServiceContext,
@@ -45,6 +45,8 @@ export class AddShaderImageUseCase {
       `${args.shaderId}_${uuid}`,
       data,
     );
-    await shaderRepository.update(args.shaderId, { imagesId: imageFile.id });
+    await shaderRepository.update(args.shaderId, {
+      iconId: imageFile.id,
+    });
   }
 }

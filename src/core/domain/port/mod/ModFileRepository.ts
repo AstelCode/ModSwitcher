@@ -20,6 +20,8 @@ export interface ModFileUpdateData {
 }
 export interface ModFileInclude {
   file?: boolean;
+  minecraftVersion?: boolean;
+  loader?: boolean;
 }
 export interface ModFileRepository {
   getAll(data?: {

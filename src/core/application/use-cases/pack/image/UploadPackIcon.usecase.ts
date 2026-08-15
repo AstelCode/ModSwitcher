@@ -1,5 +1,6 @@
-import { UploadLocalFileInput } from "../../port/FileService";
-import { ServiceContext } from "../../port/ServiceContext";
+import { UploadLocalFileInput } from "@/core/application/port/FileService";
+import { ServiceContext } from "@/core/application/port/ServiceContext";
+
 type Deps = Pick<
   ServiceContext,
   "userRepository" | "fileService" | "tokenService" | "packRepository"
@@ -32,6 +33,11 @@ export class UploadPackIconUseCase {
     } else {
       throw new Error("No file or url provided");
     }
+    if (pack.getIconId()) {
+      await fileService.update(pack.getIconId(), data);
+      return;
+    }
+
     await fileService.upload("pack_icon", `${args.packId}_icon`, data, {
       packId: args.packId,
     });

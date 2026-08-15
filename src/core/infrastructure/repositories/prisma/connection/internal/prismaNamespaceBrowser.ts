@@ -66,7 +66,8 @@ export const ModelName = {
   Pack: 'Pack',
   PackVersion: 'PackVersion',
   PackMod: 'PackMod',
-  PackShader: 'PackShader'
+  PackShader: 'PackShader',
+  Comment: 'Comment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -276,9 +277,7 @@ export type PackVersionScalarFieldEnum = (typeof PackVersionScalarFieldEnum)[key
 export const PackModScalarFieldEnum = {
   id: 'id',
   packVersionId: 'packVersionId',
-  modFileId: 'modFileId',
-  optional: 'optional',
-  loadOrder: 'loadOrder'
+  modFileId: 'modFileId'
 } as const
 
 export type PackModScalarFieldEnum = (typeof PackModScalarFieldEnum)[keyof typeof PackModScalarFieldEnum]
@@ -286,11 +285,25 @@ export type PackModScalarFieldEnum = (typeof PackModScalarFieldEnum)[keyof typeo
 
 export const PackShaderScalarFieldEnum = {
   id: 'id',
-  shaderFileid: 'shaderFileid',
+  shaderFileId: 'shaderFileId',
   packVersionId: 'packVersionId'
 } as const
 
 export type PackShaderScalarFieldEnum = (typeof PackShaderScalarFieldEnum)[keyof typeof PackShaderScalarFieldEnum]
+
+
+export const CommentScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  authorId: 'authorId',
+  shaderId: 'shaderId',
+  modId: 'modId',
+  packId: 'packId'
+} as const
+
+export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
 
 
 export const SortOrder = {

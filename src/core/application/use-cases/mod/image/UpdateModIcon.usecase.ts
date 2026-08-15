@@ -37,6 +37,11 @@ export class UpdateModIconUseCase {
     } else {
       throw new Error("No file or url provided");
     }
+
+    if (mod.getIconId()) {
+      await fileService.update(mod.getIconId(), data);
+      return;
+    }
     const fileIcon = await fileService.upload(
       "mod_image",
       `${mod.getId()}_icon`,

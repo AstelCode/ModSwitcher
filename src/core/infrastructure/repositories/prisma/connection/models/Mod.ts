@@ -214,6 +214,7 @@ export type ModWhereInput = {
   modConflictsTo?: Prisma.ModConflictListRelationFilter
   modDependenciesFrom?: Prisma.ModDependencyListRelationFilter
   modDependenciesTo?: Prisma.ModDependencyListRelationFilter
+  comments?: Prisma.CommentListRelationFilter
 }
 
 export type ModOrderByWithRelationInput = {
@@ -233,6 +234,7 @@ export type ModOrderByWithRelationInput = {
   modConflictsTo?: Prisma.ModConflictOrderByRelationAggregateInput
   modDependenciesFrom?: Prisma.ModDependencyOrderByRelationAggregateInput
   modDependenciesTo?: Prisma.ModDependencyOrderByRelationAggregateInput
+  comments?: Prisma.CommentOrderByRelationAggregateInput
 }
 
 export type ModWhereUniqueInput = Prisma.AtLeast<{
@@ -255,6 +257,7 @@ export type ModWhereUniqueInput = Prisma.AtLeast<{
   modConflictsTo?: Prisma.ModConflictListRelationFilter
   modDependenciesFrom?: Prisma.ModDependencyListRelationFilter
   modDependenciesTo?: Prisma.ModDependencyListRelationFilter
+  comments?: Prisma.CommentListRelationFilter
 }, "id" | "iconId">
 
 export type ModOrderByWithAggregationInput = {
@@ -300,6 +303,7 @@ export type ModCreateInput = {
   modConflictsTo?: Prisma.ModConflictCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentCreateNestedManyWithoutModInput
 }
 
 export type ModUncheckedCreateInput = {
@@ -317,6 +321,7 @@ export type ModUncheckedCreateInput = {
   modConflictsTo?: Prisma.ModConflictUncheckedCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutModInput
 }
 
 export type ModUpdateInput = {
@@ -334,6 +339,7 @@ export type ModUpdateInput = {
   modConflictsTo?: Prisma.ModConflictUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutModNestedInput
 }
 
 export type ModUncheckedUpdateInput = {
@@ -351,6 +357,7 @@ export type ModUncheckedUpdateInput = {
   modConflictsTo?: Prisma.ModConflictUncheckedUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutModNestedInput
 }
 
 export type ModCreateManyInput = {
@@ -601,6 +608,22 @@ export type ModUpdateOneRequiredWithoutModDependenciesToNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ModUpdateToOneWithWhereWithoutModDependenciesToInput, Prisma.ModUpdateWithoutModDependenciesToInput>, Prisma.ModUncheckedUpdateWithoutModDependenciesToInput>
 }
 
+export type ModCreateNestedOneWithoutCommentsInput = {
+  create?: Prisma.XOR<Prisma.ModCreateWithoutCommentsInput, Prisma.ModUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.ModCreateOrConnectWithoutCommentsInput
+  connect?: Prisma.ModWhereUniqueInput
+}
+
+export type ModUpdateOneWithoutCommentsNestedInput = {
+  create?: Prisma.XOR<Prisma.ModCreateWithoutCommentsInput, Prisma.ModUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.ModCreateOrConnectWithoutCommentsInput
+  upsert?: Prisma.ModUpsertWithoutCommentsInput
+  disconnect?: Prisma.ModWhereInput | boolean
+  delete?: Prisma.ModWhereInput | boolean
+  connect?: Prisma.ModWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ModUpdateToOneWithWhereWithoutCommentsInput, Prisma.ModUpdateWithoutCommentsInput>, Prisma.ModUncheckedUpdateWithoutCommentsInput>
+}
+
 export type ModCreateWithoutIconInput = {
   id?: string
   name: string
@@ -615,6 +638,7 @@ export type ModCreateWithoutIconInput = {
   modConflictsTo?: Prisma.ModConflictCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentCreateNestedManyWithoutModInput
 }
 
 export type ModUncheckedCreateWithoutIconInput = {
@@ -631,6 +655,7 @@ export type ModUncheckedCreateWithoutIconInput = {
   modConflictsTo?: Prisma.ModConflictUncheckedCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutModInput
 }
 
 export type ModCreateOrConnectWithoutIconInput = {
@@ -652,6 +677,7 @@ export type ModCreateWithoutImagesInput = {
   modConflictsTo?: Prisma.ModConflictCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentCreateNestedManyWithoutModInput
 }
 
 export type ModUncheckedCreateWithoutImagesInput = {
@@ -668,6 +694,7 @@ export type ModUncheckedCreateWithoutImagesInput = {
   modConflictsTo?: Prisma.ModConflictUncheckedCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutModInput
 }
 
 export type ModCreateOrConnectWithoutImagesInput = {
@@ -700,6 +727,7 @@ export type ModUpdateWithoutIconInput = {
   modConflictsTo?: Prisma.ModConflictUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutModNestedInput
 }
 
 export type ModUncheckedUpdateWithoutIconInput = {
@@ -716,6 +744,7 @@ export type ModUncheckedUpdateWithoutIconInput = {
   modConflictsTo?: Prisma.ModConflictUncheckedUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutModNestedInput
 }
 
 export type ModUpsertWithoutImagesInput = {
@@ -743,6 +772,7 @@ export type ModUpdateWithoutImagesInput = {
   modConflictsTo?: Prisma.ModConflictUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutModNestedInput
 }
 
 export type ModUncheckedUpdateWithoutImagesInput = {
@@ -759,6 +789,7 @@ export type ModUncheckedUpdateWithoutImagesInput = {
   modConflictsTo?: Prisma.ModConflictUncheckedUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutModNestedInput
 }
 
 export type ModCreateWithoutAuthorInput = {
@@ -775,6 +806,7 @@ export type ModCreateWithoutAuthorInput = {
   modConflictsTo?: Prisma.ModConflictCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentCreateNestedManyWithoutModInput
 }
 
 export type ModUncheckedCreateWithoutAuthorInput = {
@@ -791,6 +823,7 @@ export type ModUncheckedCreateWithoutAuthorInput = {
   modConflictsTo?: Prisma.ModConflictUncheckedCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutModInput
 }
 
 export type ModCreateOrConnectWithoutAuthorInput = {
@@ -847,6 +880,7 @@ export type ModCreateWithoutModFilesInput = {
   modConflictsTo?: Prisma.ModConflictCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentCreateNestedManyWithoutModInput
 }
 
 export type ModUncheckedCreateWithoutModFilesInput = {
@@ -863,6 +897,7 @@ export type ModUncheckedCreateWithoutModFilesInput = {
   modConflictsTo?: Prisma.ModConflictUncheckedCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutModInput
 }
 
 export type ModCreateOrConnectWithoutModFilesInput = {
@@ -895,6 +930,7 @@ export type ModUpdateWithoutModFilesInput = {
   modConflictsTo?: Prisma.ModConflictUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutModNestedInput
 }
 
 export type ModUncheckedUpdateWithoutModFilesInput = {
@@ -911,6 +947,7 @@ export type ModUncheckedUpdateWithoutModFilesInput = {
   modConflictsTo?: Prisma.ModConflictUncheckedUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutModNestedInput
 }
 
 export type ModCreateWithoutModConflictsFromInput = {
@@ -927,6 +964,7 @@ export type ModCreateWithoutModConflictsFromInput = {
   modConflictsTo?: Prisma.ModConflictCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentCreateNestedManyWithoutModInput
 }
 
 export type ModUncheckedCreateWithoutModConflictsFromInput = {
@@ -943,6 +981,7 @@ export type ModUncheckedCreateWithoutModConflictsFromInput = {
   modConflictsTo?: Prisma.ModConflictUncheckedCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutModInput
 }
 
 export type ModCreateOrConnectWithoutModConflictsFromInput = {
@@ -964,6 +1003,7 @@ export type ModCreateWithoutModConflictsToInput = {
   modConflictsFrom?: Prisma.ModConflictCreateNestedManyWithoutModInput
   modDependenciesFrom?: Prisma.ModDependencyCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentCreateNestedManyWithoutModInput
 }
 
 export type ModUncheckedCreateWithoutModConflictsToInput = {
@@ -980,6 +1020,7 @@ export type ModUncheckedCreateWithoutModConflictsToInput = {
   modConflictsFrom?: Prisma.ModConflictUncheckedCreateNestedManyWithoutModInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutModInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutModInput
 }
 
 export type ModCreateOrConnectWithoutModConflictsToInput = {
@@ -1012,6 +1053,7 @@ export type ModUpdateWithoutModConflictsFromInput = {
   modConflictsTo?: Prisma.ModConflictUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutModNestedInput
 }
 
 export type ModUncheckedUpdateWithoutModConflictsFromInput = {
@@ -1028,6 +1070,7 @@ export type ModUncheckedUpdateWithoutModConflictsFromInput = {
   modConflictsTo?: Prisma.ModConflictUncheckedUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutModNestedInput
 }
 
 export type ModUpsertWithoutModConflictsToInput = {
@@ -1055,6 +1098,7 @@ export type ModUpdateWithoutModConflictsToInput = {
   modConflictsFrom?: Prisma.ModConflictUpdateManyWithoutModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutModNestedInput
 }
 
 export type ModUncheckedUpdateWithoutModConflictsToInput = {
@@ -1071,6 +1115,7 @@ export type ModUncheckedUpdateWithoutModConflictsToInput = {
   modConflictsFrom?: Prisma.ModConflictUncheckedUpdateManyWithoutModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutModNestedInput
 }
 
 export type ModCreateWithoutModDependenciesFromInput = {
@@ -1087,6 +1132,7 @@ export type ModCreateWithoutModDependenciesFromInput = {
   modConflictsFrom?: Prisma.ModConflictCreateNestedManyWithoutModInput
   modConflictsTo?: Prisma.ModConflictCreateNestedManyWithoutConflictModInput
   modDependenciesTo?: Prisma.ModDependencyCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentCreateNestedManyWithoutModInput
 }
 
 export type ModUncheckedCreateWithoutModDependenciesFromInput = {
@@ -1103,6 +1149,7 @@ export type ModUncheckedCreateWithoutModDependenciesFromInput = {
   modConflictsFrom?: Prisma.ModConflictUncheckedCreateNestedManyWithoutModInput
   modConflictsTo?: Prisma.ModConflictUncheckedCreateNestedManyWithoutConflictModInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutDependencyModInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutModInput
 }
 
 export type ModCreateOrConnectWithoutModDependenciesFromInput = {
@@ -1124,6 +1171,7 @@ export type ModCreateWithoutModDependenciesToInput = {
   modConflictsFrom?: Prisma.ModConflictCreateNestedManyWithoutModInput
   modConflictsTo?: Prisma.ModConflictCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyCreateNestedManyWithoutModInput
+  comments?: Prisma.CommentCreateNestedManyWithoutModInput
 }
 
 export type ModUncheckedCreateWithoutModDependenciesToInput = {
@@ -1140,6 +1188,7 @@ export type ModUncheckedCreateWithoutModDependenciesToInput = {
   modConflictsFrom?: Prisma.ModConflictUncheckedCreateNestedManyWithoutModInput
   modConflictsTo?: Prisma.ModConflictUncheckedCreateNestedManyWithoutConflictModInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutModInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutModInput
 }
 
 export type ModCreateOrConnectWithoutModDependenciesToInput = {
@@ -1172,6 +1221,7 @@ export type ModUpdateWithoutModDependenciesFromInput = {
   modConflictsFrom?: Prisma.ModConflictUpdateManyWithoutModNestedInput
   modConflictsTo?: Prisma.ModConflictUpdateManyWithoutConflictModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutModNestedInput
 }
 
 export type ModUncheckedUpdateWithoutModDependenciesFromInput = {
@@ -1188,6 +1238,7 @@ export type ModUncheckedUpdateWithoutModDependenciesFromInput = {
   modConflictsFrom?: Prisma.ModConflictUncheckedUpdateManyWithoutModNestedInput
   modConflictsTo?: Prisma.ModConflictUncheckedUpdateManyWithoutConflictModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutModNestedInput
 }
 
 export type ModUpsertWithoutModDependenciesToInput = {
@@ -1215,6 +1266,7 @@ export type ModUpdateWithoutModDependenciesToInput = {
   modConflictsFrom?: Prisma.ModConflictUpdateManyWithoutModNestedInput
   modConflictsTo?: Prisma.ModConflictUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUpdateManyWithoutModNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutModNestedInput
 }
 
 export type ModUncheckedUpdateWithoutModDependenciesToInput = {
@@ -1231,6 +1283,91 @@ export type ModUncheckedUpdateWithoutModDependenciesToInput = {
   modConflictsFrom?: Prisma.ModConflictUncheckedUpdateManyWithoutModNestedInput
   modConflictsTo?: Prisma.ModConflictUncheckedUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedUpdateManyWithoutModNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutModNestedInput
+}
+
+export type ModCreateWithoutCommentsInput = {
+  id?: string
+  name: string
+  description: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  status?: $Enums.ModStatus
+  author?: Prisma.UserCreateNestedOneWithoutModsInput
+  modFiles?: Prisma.ModFileCreateNestedManyWithoutModInput
+  icon?: Prisma.FileCreateNestedOneWithoutModIconInput
+  images?: Prisma.FileCreateNestedManyWithoutModImageInput
+  modConflictsFrom?: Prisma.ModConflictCreateNestedManyWithoutModInput
+  modConflictsTo?: Prisma.ModConflictCreateNestedManyWithoutConflictModInput
+  modDependenciesFrom?: Prisma.ModDependencyCreateNestedManyWithoutModInput
+  modDependenciesTo?: Prisma.ModDependencyCreateNestedManyWithoutDependencyModInput
+}
+
+export type ModUncheckedCreateWithoutCommentsInput = {
+  id?: string
+  name: string
+  description: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  status?: $Enums.ModStatus
+  authorId?: string | null
+  iconId?: string | null
+  modFiles?: Prisma.ModFileUncheckedCreateNestedManyWithoutModInput
+  images?: Prisma.FileUncheckedCreateNestedManyWithoutModImageInput
+  modConflictsFrom?: Prisma.ModConflictUncheckedCreateNestedManyWithoutModInput
+  modConflictsTo?: Prisma.ModConflictUncheckedCreateNestedManyWithoutConflictModInput
+  modDependenciesFrom?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutModInput
+  modDependenciesTo?: Prisma.ModDependencyUncheckedCreateNestedManyWithoutDependencyModInput
+}
+
+export type ModCreateOrConnectWithoutCommentsInput = {
+  where: Prisma.ModWhereUniqueInput
+  create: Prisma.XOR<Prisma.ModCreateWithoutCommentsInput, Prisma.ModUncheckedCreateWithoutCommentsInput>
+}
+
+export type ModUpsertWithoutCommentsInput = {
+  update: Prisma.XOR<Prisma.ModUpdateWithoutCommentsInput, Prisma.ModUncheckedUpdateWithoutCommentsInput>
+  create: Prisma.XOR<Prisma.ModCreateWithoutCommentsInput, Prisma.ModUncheckedCreateWithoutCommentsInput>
+  where?: Prisma.ModWhereInput
+}
+
+export type ModUpdateToOneWithWhereWithoutCommentsInput = {
+  where?: Prisma.ModWhereInput
+  data: Prisma.XOR<Prisma.ModUpdateWithoutCommentsInput, Prisma.ModUncheckedUpdateWithoutCommentsInput>
+}
+
+export type ModUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumModStatusFieldUpdateOperationsInput | $Enums.ModStatus
+  author?: Prisma.UserUpdateOneWithoutModsNestedInput
+  modFiles?: Prisma.ModFileUpdateManyWithoutModNestedInput
+  icon?: Prisma.FileUpdateOneWithoutModIconNestedInput
+  images?: Prisma.FileUpdateManyWithoutModImageNestedInput
+  modConflictsFrom?: Prisma.ModConflictUpdateManyWithoutModNestedInput
+  modConflictsTo?: Prisma.ModConflictUpdateManyWithoutConflictModNestedInput
+  modDependenciesFrom?: Prisma.ModDependencyUpdateManyWithoutModNestedInput
+  modDependenciesTo?: Prisma.ModDependencyUpdateManyWithoutDependencyModNestedInput
+}
+
+export type ModUncheckedUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumModStatusFieldUpdateOperationsInput | $Enums.ModStatus
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  modFiles?: Prisma.ModFileUncheckedUpdateManyWithoutModNestedInput
+  images?: Prisma.FileUncheckedUpdateManyWithoutModImageNestedInput
+  modConflictsFrom?: Prisma.ModConflictUncheckedUpdateManyWithoutModNestedInput
+  modConflictsTo?: Prisma.ModConflictUncheckedUpdateManyWithoutConflictModNestedInput
+  modDependenciesFrom?: Prisma.ModDependencyUncheckedUpdateManyWithoutModNestedInput
+  modDependenciesTo?: Prisma.ModDependencyUncheckedUpdateManyWithoutDependencyModNestedInput
 }
 
 export type ModCreateManyAuthorInput = {
@@ -1257,6 +1394,7 @@ export type ModUpdateWithoutAuthorInput = {
   modConflictsTo?: Prisma.ModConflictUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutModNestedInput
 }
 
 export type ModUncheckedUpdateWithoutAuthorInput = {
@@ -1273,6 +1411,7 @@ export type ModUncheckedUpdateWithoutAuthorInput = {
   modConflictsTo?: Prisma.ModConflictUncheckedUpdateManyWithoutConflictModNestedInput
   modDependenciesFrom?: Prisma.ModDependencyUncheckedUpdateManyWithoutModNestedInput
   modDependenciesTo?: Prisma.ModDependencyUncheckedUpdateManyWithoutDependencyModNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutModNestedInput
 }
 
 export type ModUncheckedUpdateManyWithoutAuthorInput = {
@@ -1297,6 +1436,7 @@ export type ModCountOutputType = {
   modConflictsTo: number
   modDependenciesFrom: number
   modDependenciesTo: number
+  comments: number
 }
 
 export type ModCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1306,6 +1446,7 @@ export type ModCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.In
   modConflictsTo?: boolean | ModCountOutputTypeCountModConflictsToArgs
   modDependenciesFrom?: boolean | ModCountOutputTypeCountModDependenciesFromArgs
   modDependenciesTo?: boolean | ModCountOutputTypeCountModDependenciesToArgs
+  comments?: boolean | ModCountOutputTypeCountCommentsArgs
 }
 
 /**
@@ -1360,6 +1501,13 @@ export type ModCountOutputTypeCountModDependenciesToArgs<ExtArgs extends runtime
   where?: Prisma.ModDependencyWhereInput
 }
 
+/**
+ * ModCountOutputType without action
+ */
+export type ModCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CommentWhereInput
+}
+
 
 export type ModSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1378,6 +1526,7 @@ export type ModSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   modConflictsTo?: boolean | Prisma.Mod$modConflictsToArgs<ExtArgs>
   modDependenciesFrom?: boolean | Prisma.Mod$modDependenciesFromArgs<ExtArgs>
   modDependenciesTo?: boolean | Prisma.Mod$modDependenciesToArgs<ExtArgs>
+  comments?: boolean | Prisma.Mod$commentsArgs<ExtArgs>
   _count?: boolean | Prisma.ModCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mod"]>
 
@@ -1428,6 +1577,7 @@ export type ModInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   modConflictsTo?: boolean | Prisma.Mod$modConflictsToArgs<ExtArgs>
   modDependenciesFrom?: boolean | Prisma.Mod$modDependenciesFromArgs<ExtArgs>
   modDependenciesTo?: boolean | Prisma.Mod$modDependenciesToArgs<ExtArgs>
+  comments?: boolean | Prisma.Mod$commentsArgs<ExtArgs>
   _count?: boolean | Prisma.ModCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ModIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1450,6 +1600,7 @@ export type $ModPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     modConflictsTo: Prisma.$ModConflictPayload<ExtArgs>[]
     modDependenciesFrom: Prisma.$ModDependencyPayload<ExtArgs>[]
     modDependenciesTo: Prisma.$ModDependencyPayload<ExtArgs>[]
+    comments: Prisma.$CommentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1862,6 +2013,7 @@ export interface Prisma__ModClient<T, Null = never, ExtArgs extends runtime.Type
   modConflictsTo<T extends Prisma.Mod$modConflictsToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mod$modConflictsToArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModConflictPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   modDependenciesFrom<T extends Prisma.Mod$modDependenciesFromArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mod$modDependenciesFromArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModDependencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   modDependenciesTo<T extends Prisma.Mod$modDependenciesToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mod$modDependenciesToArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ModDependencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  comments<T extends Prisma.Mod$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mod$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2479,6 +2631,30 @@ export type Mod$modDependenciesToArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.ModDependencyScalarFieldEnum | Prisma.ModDependencyScalarFieldEnum[]
+}
+
+/**
+ * Mod.comments
+ */
+export type Mod$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Comment
+   */
+  select?: Prisma.CommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Comment
+   */
+  omit?: Prisma.CommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommentInclude<ExtArgs> | null
+  where?: Prisma.CommentWhereInput
+  orderBy?: Prisma.CommentOrderByWithRelationInput | Prisma.CommentOrderByWithRelationInput[]
+  cursor?: Prisma.CommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[]
 }
 
 /**

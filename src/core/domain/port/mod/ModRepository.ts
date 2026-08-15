@@ -17,16 +17,16 @@ export interface ModUpdateData {
   name?: string;
   description?: string;
   authorId?: string;
-  imagesId?: string;
   iconId?: string;
   externalIdsId?: string;
   status?: ModStatus;
 }
-interface ModInclude {
+export interface ModInclude {
   author?: boolean;
   images?: boolean;
   icon?: boolean;
-  externalIds?: boolean;
+  //  externalIds?: boolean;
+  files?: boolean;
 }
 export interface ModRepository {
   getAll(data?: {

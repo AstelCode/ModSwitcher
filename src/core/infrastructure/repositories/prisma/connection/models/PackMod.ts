@@ -20,76 +20,46 @@ export type PackModModel = runtime.Types.Result.DefaultSelection<Prisma.$PackMod
 
 export type AggregatePackMod = {
   _count: PackModCountAggregateOutputType | null
-  _avg: PackModAvgAggregateOutputType | null
-  _sum: PackModSumAggregateOutputType | null
   _min: PackModMinAggregateOutputType | null
   _max: PackModMaxAggregateOutputType | null
-}
-
-export type PackModAvgAggregateOutputType = {
-  loadOrder: number | null
-}
-
-export type PackModSumAggregateOutputType = {
-  loadOrder: number | null
 }
 
 export type PackModMinAggregateOutputType = {
   id: string | null
   packVersionId: string | null
   modFileId: string | null
-  optional: boolean | null
-  loadOrder: number | null
 }
 
 export type PackModMaxAggregateOutputType = {
   id: string | null
   packVersionId: string | null
   modFileId: string | null
-  optional: boolean | null
-  loadOrder: number | null
 }
 
 export type PackModCountAggregateOutputType = {
   id: number
   packVersionId: number
   modFileId: number
-  optional: number
-  loadOrder: number
   _all: number
 }
 
-
-export type PackModAvgAggregateInputType = {
-  loadOrder?: true
-}
-
-export type PackModSumAggregateInputType = {
-  loadOrder?: true
-}
 
 export type PackModMinAggregateInputType = {
   id?: true
   packVersionId?: true
   modFileId?: true
-  optional?: true
-  loadOrder?: true
 }
 
 export type PackModMaxAggregateInputType = {
   id?: true
   packVersionId?: true
   modFileId?: true
-  optional?: true
-  loadOrder?: true
 }
 
 export type PackModCountAggregateInputType = {
   id?: true
   packVersionId?: true
   modFileId?: true
-  optional?: true
-  loadOrder?: true
   _all?: true
 }
 
@@ -131,18 +101,6 @@ export type PackModAggregateArgs<ExtArgs extends runtime.Types.Extensions.Intern
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: PackModAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: PackModSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: PackModMinAggregateInputType
@@ -173,8 +131,6 @@ export type PackModGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   _count?: PackModCountAggregateInputType | true
-  _avg?: PackModAvgAggregateInputType
-  _sum?: PackModSumAggregateInputType
   _min?: PackModMinAggregateInputType
   _max?: PackModMaxAggregateInputType
 }
@@ -183,11 +139,7 @@ export type PackModGroupByOutputType = {
   id: string
   packVersionId: string
   modFileId: string
-  optional: boolean
-  loadOrder: number
   _count: PackModCountAggregateOutputType | null
-  _avg: PackModAvgAggregateOutputType | null
-  _sum: PackModSumAggregateOutputType | null
   _min: PackModMinAggregateOutputType | null
   _max: PackModMaxAggregateOutputType | null
 }
@@ -214,8 +166,6 @@ export type PackModWhereInput = {
   id?: Prisma.StringFilter<"PackMod"> | string
   packVersionId?: Prisma.StringFilter<"PackMod"> | string
   modFileId?: Prisma.StringFilter<"PackMod"> | string
-  optional?: Prisma.BoolFilter<"PackMod"> | boolean
-  loadOrder?: Prisma.IntFilter<"PackMod"> | number
   packVersion?: Prisma.XOR<Prisma.PackVersionScalarRelationFilter, Prisma.PackVersionWhereInput>
   modFile?: Prisma.XOR<Prisma.ModFileScalarRelationFilter, Prisma.ModFileWhereInput>
 }
@@ -224,8 +174,6 @@ export type PackModOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   packVersionId?: Prisma.SortOrder
   modFileId?: Prisma.SortOrder
-  optional?: Prisma.SortOrder
-  loadOrder?: Prisma.SortOrder
   packVersion?: Prisma.PackVersionOrderByWithRelationInput
   modFile?: Prisma.ModFileOrderByWithRelationInput
 }
@@ -237,8 +185,6 @@ export type PackModWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.PackModWhereInput | Prisma.PackModWhereInput[]
   packVersionId?: Prisma.StringFilter<"PackMod"> | string
   modFileId?: Prisma.StringFilter<"PackMod"> | string
-  optional?: Prisma.BoolFilter<"PackMod"> | boolean
-  loadOrder?: Prisma.IntFilter<"PackMod"> | number
   packVersion?: Prisma.XOR<Prisma.PackVersionScalarRelationFilter, Prisma.PackVersionWhereInput>
   modFile?: Prisma.XOR<Prisma.ModFileScalarRelationFilter, Prisma.ModFileWhereInput>
 }, "id">
@@ -247,13 +193,9 @@ export type PackModOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   packVersionId?: Prisma.SortOrder
   modFileId?: Prisma.SortOrder
-  optional?: Prisma.SortOrder
-  loadOrder?: Prisma.SortOrder
   _count?: Prisma.PackModCountOrderByAggregateInput
-  _avg?: Prisma.PackModAvgOrderByAggregateInput
   _max?: Prisma.PackModMaxOrderByAggregateInput
   _min?: Prisma.PackModMinOrderByAggregateInput
-  _sum?: Prisma.PackModSumOrderByAggregateInput
 }
 
 export type PackModScalarWhereWithAggregatesInput = {
@@ -263,14 +205,10 @@ export type PackModScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"PackMod"> | string
   packVersionId?: Prisma.StringWithAggregatesFilter<"PackMod"> | string
   modFileId?: Prisma.StringWithAggregatesFilter<"PackMod"> | string
-  optional?: Prisma.BoolWithAggregatesFilter<"PackMod"> | boolean
-  loadOrder?: Prisma.IntWithAggregatesFilter<"PackMod"> | number
 }
 
 export type PackModCreateInput = {
   id?: string
-  optional: boolean
-  loadOrder: number
   packVersion: Prisma.PackVersionCreateNestedOneWithoutPackModsInput
   modFile: Prisma.ModFileCreateNestedOneWithoutPackModsInput
 }
@@ -279,14 +217,10 @@ export type PackModUncheckedCreateInput = {
   id?: string
   packVersionId: string
   modFileId: string
-  optional: boolean
-  loadOrder: number
 }
 
 export type PackModUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  optional?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  loadOrder?: Prisma.IntFieldUpdateOperationsInput | number
   packVersion?: Prisma.PackVersionUpdateOneRequiredWithoutPackModsNestedInput
   modFile?: Prisma.ModFileUpdateOneRequiredWithoutPackModsNestedInput
 }
@@ -295,30 +229,22 @@ export type PackModUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   packVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   modFileId?: Prisma.StringFieldUpdateOperationsInput | string
-  optional?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  loadOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PackModCreateManyInput = {
   id?: string
   packVersionId: string
   modFileId: string
-  optional: boolean
-  loadOrder: number
 }
 
 export type PackModUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  optional?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  loadOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PackModUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   packVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   modFileId?: Prisma.StringFieldUpdateOperationsInput | string
-  optional?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  loadOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PackModListRelationFilter = {
@@ -335,32 +261,18 @@ export type PackModCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   packVersionId?: Prisma.SortOrder
   modFileId?: Prisma.SortOrder
-  optional?: Prisma.SortOrder
-  loadOrder?: Prisma.SortOrder
-}
-
-export type PackModAvgOrderByAggregateInput = {
-  loadOrder?: Prisma.SortOrder
 }
 
 export type PackModMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   packVersionId?: Prisma.SortOrder
   modFileId?: Prisma.SortOrder
-  optional?: Prisma.SortOrder
-  loadOrder?: Prisma.SortOrder
 }
 
 export type PackModMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   packVersionId?: Prisma.SortOrder
   modFileId?: Prisma.SortOrder
-  optional?: Prisma.SortOrder
-  loadOrder?: Prisma.SortOrder
-}
-
-export type PackModSumOrderByAggregateInput = {
-  loadOrder?: Prisma.SortOrder
 }
 
 export type PackModCreateNestedManyWithoutModFileInput = {
@@ -447,22 +359,14 @@ export type PackModUncheckedUpdateManyWithoutPackVersionNestedInput = {
   deleteMany?: Prisma.PackModScalarWhereInput | Prisma.PackModScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type PackModCreateWithoutModFileInput = {
   id?: string
-  optional: boolean
-  loadOrder: number
   packVersion: Prisma.PackVersionCreateNestedOneWithoutPackModsInput
 }
 
 export type PackModUncheckedCreateWithoutModFileInput = {
   id?: string
   packVersionId: string
-  optional: boolean
-  loadOrder: number
 }
 
 export type PackModCreateOrConnectWithoutModFileInput = {
@@ -498,22 +402,16 @@ export type PackModScalarWhereInput = {
   id?: Prisma.StringFilter<"PackMod"> | string
   packVersionId?: Prisma.StringFilter<"PackMod"> | string
   modFileId?: Prisma.StringFilter<"PackMod"> | string
-  optional?: Prisma.BoolFilter<"PackMod"> | boolean
-  loadOrder?: Prisma.IntFilter<"PackMod"> | number
 }
 
 export type PackModCreateWithoutPackVersionInput = {
   id?: string
-  optional: boolean
-  loadOrder: number
   modFile: Prisma.ModFileCreateNestedOneWithoutPackModsInput
 }
 
 export type PackModUncheckedCreateWithoutPackVersionInput = {
   id?: string
   modFileId: string
-  optional: boolean
-  loadOrder: number
 }
 
 export type PackModCreateOrConnectWithoutPackVersionInput = {
@@ -545,57 +443,41 @@ export type PackModUpdateManyWithWhereWithoutPackVersionInput = {
 export type PackModCreateManyModFileInput = {
   id?: string
   packVersionId: string
-  optional: boolean
-  loadOrder: number
 }
 
 export type PackModUpdateWithoutModFileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  optional?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  loadOrder?: Prisma.IntFieldUpdateOperationsInput | number
   packVersion?: Prisma.PackVersionUpdateOneRequiredWithoutPackModsNestedInput
 }
 
 export type PackModUncheckedUpdateWithoutModFileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   packVersionId?: Prisma.StringFieldUpdateOperationsInput | string
-  optional?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  loadOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PackModUncheckedUpdateManyWithoutModFileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   packVersionId?: Prisma.StringFieldUpdateOperationsInput | string
-  optional?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  loadOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PackModCreateManyPackVersionInput = {
   id?: string
   modFileId: string
-  optional: boolean
-  loadOrder: number
 }
 
 export type PackModUpdateWithoutPackVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  optional?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  loadOrder?: Prisma.IntFieldUpdateOperationsInput | number
   modFile?: Prisma.ModFileUpdateOneRequiredWithoutPackModsNestedInput
 }
 
 export type PackModUncheckedUpdateWithoutPackVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   modFileId?: Prisma.StringFieldUpdateOperationsInput | string
-  optional?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  loadOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PackModUncheckedUpdateManyWithoutPackVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   modFileId?: Prisma.StringFieldUpdateOperationsInput | string
-  optional?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  loadOrder?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -604,8 +486,6 @@ export type PackModSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   packVersionId?: boolean
   modFileId?: boolean
-  optional?: boolean
-  loadOrder?: boolean
   packVersion?: boolean | Prisma.PackVersionDefaultArgs<ExtArgs>
   modFile?: boolean | Prisma.ModFileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["packMod"]>
@@ -614,8 +494,6 @@ export type PackModSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   packVersionId?: boolean
   modFileId?: boolean
-  optional?: boolean
-  loadOrder?: boolean
   packVersion?: boolean | Prisma.PackVersionDefaultArgs<ExtArgs>
   modFile?: boolean | Prisma.ModFileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["packMod"]>
@@ -624,8 +502,6 @@ export type PackModSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   packVersionId?: boolean
   modFileId?: boolean
-  optional?: boolean
-  loadOrder?: boolean
   packVersion?: boolean | Prisma.PackVersionDefaultArgs<ExtArgs>
   modFile?: boolean | Prisma.ModFileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["packMod"]>
@@ -634,11 +510,9 @@ export type PackModSelectScalar = {
   id?: boolean
   packVersionId?: boolean
   modFileId?: boolean
-  optional?: boolean
-  loadOrder?: boolean
 }
 
-export type PackModOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "packVersionId" | "modFileId" | "optional" | "loadOrder", ExtArgs["result"]["packMod"]>
+export type PackModOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "packVersionId" | "modFileId", ExtArgs["result"]["packMod"]>
 export type PackModInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   packVersion?: boolean | Prisma.PackVersionDefaultArgs<ExtArgs>
   modFile?: boolean | Prisma.ModFileDefaultArgs<ExtArgs>
@@ -662,8 +536,6 @@ export type $PackModPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     packVersionId: string
     modFileId: string
-    optional: boolean
-    loadOrder: number
   }, ExtArgs["result"]["packMod"]>
   composites: {}
 }
@@ -1092,8 +964,6 @@ export interface PackModFieldRefs {
   readonly id: Prisma.FieldRef<"PackMod", 'String'>
   readonly packVersionId: Prisma.FieldRef<"PackMod", 'String'>
   readonly modFileId: Prisma.FieldRef<"PackMod", 'String'>
-  readonly optional: Prisma.FieldRef<"PackMod", 'Boolean'>
-  readonly loadOrder: Prisma.FieldRef<"PackMod", 'Int'>
 }
     
 

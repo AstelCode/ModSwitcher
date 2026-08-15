@@ -10,9 +10,9 @@ import { ModConflictRepository } from "@/core/domain/port/mod/ModConflictReposit
 import { ModRepository } from "@/core/domain/port/mod/ModRepository";
 import { PackRepository } from "@/core/domain/port/pack/PackRepository";
 import { ShaderRepository } from "@/core/domain/port/shader/ShaderRepository";
-import { UserInstalationRepository } from "@/core/domain/port/UserInstalationRepository";
+//import { UserInstalationRepository } from "@/core/domain/port/UserInstalationRepository";
 import { FileRepository } from "@/core/domain/port/file/FileRepository";
-import { ExternalIdRepository } from "@/core/domain/port/ExternalIdRepository";
+//import { ExternalIdRepository } from "@/core/domain/port/ExternalIdRepository";
 import { ModFileRepository } from "@/core/domain/port/mod/ModFileRepository";
 import { UuidService } from "./UuidService";
 import { ShaderFileRepository } from "@/core/domain/port/shader/ShaderFileRepository";
@@ -21,7 +21,7 @@ import { PackShaderRepository } from "@/core/domain/port/pack/PackShaderReposito
 import { PackModRepository } from "@/core/domain/port/pack/PackModRepository";
 import { MinecraftVersionRepository } from "@/core/domain/port/loaders/MinecraftVersionRepository";
 import { MinecraftLoaderRepository } from "@/core/domain/port/loaders/MinecraftLoaderRepository";
-import { MinecraftLoaderFileRepository } from "@/core/domain/port/loaders/MinecraftLoaderFileRepository";
+//import { MinecraftLoaderFileRepository } from "@/core/domain/port/loaders/MinecraftLoaderFileRepository";
 import { ShaderLoaderRepository } from "@/core/domain/port/loaders/ShaderLoaderRepository";
 
 export interface ServiceContext {
@@ -44,12 +44,12 @@ export interface ServiceContext {
   packShaderRepository: PackShaderRepository;
   packVersionRepository: PackVersionRepository;
   shaderRepository: ShaderRepository;
-  userInstalationRepository: UserInstalationRepository;
+  //  userInstalationRepository: UserInstalationRepository;
   fileRepository: FileRepository;
-  externalIdRepository: ExternalIdRepository;
+  //externalIdRepository: ExternalIdRepository;
   shaderFileRepository: ShaderFileRepository;
   minecraftVersionRepository: MinecraftVersionRepository;
   minecraftLoaderRepository: MinecraftLoaderRepository;
-  minecraftLoaderFileRepository: MinecraftLoaderFileRepository;
+  // minecraftLoaderFileRepository: MinecraftLoaderFileRepository;
   shaderLoaderRepository: ShaderLoaderRepository;
 }

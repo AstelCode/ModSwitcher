@@ -10,7 +10,7 @@ export interface ModConflictArgs {
 }
 export interface ModConflictPersistence {
   modId: string;
-  conflicModId: string;
+  conflictModId: string;
   comment: string;
 }
 export interface ModConflictJson {
@@ -41,7 +41,7 @@ export class ModConflict {
     if (!this.comment) throw new Error("ModConflict must have a comment");
     return {
       modId: this.conflictModId,
-      conflicModId: this.conflictModId,
+      conflictModId: this.conflictModId,
       comment: this.comment,
     };
   }

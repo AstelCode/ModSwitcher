@@ -210,6 +210,7 @@ export type PackWhereInput = {
   icon?: Prisma.XOR<Prisma.FileNullableScalarRelationFilter, Prisma.FileWhereInput> | null
   images?: Prisma.FileListRelationFilter
   packVersions?: Prisma.PackVersionListRelationFilter
+  comments?: Prisma.CommentListRelationFilter
 }
 
 export type PackOrderByWithRelationInput = {
@@ -225,6 +226,7 @@ export type PackOrderByWithRelationInput = {
   icon?: Prisma.FileOrderByWithRelationInput
   images?: Prisma.FileOrderByRelationAggregateInput
   packVersions?: Prisma.PackVersionOrderByRelationAggregateInput
+  comments?: Prisma.CommentOrderByRelationAggregateInput
 }
 
 export type PackWhereUniqueInput = Prisma.AtLeast<{
@@ -243,6 +245,7 @@ export type PackWhereUniqueInput = Prisma.AtLeast<{
   icon?: Prisma.XOR<Prisma.FileNullableScalarRelationFilter, Prisma.FileWhereInput> | null
   images?: Prisma.FileListRelationFilter
   packVersions?: Prisma.PackVersionListRelationFilter
+  comments?: Prisma.CommentListRelationFilter
 }, "id" | "iconId">
 
 export type PackOrderByWithAggregationInput = {
@@ -284,6 +287,7 @@ export type PackCreateInput = {
   icon?: Prisma.FileCreateNestedOneWithoutPackIconInput
   images?: Prisma.FileCreateNestedManyWithoutPacksImageInput
   packVersions?: Prisma.PackVersionCreateNestedManyWithoutPackInput
+  comments?: Prisma.CommentCreateNestedManyWithoutPackInput
 }
 
 export type PackUncheckedCreateInput = {
@@ -297,6 +301,7 @@ export type PackUncheckedCreateInput = {
   status?: $Enums.PackStatus
   images?: Prisma.FileUncheckedCreateNestedManyWithoutPacksImageInput
   packVersions?: Prisma.PackVersionUncheckedCreateNestedManyWithoutPackInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPackInput
 }
 
 export type PackUpdateInput = {
@@ -310,6 +315,7 @@ export type PackUpdateInput = {
   icon?: Prisma.FileUpdateOneWithoutPackIconNestedInput
   images?: Prisma.FileUpdateManyWithoutPacksImageNestedInput
   packVersions?: Prisma.PackVersionUpdateManyWithoutPackNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutPackNestedInput
 }
 
 export type PackUncheckedUpdateInput = {
@@ -323,6 +329,7 @@ export type PackUncheckedUpdateInput = {
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
   images?: Prisma.FileUncheckedUpdateManyWithoutPacksImageNestedInput
   packVersions?: Prisma.PackVersionUncheckedUpdateManyWithoutPackNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutPackNestedInput
 }
 
 export type PackCreateManyInput = {
@@ -539,6 +546,22 @@ export type PackUpdateOneRequiredWithoutPackVersionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PackUpdateToOneWithWhereWithoutPackVersionsInput, Prisma.PackUpdateWithoutPackVersionsInput>, Prisma.PackUncheckedUpdateWithoutPackVersionsInput>
 }
 
+export type PackCreateNestedOneWithoutCommentsInput = {
+  create?: Prisma.XOR<Prisma.PackCreateWithoutCommentsInput, Prisma.PackUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.PackCreateOrConnectWithoutCommentsInput
+  connect?: Prisma.PackWhereUniqueInput
+}
+
+export type PackUpdateOneWithoutCommentsNestedInput = {
+  create?: Prisma.XOR<Prisma.PackCreateWithoutCommentsInput, Prisma.PackUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.PackCreateOrConnectWithoutCommentsInput
+  upsert?: Prisma.PackUpsertWithoutCommentsInput
+  disconnect?: Prisma.PackWhereInput | boolean
+  delete?: Prisma.PackWhereInput | boolean
+  connect?: Prisma.PackWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PackUpdateToOneWithWhereWithoutCommentsInput, Prisma.PackUpdateWithoutCommentsInput>, Prisma.PackUncheckedUpdateWithoutCommentsInput>
+}
+
 export type PackCreateWithoutImagesInput = {
   id?: string
   name: string
@@ -549,6 +572,7 @@ export type PackCreateWithoutImagesInput = {
   author?: Prisma.UserCreateNestedOneWithoutPacksInput
   icon?: Prisma.FileCreateNestedOneWithoutPackIconInput
   packVersions?: Prisma.PackVersionCreateNestedManyWithoutPackInput
+  comments?: Prisma.CommentCreateNestedManyWithoutPackInput
 }
 
 export type PackUncheckedCreateWithoutImagesInput = {
@@ -561,6 +585,7 @@ export type PackUncheckedCreateWithoutImagesInput = {
   updatedAt?: Date | string
   status?: $Enums.PackStatus
   packVersions?: Prisma.PackVersionUncheckedCreateNestedManyWithoutPackInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPackInput
 }
 
 export type PackCreateOrConnectWithoutImagesInput = {
@@ -578,6 +603,7 @@ export type PackCreateWithoutIconInput = {
   author?: Prisma.UserCreateNestedOneWithoutPacksInput
   images?: Prisma.FileCreateNestedManyWithoutPacksImageInput
   packVersions?: Prisma.PackVersionCreateNestedManyWithoutPackInput
+  comments?: Prisma.CommentCreateNestedManyWithoutPackInput
 }
 
 export type PackUncheckedCreateWithoutIconInput = {
@@ -590,6 +616,7 @@ export type PackUncheckedCreateWithoutIconInput = {
   status?: $Enums.PackStatus
   images?: Prisma.FileUncheckedCreateNestedManyWithoutPacksImageInput
   packVersions?: Prisma.PackVersionUncheckedCreateNestedManyWithoutPackInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPackInput
 }
 
 export type PackCreateOrConnectWithoutIconInput = {
@@ -648,6 +675,7 @@ export type PackUpdateWithoutIconInput = {
   author?: Prisma.UserUpdateOneWithoutPacksNestedInput
   images?: Prisma.FileUpdateManyWithoutPacksImageNestedInput
   packVersions?: Prisma.PackVersionUpdateManyWithoutPackNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutPackNestedInput
 }
 
 export type PackUncheckedUpdateWithoutIconInput = {
@@ -660,6 +688,7 @@ export type PackUncheckedUpdateWithoutIconInput = {
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
   images?: Prisma.FileUncheckedUpdateManyWithoutPacksImageNestedInput
   packVersions?: Prisma.PackVersionUncheckedUpdateManyWithoutPackNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutPackNestedInput
 }
 
 export type PackCreateWithoutAuthorInput = {
@@ -672,6 +701,7 @@ export type PackCreateWithoutAuthorInput = {
   icon?: Prisma.FileCreateNestedOneWithoutPackIconInput
   images?: Prisma.FileCreateNestedManyWithoutPacksImageInput
   packVersions?: Prisma.PackVersionCreateNestedManyWithoutPackInput
+  comments?: Prisma.CommentCreateNestedManyWithoutPackInput
 }
 
 export type PackUncheckedCreateWithoutAuthorInput = {
@@ -684,6 +714,7 @@ export type PackUncheckedCreateWithoutAuthorInput = {
   status?: $Enums.PackStatus
   images?: Prisma.FileUncheckedCreateNestedManyWithoutPacksImageInput
   packVersions?: Prisma.PackVersionUncheckedCreateNestedManyWithoutPackInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPackInput
 }
 
 export type PackCreateOrConnectWithoutAuthorInput = {
@@ -722,6 +753,7 @@ export type PackCreateWithoutPackVersionsInput = {
   author?: Prisma.UserCreateNestedOneWithoutPacksInput
   icon?: Prisma.FileCreateNestedOneWithoutPackIconInput
   images?: Prisma.FileCreateNestedManyWithoutPacksImageInput
+  comments?: Prisma.CommentCreateNestedManyWithoutPackInput
 }
 
 export type PackUncheckedCreateWithoutPackVersionsInput = {
@@ -734,6 +766,7 @@ export type PackUncheckedCreateWithoutPackVersionsInput = {
   updatedAt?: Date | string
   status?: $Enums.PackStatus
   images?: Prisma.FileUncheckedCreateNestedManyWithoutPacksImageInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPackInput
 }
 
 export type PackCreateOrConnectWithoutPackVersionsInput = {
@@ -762,6 +795,7 @@ export type PackUpdateWithoutPackVersionsInput = {
   author?: Prisma.UserUpdateOneWithoutPacksNestedInput
   icon?: Prisma.FileUpdateOneWithoutPackIconNestedInput
   images?: Prisma.FileUpdateManyWithoutPacksImageNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutPackNestedInput
 }
 
 export type PackUncheckedUpdateWithoutPackVersionsInput = {
@@ -774,6 +808,75 @@ export type PackUncheckedUpdateWithoutPackVersionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
   images?: Prisma.FileUncheckedUpdateManyWithoutPacksImageNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutPackNestedInput
+}
+
+export type PackCreateWithoutCommentsInput = {
+  id?: string
+  name: string
+  description: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  status?: $Enums.PackStatus
+  author?: Prisma.UserCreateNestedOneWithoutPacksInput
+  icon?: Prisma.FileCreateNestedOneWithoutPackIconInput
+  images?: Prisma.FileCreateNestedManyWithoutPacksImageInput
+  packVersions?: Prisma.PackVersionCreateNestedManyWithoutPackInput
+}
+
+export type PackUncheckedCreateWithoutCommentsInput = {
+  id?: string
+  name: string
+  description: string
+  authorId?: string | null
+  iconId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  status?: $Enums.PackStatus
+  images?: Prisma.FileUncheckedCreateNestedManyWithoutPacksImageInput
+  packVersions?: Prisma.PackVersionUncheckedCreateNestedManyWithoutPackInput
+}
+
+export type PackCreateOrConnectWithoutCommentsInput = {
+  where: Prisma.PackWhereUniqueInput
+  create: Prisma.XOR<Prisma.PackCreateWithoutCommentsInput, Prisma.PackUncheckedCreateWithoutCommentsInput>
+}
+
+export type PackUpsertWithoutCommentsInput = {
+  update: Prisma.XOR<Prisma.PackUpdateWithoutCommentsInput, Prisma.PackUncheckedUpdateWithoutCommentsInput>
+  create: Prisma.XOR<Prisma.PackCreateWithoutCommentsInput, Prisma.PackUncheckedCreateWithoutCommentsInput>
+  where?: Prisma.PackWhereInput
+}
+
+export type PackUpdateToOneWithWhereWithoutCommentsInput = {
+  where?: Prisma.PackWhereInput
+  data: Prisma.XOR<Prisma.PackUpdateWithoutCommentsInput, Prisma.PackUncheckedUpdateWithoutCommentsInput>
+}
+
+export type PackUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
+  author?: Prisma.UserUpdateOneWithoutPacksNestedInput
+  icon?: Prisma.FileUpdateOneWithoutPackIconNestedInput
+  images?: Prisma.FileUpdateManyWithoutPacksImageNestedInput
+  packVersions?: Prisma.PackVersionUpdateManyWithoutPackNestedInput
+}
+
+export type PackUncheckedUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  iconId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
+  images?: Prisma.FileUncheckedUpdateManyWithoutPacksImageNestedInput
+  packVersions?: Prisma.PackVersionUncheckedUpdateManyWithoutPackNestedInput
 }
 
 export type PackUpdateWithoutImagesInput = {
@@ -786,6 +889,7 @@ export type PackUpdateWithoutImagesInput = {
   author?: Prisma.UserUpdateOneWithoutPacksNestedInput
   icon?: Prisma.FileUpdateOneWithoutPackIconNestedInput
   packVersions?: Prisma.PackVersionUpdateManyWithoutPackNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutPackNestedInput
 }
 
 export type PackUncheckedUpdateWithoutImagesInput = {
@@ -798,6 +902,7 @@ export type PackUncheckedUpdateWithoutImagesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
   packVersions?: Prisma.PackVersionUncheckedUpdateManyWithoutPackNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutPackNestedInput
 }
 
 export type PackUncheckedUpdateManyWithoutImagesInput = {
@@ -831,6 +936,7 @@ export type PackUpdateWithoutAuthorInput = {
   icon?: Prisma.FileUpdateOneWithoutPackIconNestedInput
   images?: Prisma.FileUpdateManyWithoutPacksImageNestedInput
   packVersions?: Prisma.PackVersionUpdateManyWithoutPackNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutPackNestedInput
 }
 
 export type PackUncheckedUpdateWithoutAuthorInput = {
@@ -843,6 +949,7 @@ export type PackUncheckedUpdateWithoutAuthorInput = {
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
   images?: Prisma.FileUncheckedUpdateManyWithoutPacksImageNestedInput
   packVersions?: Prisma.PackVersionUncheckedUpdateManyWithoutPackNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutPackNestedInput
 }
 
 export type PackUncheckedUpdateManyWithoutAuthorInput = {
@@ -863,11 +970,13 @@ export type PackUncheckedUpdateManyWithoutAuthorInput = {
 export type PackCountOutputType = {
   images: number
   packVersions: number
+  comments: number
 }
 
 export type PackCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   images?: boolean | PackCountOutputTypeCountImagesArgs
   packVersions?: boolean | PackCountOutputTypeCountPackVersionsArgs
+  comments?: boolean | PackCountOutputTypeCountCommentsArgs
 }
 
 /**
@@ -894,6 +1003,13 @@ export type PackCountOutputTypeCountPackVersionsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.PackVersionWhereInput
 }
 
+/**
+ * PackCountOutputType without action
+ */
+export type PackCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CommentWhereInput
+}
+
 
 export type PackSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -908,6 +1024,7 @@ export type PackSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   icon?: boolean | Prisma.Pack$iconArgs<ExtArgs>
   images?: boolean | Prisma.Pack$imagesArgs<ExtArgs>
   packVersions?: boolean | Prisma.Pack$packVersionsArgs<ExtArgs>
+  comments?: boolean | Prisma.Pack$commentsArgs<ExtArgs>
   _count?: boolean | Prisma.PackCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pack"]>
 
@@ -954,6 +1071,7 @@ export type PackInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   icon?: boolean | Prisma.Pack$iconArgs<ExtArgs>
   images?: boolean | Prisma.Pack$imagesArgs<ExtArgs>
   packVersions?: boolean | Prisma.Pack$packVersionsArgs<ExtArgs>
+  comments?: boolean | Prisma.Pack$commentsArgs<ExtArgs>
   _count?: boolean | Prisma.PackCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PackIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -972,6 +1090,7 @@ export type $PackPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     icon: Prisma.$FilePayload<ExtArgs> | null
     images: Prisma.$FilePayload<ExtArgs>[]
     packVersions: Prisma.$PackVersionPayload<ExtArgs>[]
+    comments: Prisma.$CommentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1380,6 +1499,7 @@ export interface Prisma__PackClient<T, Null = never, ExtArgs extends runtime.Typ
   icon<T extends Prisma.Pack$iconArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pack$iconArgs<ExtArgs>>): Prisma.Prisma__FileClient<runtime.Types.Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   images<T extends Prisma.Pack$imagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pack$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   packVersions<T extends Prisma.Pack$packVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pack$packVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  comments<T extends Prisma.Pack$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pack$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1901,6 +2021,30 @@ export type Pack$packVersionsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.PackVersionScalarFieldEnum | Prisma.PackVersionScalarFieldEnum[]
+}
+
+/**
+ * Pack.comments
+ */
+export type Pack$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Comment
+   */
+  select?: Prisma.CommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Comment
+   */
+  omit?: Prisma.CommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommentInclude<ExtArgs> | null
+  where?: Prisma.CommentWhereInput
+  orderBy?: Prisma.CommentOrderByWithRelationInput | Prisma.CommentOrderByWithRelationInput[]
+  cursor?: Prisma.CommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[]
 }
 
 /**

@@ -2,7 +2,7 @@ import { ModConflict } from "../../model/Mod/ModConflict";
 
 export interface ModConflictFilter {
   modId?: string;
-  conflicModId?: string;
+  conflictModId?: string;
   comment?: string;
 }
 export interface ModConflictPagination {
@@ -11,7 +11,7 @@ export interface ModConflictPagination {
 }
 export interface ModConflictUpdateData {
   modId?: string;
-  conflicModId?: string;
+  conflictModId?: string;
   comment?: string;
 }
 export interface ModConflictInclude {
@@ -29,6 +29,6 @@ export interface ModConflictRepository {
     include?: ModConflictInclude,
   ): Promise<ModConflict | undefined>;
   create(modConflict: ModConflict): Promise<ModConflict>;
-  update(id: string, modConflict: ModConflictUpdateData): Promise<ModConflict>;
+  update(id: string, modConflict: ModConflictUpdateData): Promise<void>;
   delete(id: string): Promise<void>;
 }

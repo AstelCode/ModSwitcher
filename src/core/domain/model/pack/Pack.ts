@@ -28,9 +28,9 @@ export interface PackPersistence {
   name: string;
   description: string;
   authorId?: string;
-  images: FilePersistence[];
+  //images: FilePersistence[];
   iconId?: string;
-  externalIds: ExternalIdPersistence[];
+  // externalIds: ExternalIdPersistence[];
   status: PackStatus;
 }
 export interface PackJson {
@@ -103,11 +103,11 @@ export class Pack {
       iconId: this.iconId,
       name: this.name,
       description: this.description,
-      images: this.images?.map((image) => image.toPersistence()) ?? [],
+      //   images: this.images?.map((image) => image.toPersistence()) ?? [],
       authorId: this.authorId,
-      externalIds: this.externalIds.map((externalId) =>
-        externalId.toPersistence(),
-      ),
+      //externalIds: this.externalIds.map((externalId) =>
+      //  externalId.toPersistence(),
+      //),
       status: this.status,
     };
   }

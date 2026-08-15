@@ -26,19 +26,19 @@ export type AggregatePackShader = {
 
 export type PackShaderMinAggregateOutputType = {
   id: string | null
-  shaderFileid: string | null
+  shaderFileId: string | null
   packVersionId: string | null
 }
 
 export type PackShaderMaxAggregateOutputType = {
   id: string | null
-  shaderFileid: string | null
+  shaderFileId: string | null
   packVersionId: string | null
 }
 
 export type PackShaderCountAggregateOutputType = {
   id: number
-  shaderFileid: number
+  shaderFileId: number
   packVersionId: number
   _all: number
 }
@@ -46,19 +46,19 @@ export type PackShaderCountAggregateOutputType = {
 
 export type PackShaderMinAggregateInputType = {
   id?: true
-  shaderFileid?: true
+  shaderFileId?: true
   packVersionId?: true
 }
 
 export type PackShaderMaxAggregateInputType = {
   id?: true
-  shaderFileid?: true
+  shaderFileId?: true
   packVersionId?: true
 }
 
 export type PackShaderCountAggregateInputType = {
   id?: true
-  shaderFileid?: true
+  shaderFileId?: true
   packVersionId?: true
   _all?: true
 }
@@ -137,7 +137,7 @@ export type PackShaderGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 
 export type PackShaderGroupByOutputType = {
   id: string
-  shaderFileid: string
+  shaderFileId: string
   packVersionId: string
   _count: PackShaderCountAggregateOutputType | null
   _min: PackShaderMinAggregateOutputType | null
@@ -164,7 +164,7 @@ export type PackShaderWhereInput = {
   OR?: Prisma.PackShaderWhereInput[]
   NOT?: Prisma.PackShaderWhereInput | Prisma.PackShaderWhereInput[]
   id?: Prisma.StringFilter<"PackShader"> | string
-  shaderFileid?: Prisma.StringFilter<"PackShader"> | string
+  shaderFileId?: Prisma.StringFilter<"PackShader"> | string
   packVersionId?: Prisma.StringFilter<"PackShader"> | string
   shaderFile?: Prisma.XOR<Prisma.ShaderFileScalarRelationFilter, Prisma.ShaderFileWhereInput>
   packVersion?: Prisma.XOR<Prisma.PackVersionScalarRelationFilter, Prisma.PackVersionWhereInput>
@@ -172,7 +172,7 @@ export type PackShaderWhereInput = {
 
 export type PackShaderOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  shaderFileid?: Prisma.SortOrder
+  shaderFileId?: Prisma.SortOrder
   packVersionId?: Prisma.SortOrder
   shaderFile?: Prisma.ShaderFileOrderByWithRelationInput
   packVersion?: Prisma.PackVersionOrderByWithRelationInput
@@ -183,7 +183,7 @@ export type PackShaderWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.PackShaderWhereInput | Prisma.PackShaderWhereInput[]
   OR?: Prisma.PackShaderWhereInput[]
   NOT?: Prisma.PackShaderWhereInput | Prisma.PackShaderWhereInput[]
-  shaderFileid?: Prisma.StringFilter<"PackShader"> | string
+  shaderFileId?: Prisma.StringFilter<"PackShader"> | string
   packVersionId?: Prisma.StringFilter<"PackShader"> | string
   shaderFile?: Prisma.XOR<Prisma.ShaderFileScalarRelationFilter, Prisma.ShaderFileWhereInput>
   packVersion?: Prisma.XOR<Prisma.PackVersionScalarRelationFilter, Prisma.PackVersionWhereInput>
@@ -191,7 +191,7 @@ export type PackShaderWhereUniqueInput = Prisma.AtLeast<{
 
 export type PackShaderOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  shaderFileid?: Prisma.SortOrder
+  shaderFileId?: Prisma.SortOrder
   packVersionId?: Prisma.SortOrder
   _count?: Prisma.PackShaderCountOrderByAggregateInput
   _max?: Prisma.PackShaderMaxOrderByAggregateInput
@@ -203,7 +203,7 @@ export type PackShaderScalarWhereWithAggregatesInput = {
   OR?: Prisma.PackShaderScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PackShaderScalarWhereWithAggregatesInput | Prisma.PackShaderScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"PackShader"> | string
-  shaderFileid?: Prisma.StringWithAggregatesFilter<"PackShader"> | string
+  shaderFileId?: Prisma.StringWithAggregatesFilter<"PackShader"> | string
   packVersionId?: Prisma.StringWithAggregatesFilter<"PackShader"> | string
 }
 
@@ -215,7 +215,7 @@ export type PackShaderCreateInput = {
 
 export type PackShaderUncheckedCreateInput = {
   id?: string
-  shaderFileid: string
+  shaderFileId: string
   packVersionId: string
 }
 
@@ -227,13 +227,13 @@ export type PackShaderUpdateInput = {
 
 export type PackShaderUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  shaderFileid?: Prisma.StringFieldUpdateOperationsInput | string
+  shaderFileId?: Prisma.StringFieldUpdateOperationsInput | string
   packVersionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PackShaderCreateManyInput = {
   id?: string
-  shaderFileid: string
+  shaderFileId: string
   packVersionId: string
 }
 
@@ -243,7 +243,7 @@ export type PackShaderUpdateManyMutationInput = {
 
 export type PackShaderUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  shaderFileid?: Prisma.StringFieldUpdateOperationsInput | string
+  shaderFileId?: Prisma.StringFieldUpdateOperationsInput | string
   packVersionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -259,19 +259,19 @@ export type PackShaderOrderByRelationAggregateInput = {
 
 export type PackShaderCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  shaderFileid?: Prisma.SortOrder
+  shaderFileId?: Prisma.SortOrder
   packVersionId?: Prisma.SortOrder
 }
 
 export type PackShaderMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  shaderFileid?: Prisma.SortOrder
+  shaderFileId?: Prisma.SortOrder
   packVersionId?: Prisma.SortOrder
 }
 
 export type PackShaderMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  shaderFileid?: Prisma.SortOrder
+  shaderFileId?: Prisma.SortOrder
   packVersionId?: Prisma.SortOrder
 }
 
@@ -400,7 +400,7 @@ export type PackShaderScalarWhereInput = {
   OR?: Prisma.PackShaderScalarWhereInput[]
   NOT?: Prisma.PackShaderScalarWhereInput | Prisma.PackShaderScalarWhereInput[]
   id?: Prisma.StringFilter<"PackShader"> | string
-  shaderFileid?: Prisma.StringFilter<"PackShader"> | string
+  shaderFileId?: Prisma.StringFilter<"PackShader"> | string
   packVersionId?: Prisma.StringFilter<"PackShader"> | string
 }
 
@@ -411,7 +411,7 @@ export type PackShaderCreateWithoutPackVersionInput = {
 
 export type PackShaderUncheckedCreateWithoutPackVersionInput = {
   id?: string
-  shaderFileid: string
+  shaderFileId: string
 }
 
 export type PackShaderCreateOrConnectWithoutPackVersionInput = {
@@ -462,7 +462,7 @@ export type PackShaderUncheckedUpdateManyWithoutShaderFileInput = {
 
 export type PackShaderCreateManyPackVersionInput = {
   id?: string
-  shaderFileid: string
+  shaderFileId: string
 }
 
 export type PackShaderUpdateWithoutPackVersionInput = {
@@ -472,19 +472,19 @@ export type PackShaderUpdateWithoutPackVersionInput = {
 
 export type PackShaderUncheckedUpdateWithoutPackVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  shaderFileid?: Prisma.StringFieldUpdateOperationsInput | string
+  shaderFileId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PackShaderUncheckedUpdateManyWithoutPackVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  shaderFileid?: Prisma.StringFieldUpdateOperationsInput | string
+  shaderFileId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type PackShaderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  shaderFileid?: boolean
+  shaderFileId?: boolean
   packVersionId?: boolean
   shaderFile?: boolean | Prisma.ShaderFileDefaultArgs<ExtArgs>
   packVersion?: boolean | Prisma.PackVersionDefaultArgs<ExtArgs>
@@ -492,7 +492,7 @@ export type PackShaderSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type PackShaderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  shaderFileid?: boolean
+  shaderFileId?: boolean
   packVersionId?: boolean
   shaderFile?: boolean | Prisma.ShaderFileDefaultArgs<ExtArgs>
   packVersion?: boolean | Prisma.PackVersionDefaultArgs<ExtArgs>
@@ -500,7 +500,7 @@ export type PackShaderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 
 export type PackShaderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  shaderFileid?: boolean
+  shaderFileId?: boolean
   packVersionId?: boolean
   shaderFile?: boolean | Prisma.ShaderFileDefaultArgs<ExtArgs>
   packVersion?: boolean | Prisma.PackVersionDefaultArgs<ExtArgs>
@@ -508,11 +508,11 @@ export type PackShaderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 
 export type PackShaderSelectScalar = {
   id?: boolean
-  shaderFileid?: boolean
+  shaderFileId?: boolean
   packVersionId?: boolean
 }
 
-export type PackShaderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "shaderFileid" | "packVersionId", ExtArgs["result"]["packShader"]>
+export type PackShaderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "shaderFileId" | "packVersionId", ExtArgs["result"]["packShader"]>
 export type PackShaderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   shaderFile?: boolean | Prisma.ShaderFileDefaultArgs<ExtArgs>
   packVersion?: boolean | Prisma.PackVersionDefaultArgs<ExtArgs>
@@ -534,7 +534,7 @@ export type $PackShaderPayload<ExtArgs extends runtime.Types.Extensions.Internal
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    shaderFileid: string
+    shaderFileId: string
     packVersionId: string
   }, ExtArgs["result"]["packShader"]>
   composites: {}
@@ -962,7 +962,7 @@ export interface Prisma__PackShaderClient<T, Null = never, ExtArgs extends runti
  */
 export interface PackShaderFieldRefs {
   readonly id: Prisma.FieldRef<"PackShader", 'String'>
-  readonly shaderFileid: Prisma.FieldRef<"PackShader", 'String'>
+  readonly shaderFileId: Prisma.FieldRef<"PackShader", 'String'>
   readonly packVersionId: Prisma.FieldRef<"PackShader", 'String'>
 }
     

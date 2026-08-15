@@ -3,8 +3,8 @@ import { PackMod } from "../../model/pack/PackMod";
 export interface PackModFilter {
   packVersionId?: string;
   modFileId?: string;
-  optional?: boolean;
-  loadOrder?: number;
+  //optional?: boolean;
+  //loadOrder?: number;
 }
 export interface PackModPagination {
   limit?: number;
@@ -13,8 +13,8 @@ export interface PackModPagination {
 export interface PackModUpdateData {
   packVersionId?: string;
   modFileId?: string;
-  optional?: boolean;
-  loadOrder?: number;
+  //optional?: boolean;
+  //  loadOrder?: number;
 }
 export interface PackModInclude {
   packVersion?: boolean;

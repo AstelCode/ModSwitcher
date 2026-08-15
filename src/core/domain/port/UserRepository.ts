@@ -1,4 +1,4 @@
-import { User, UserStatus } from "../model/User";
+import { User, UserRole, UserStatus } from "../model/User";
 
 export interface UserFilter {
   username?: string;
@@ -7,9 +7,7 @@ export interface UserFilter {
   avatarId?: string;
   createdAt?: Date;
   updatedAt?: Date;
-  role?: string | string[];
-  activationCode?: string;
-  recoveryTokenHash?: string;
+  role?: UserRole | UserRole[];
 }
 export interface UserPagination {
   limit?: number;
@@ -20,7 +18,7 @@ export interface UserUpdateData {
   password?: string;
   email?: string;
   avatarId?: string;
-  role?: string;
+  role?: UserRole;
   activationCode?: string;
   recoveryTokenHash?: string;
   status?: UserStatus;
@@ -31,6 +29,7 @@ export interface UserInclude {
   shaders?: boolean;
   installations?: boolean;
   avatar?: boolean;
+  comments?: boolean;
 }
 export interface UserRepository {
   getAll(data?: {
