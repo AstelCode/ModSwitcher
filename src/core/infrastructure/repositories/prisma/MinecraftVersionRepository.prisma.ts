@@ -2,6 +2,7 @@ import {
   MinecraftVersionFilter,
   MinecraftVersionPagination,
   MinecraftVersionRepository,
+  MinecraftVersionUpdateData,
 } from "@/core/domain/port/loaders/MinecraftVersionRepository";
 import { PrismaClient } from "./connection/client";
 import { MinecraftVersion } from "@/core/domain/model/loaders/MinecraftVersion";
@@ -22,7 +23,9 @@ export class MinecraftVersionRepositoryPrisma implements MinecraftVersionReposit
       take: data?.pagination?.limit,
       skip: data?.pagination?.offset,
     });
-    return minecraftVersions;
+    return minecraftVersions.map(
+      (minecraftVersion) => new MinecraftVersion(minecraftVersion),
+    );
   }
 
   async getById(id: string): Promise<MinecraftVersion | undefined> {
@@ -31,7 +34,8 @@ export class MinecraftVersionRepositoryPrisma implements MinecraftVersionReposit
         id: id,
       },
     });
-    return minecraftVersion;
+    if (!minecraftVersion) return;
+    return new MinecraftVersion(minecraftVersion);
   }
 
   async create(minecraftVersion: MinecraftVersion): Promise<MinecraftVersion> {
@@ -39,10 +43,13 @@ export class MinecraftVersionRepositoryPrisma implements MinecraftVersionReposit
     const createdMinecraftVersion = await this.prisma.minecraftVersion.create({
       data: minecraftVersionPersistence,
     });
-    return createdMinecraftVersion;
+    return new MinecraftVersion(createdMinecraftVersion);
   }
 
-  async update(id: string, minecraftVersion: MinecraftVersion) {
+  async update(
+    id: string,
+    minecraftVersion: MinecraftVersionUpdateData,
+  ): Promise<MinecraftVersion> {
     const updatedMinecraftVersion = await this.prisma.minecraftVersion.update({
       where: {
         id: id,
@@ -53,7 +60,7 @@ export class MinecraftVersionRepositoryPrisma implements MinecraftVersionReposit
         patch: minecraftVersion.patch,
       },
     });
-    return updatedMinecraftVersion;
+    return new MinecraftVersion(updatedMinecraftVersion);
   }
 
   async delete(id: string): Promise<void> {

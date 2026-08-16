@@ -3,9 +3,11 @@ import {
   MinecraftLoaderInclude,
   MinecraftLoaderPagination,
   MinecraftLoaderRepository,
+  MinecraftLoaderUpdateData,
 } from "@/core/domain/port/loaders/MinecraftLoaderRepository";
 import { PrismaClient } from "./connection/client";
 import { MinecraftLoader } from "@/core/domain/model/loaders/MinecraftLoader";
+import { FileModel } from "@/core/domain/model/file/File";
 
 export class MinecraftLoaderRepositoryPrisma implements MinecraftLoaderRepository {
   constructor(private readonly prisma: PrismaClient) {}
@@ -26,7 +28,15 @@ export class MinecraftLoaderRepositoryPrisma implements MinecraftLoaderRepositor
       take: data?.pagination?.limit,
       skip: data?.pagination?.offset,
     });
-    return minecraftLoaders;
+    return minecraftLoaders.map(
+      (minecraftLoader) =>
+        new MinecraftLoader({
+          ...minecraftLoader,
+          icon: minecraftLoader.icon
+            ? new FileModel(minecraftLoader.icon)
+            : null,
+        }),
+    );
   }
 
   async getById(
@@ -41,7 +51,11 @@ export class MinecraftLoaderRepositoryPrisma implements MinecraftLoaderRepositor
         icon: include?.icon,
       },
     });
-    return minecraftLoader;
+    if (!minecraftLoader) return;
+    return new MinecraftLoader({
+      ...minecraftLoader,
+      icon: minecraftLoader.icon ? new FileModel(minecraftLoader.icon) : null,
+    });
   }
 
   async create(minecraftLoader: MinecraftLoader): Promise<MinecraftLoader> {
@@ -49,10 +63,13 @@ export class MinecraftLoaderRepositoryPrisma implements MinecraftLoaderRepositor
     const createdMinecraftLoader = await this.prisma.minecraftLoader.create({
       data: minecraftLoaderPersistence,
     });
-    return createdMinecraftLoader;
+    return new MinecraftLoader(createdMinecraftLoader);
   }
 
-  async update(id: string, minecraftLoader: MinecraftLoader) {
+  async update(
+    id: string,
+    minecraftLoader: MinecraftLoaderUpdateData,
+  ): Promise<MinecraftLoader> {
     const updatedMinecraftLoader = await this.prisma.minecraftLoader.update({
       where: {
         id: id,
@@ -62,7 +79,7 @@ export class MinecraftLoaderRepositoryPrisma implements MinecraftLoaderRepositor
         iconId: minecraftLoader.iconId,
       },
     });
-    return updatedMinecraftLoader;
+    return new MinecraftLoader(updatedMinecraftLoader);
   }
 
   async delete(id: string): Promise<void> {

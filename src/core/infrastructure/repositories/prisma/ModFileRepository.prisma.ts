@@ -3,9 +3,13 @@ import {
   ModFileInclude,
   ModFilePagination,
   ModFileRepository,
+  ModFileUpdateData,
 } from "@/core/domain/port/mod/ModFileRepository";
 import { PrismaClient } from "./connection/client";
 import { ModFile } from "@/core/domain/model/Mod/ModFile";
+import { FileModel } from "@/core/domain/model/file/File";
+import { MinecraftLoader } from "@/core/domain/model/loaders/MinecraftLoader";
+import { MinecraftVersion } from "@/core/domain/model/loaders/MinecraftVersion";
 
 export class ModFileRepositoryPrisma implements ModFileRepository {
   constructor(private readonly prisma: PrismaClient) {}
@@ -29,7 +33,17 @@ export class ModFileRepositoryPrisma implements ModFileRepository {
       take: data?.pagination?.limit,
       skip: data?.pagination?.offset,
     });
-    return modFiles;
+    return modFiles.map(
+      (modFile) =>
+        new ModFile({
+          ...modFile,
+          file: modFile.file ? new FileModel(modFile.file) : null,
+          loader: modFile.loader ? new MinecraftLoader(modFile.loader) : null,
+          minecraftVersion: modFile.minecraftVersion
+            ? new MinecraftVersion(modFile.minecraftVersion)
+            : null,
+        }),
+    );
   }
 
   async getById(
@@ -46,7 +60,15 @@ export class ModFileRepositoryPrisma implements ModFileRepository {
         minecraftVersion: include?.minecraftVersion,
       },
     });
-    return modFile;
+    if (!modFile) return;
+    return new ModFile({
+      ...modFile,
+      file: modFile.file ? new FileModel(modFile.file) : null,
+      loader: modFile.loader ? new MinecraftLoader(modFile.loader) : null,
+      minecraftVersion: modFile.minecraftVersion
+        ? new MinecraftVersion(modFile.minecraftVersion)
+        : null,
+    });
   }
 
   async create(modFile: ModFile): Promise<ModFile> {
@@ -54,10 +76,10 @@ export class ModFileRepositoryPrisma implements ModFileRepository {
     const createdModFile = await this.prisma.modFile.create({
       data: modFilePersistence,
     });
-    return createdModFile;
+    return new ModFile(createdModFile);
   }
 
-  async update(id: string, modFile: ModFile) {
+  async update(id: string, modFile: ModFileUpdateData): Promise<ModFile> {
     const updatedModFile = await this.prisma.modFile.update({
       where: {
         id: id,
@@ -68,7 +90,7 @@ export class ModFileRepositoryPrisma implements ModFileRepository {
         loaderId: modFile.loaderId,
       },
     });
-    return updatedModFile;
+    return new ModFile(updatedModFile);
   }
 
   async delete(id: string): Promise<void> {

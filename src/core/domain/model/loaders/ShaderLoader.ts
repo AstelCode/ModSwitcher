@@ -3,15 +3,15 @@ import { ShaderLoaderFile, ShaderLoaderFileJson } from "./ShaderLoaderFile";
 export interface ShaderLoaderArgs {
   id?: string;
   name: string;
-  icon?: FileModel;
-  iconId?: string;
+  icon?: FileModel | null;
+  iconId?: string | null;
   files?: ShaderLoaderFile[];
   createdAt?: Date;
   updatedAt?: Date;
 }
 export interface ShaderLoaderPersistence {
   name: string;
-  iconId?: string;
+  iconId?: string | null;
 }
 export interface ShaderLoaderJson {
   id: string;
@@ -24,8 +24,8 @@ export interface ShaderLoaderJson {
 export class ShaderLoader {
   id?: string;
   name: string;
-  icon?: FileModel;
-  iconId?: string;
+  icon?: FileModel | null;
+  iconId?: string | null;
   files?: ShaderLoaderFile[];
   createdAt?: Date;
   updatedAt?: Date;

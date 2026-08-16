@@ -1,10 +1,6 @@
 import { CommentModel, CommentJson } from "../Comment";
-import {
-  ExternalId,
-  ExternalIdPersistence,
-  ExternalIdJson,
-} from "../ExternalId";
-import { FileModel, FilePersistence, FileJson } from "../file/File";
+import { ExternalId, ExternalIdJson } from "../ExternalId";
+import { FileModel, FileJson } from "../file/File";
 import { User, UserJson } from "../User";
 import { ShaderFile, ShaderFileJson } from "./ShaderFile";
 
@@ -12,51 +8,51 @@ export interface ShaderArgs {
   id?: string;
   name: string;
   description: string;
-  author?: User;
-  authorId?: string;
+  author?: User | null;
+  authorId?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
   comments?: CommentModel[];
   files?: ShaderFile[];
   images?: FileModel[];
-  icon?: FileModel;
-  iconId?: string;
+  icon?: FileModel | null;
+  iconId?: string | null;
   externalIds?: ExternalId[];
 }
 export interface ShaderPersistence {
   name: string;
   description: string;
-  authorId?: string;
+  authorId?: string | null;
   //images: FilePersistence[];
-  iconId?: string;
+  iconId?: string | null;
   //externalIds: ExternalIdPersistence[];
 }
 export interface ShaderJson {
   id: string;
   name: string;
-  description: string;
-  author?: UserJson;
+  description: string | null;
+  author?: UserJson | null;
   createdAt: Date;
   updatedAt: Date;
   comments?: CommentJson[];
   files?: ShaderFileJson[];
   images?: FileJson[];
-  icon?: FileJson;
+  icon?: FileJson | null;
   externalIds?: ExternalIdJson[];
 }
 export class Shader {
   id?: string;
   name: string;
   description: string;
-  author?: User;
-  authorId?: string;
+  author?: User | null;
+  authorId?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
   comments?: CommentModel[];
   files?: ShaderFile[];
   images?: FileModel[];
-  icon?: FileModel;
-  iconId?: string;
+  icon?: FileModel | null;
+  iconId?: string | null;
   externalIds?: ExternalId[];
   constructor(args: ShaderArgs) {
     this.id = args.id;
@@ -94,6 +90,7 @@ export class Shader {
     if (!this.files) throw new Error("Shader must have files");
     if (!this.images) throw new Error("Shader must have images");
     if (!this.externalIds) throw new Error("Shader must have externalIds");
+
     return {
       iconId: this.iconId,
       name: this.name,

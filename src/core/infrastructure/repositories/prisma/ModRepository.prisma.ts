@@ -3,9 +3,13 @@ import {
   ModInclude,
   ModPagination,
   ModRepository,
+  ModUpdateData,
 } from "@/core/domain/port/mod/ModRepository";
 import { PrismaClient } from "./connection/client";
 import { Mod } from "@/core/domain/model/Mod/Mod";
+import { User } from "@/core/domain/model/User";
+import { FileModel } from "@/core/domain/model/file/File";
+import { ModFile } from "@/core/domain/model/Mod/ModFile";
 
 export class ModRepositoryPrisma implements ModRepository {
   constructor(private readonly prisma: PrismaClient) {}
@@ -26,12 +30,21 @@ export class ModRepositoryPrisma implements ModRepository {
         author: data?.include?.author,
         icon: data?.include?.icon,
         images: data?.include?.images,
-        files: data?.include?.files,
+        modFiles: data?.include?.files,
       },
       take: data?.pagination?.limit,
       skip: data?.pagination?.offset,
     });
-    return mods;
+    return mods.map(
+      (mod) =>
+        new Mod({
+          ...mod,
+          author: mod.author ? new User(mod.author) : null,
+          icon: mod.icon ? new FileModel(mod.icon) : null,
+          images: mod.images?.map((image) => new FileModel(image)),
+          files: mod.modFiles?.map((file) => new ModFile(file)),
+        }),
+    );
   }
 
   async getById(id: string, include?: ModInclude): Promise<Mod | undefined> {
@@ -45,7 +58,12 @@ export class ModRepositoryPrisma implements ModRepository {
         files: include?.files,
       },
     });
-    return mod;
+    if (!mod) return;
+    return new Mod({
+      ...mod,
+      author: mod.author ? new User(mod.author) : null,
+      icon: mod.icon ? new FileModel(mod.icon) : null,
+    });
   }
 
   async create(mod: Mod): Promise<Mod> {
@@ -53,10 +71,10 @@ export class ModRepositoryPrisma implements ModRepository {
     const createdMod = await this.prisma.mod.create({
       data: modPersistence,
     });
-    return createdMod;
+    return new Mod(createdMod);
   }
 
-  async update(id: string, mod: Mod) {
+  async update(id: string, mod: ModUpdateData): Promise<Mod> {
     const updatedMod = await this.prisma.mod.update({
       where: {
         id: id,
@@ -68,7 +86,7 @@ export class ModRepositoryPrisma implements ModRepository {
         iconId: mod.iconId,
       },
     });
-    return updatedMod;
+    return new Mod(updatedMod);
   }
 
   async delete(id: string): Promise<void> {

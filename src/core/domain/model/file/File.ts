@@ -1,27 +1,27 @@
 import { Mod } from "../Mod/Mod";
 import { Pack } from "../pack/Pack";
 import { Shader } from "../shader/Shader";
-import { LocalFile, LocalFileJson, LocalFilePersistence } from "./LocalFile";
+import { LocalFile, LocalFileJson } from "./LocalFile";
 
 export interface FileArgs {
   id?: string;
   name: string;
   role: string;
-  shader?: Shader;
-  shaderId?: string;
-  mod?: Mod;
-  modId?: string;
-  pack?: Pack;
-  packId?: string;
-  externalUrl?: string;
-  localFile?: LocalFile;
+  shader?: Shader | null;
+  shaderId?: string | null;
+  mod?: Mod | null;
+  modId?: string | null;
+  pack?: Pack | null;
+  packId?: string | null;
+  externalUrl?: string | null;
+  localFile?: LocalFile | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
 export interface FilePersistence {
-  externalUrl?: string;
+  externalUrl?: string | null;
   name: string;
-  localFile?: LocalFilePersistence;
+  // localFile?: LocalFilePersistence;
   role: string;
   shaderId?: string;
   modId?: string;
@@ -29,7 +29,7 @@ export interface FilePersistence {
 }
 export interface FileJson {
   id: string;
-  externalUrl?: string;
+  externalUrl?: string | null;
   localFile?: LocalFileJson;
   role: string;
   createdAt: Date;
@@ -38,15 +38,15 @@ export interface FileJson {
 export class FileModel {
   id?: string;
   name: string;
-  externalUrl?: string;
-  localFile?: LocalFile;
+  externalUrl?: string | null;
+  localFile?: LocalFile | null;
   role: string;
-  mod?: Mod;
-  modId?: string;
-  pack?: Pack;
-  packId?: string;
-  shader?: Shader;
-  shaderId?: string;
+  mod?: Mod | null;
+  modId?: string | null;
+  pack?: Pack | null;
+  packId?: string | null;
+  shader?: Shader | null;
+  shaderId?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
   constructor(args: FileArgs) {
@@ -71,7 +71,6 @@ export class FileModel {
   toPersistence(): FilePersistence {
     return {
       externalUrl: this.externalUrl,
-      localFile: this.localFile?.toPersistence(),
       name: this.name,
       role: this.role,
     };

@@ -31,7 +31,7 @@ const prisma = new PrismaClient({
 });
 
 const fileRepository = new FileRepositoryPrisma(prisma);
-export const context: ServiceContext = {
+export const serviceContext: ServiceContext = {
   userRepository: new UserRepositoryPrisma(prisma),
   commentRepository: new CommentRepositoryPrisma(prisma),
   modRepository: new ModRepositoryPrisma(prisma),

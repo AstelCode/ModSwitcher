@@ -5,17 +5,17 @@ import { User, UserJson } from "./User";
 
 export interface CommentArgs {
   id?: string;
-  author?: User;
-  authorId: string;
+  author?: User | null;
+  authorId: string | null;
   content: string;
   createdAt?: Date;
   updatedAt?: Date;
-  shader?: Shader;
-  shaderId?: string;
-  mod?: Mod;
-  modId?: string;
-  pack?: Pack;
-  packId?: string;
+  shader?: Shader | null;
+  shaderId?: string | null;
+  mod?: Mod | null;
+  modId?: string | null;
+  pack?: Pack | null;
+  packId?: string | null;
 }
 export interface CommentPersistence {
   authorId: string;
@@ -26,27 +26,27 @@ export interface CommentPersistence {
 }
 export interface CommentJson {
   id: string;
-  author: UserJson;
+  author: UserJson | null;
   content: string;
   createdAt: Date;
   updatedAt: Date;
-  shader?: ShaderJson;
-  mod?: ModJson;
-  pack?: PackJson;
+  shader?: ShaderJson | null;
+  mod?: ModJson | null;
+  pack?: PackJson | null;
 }
 export class CommentModel {
   id?: string;
-  author?: User;
-  authorId?: string;
+  author?: User | null;
+  authorId?: string | null;
   content: string;
   createdAt?: Date;
   updatedAt?: Date;
-  shader?: Shader;
-  shaderId?: string;
-  mod?: Mod;
-  modId?: string;
-  pack?: Pack;
-  packId?: string;
+  shader?: Shader | null;
+  shaderId?: string | null;
+  mod?: Mod | null;
+  modId?: string | null;
+  pack?: Pack | null;
+  packId?: string | null;
   constructor(args: CommentArgs) {
     this.id = args.id;
     this.author = args.author;
@@ -67,9 +67,8 @@ export class CommentModel {
     if (!this.updatedAt) throw new Error("Comment must have a updatedAt");
 
     if (!this.authorId) throw new Error("Comment must have an author");
-    if (!this.shaderId) throw new Error("Comment must have a shader");
-    if (!this.packId) throw new Error("Comment must have a mod");
-    if (!this.authorId) throw new Error("Comment must have a pack");
+    if (!this.shaderId || !this.packId || !this.modId)
+      throw new Error("Comment must have a shader or mod or pack");
     return {
       authorId: this.authorId,
       content: this.content,

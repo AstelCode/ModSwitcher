@@ -4,7 +4,7 @@ import {
   ExternalIdPersistence,
   ExternalIdJson,
 } from "../ExternalId";
-import { FileModel, FilePersistence, FileJson } from "../file/File";
+import { FileModel, FileJson } from "../file/File";
 import { User, UserJson } from "../User";
 import { ModFile, ModFileJson } from "./ModFile";
 
@@ -13,11 +13,11 @@ export interface ModArgs {
   id?: string;
   name: string;
   description: string;
-  author?: User;
-  authorId?: string;
+  author?: User | null;
+  authorId?: string | null;
   files?: ModFile[];
-  icon?: FileModel;
-  iconId?: string;
+  icon?: FileModel | null;
+  iconId?: string | null;
   images?: FileModel[];
   comments?: CommentModel[];
   externalIds?: ExternalId[];
@@ -29,9 +29,8 @@ export interface ModPersistence {
   name: string;
   description: string;
   status: ModStatus;
-  authorId: string;
-  iconId?: string;
-  externalIds: ExternalIdPersistence[];
+  authorId: string | null;
+  iconId?: string | null;
 }
 export interface ModJson {
   id: string;
@@ -51,15 +50,15 @@ export class Mod {
   id?: string;
   name: string;
   description: string;
-  author?: User;
-  authorId?: string;
+  author?: User | null;
+  authorId?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
   comments?: CommentModel[];
   files?: ModFile[];
   images?: FileModel[];
-  icon?: FileModel;
-  iconId?: string;
+  icon?: FileModel | null;
+  iconId?: string | null;
   externalIds?: ExternalId[];
   status: ModStatus;
   constructor(args: ModArgs) {
@@ -106,9 +105,7 @@ export class Mod {
       name: this.name,
       description: this.description,
       authorId: this.authorId,
-      externalIds: this.externalIds.map((externalId) =>
-        externalId.toPersistence(),
-      ),
+
       status: this.status,
     };
   }

@@ -5,7 +5,13 @@ import {
   UserInclude,
   UserPagination,
   UserRepository,
+  UserUpdateData,
 } from "@/core/domain/port/UserRepository";
+import { FileModel } from "@/core/domain/model/file/File";
+import { Mod } from "@/core/domain/model/Mod/Mod";
+import { Pack } from "@/core/domain/model/pack/Pack";
+import { Shader } from "@/core/domain/model/shader/Shader";
+import { CommentModel } from "@/core/domain/model/Comment";
 
 export class UserRepositoryPrisma implements UserRepository {
   constructor(private readonly prisma: PrismaClient) {}
@@ -20,11 +26,13 @@ export class UserRepositoryPrisma implements UserRepository {
   }
 
   async getByEmail(email: string): Promise<User | undefined> {
-    return this.prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: {
         email: email,
       },
     });
+    if (!user) return;
+    return new User(user);
   }
 
   async getAll(data?: {
@@ -56,7 +64,17 @@ export class UserRepositoryPrisma implements UserRepository {
       take: data?.pagination?.limit,
       skip: data?.pagination?.offset,
     });
-    return users;
+    return users.map(
+      (user) =>
+        new User({
+          ...user,
+          avatar: user.avatar ? new FileModel(user.avatar) : null,
+          mods: user.mods?.map((mod) => new Mod(mod)),
+          packs: user.packs?.map((pack) => new Pack(pack)),
+          shaders: user.shaders?.map((shader) => new Shader(shader)),
+          comments: user.comments?.map((comment) => new CommentModel(comment)),
+        }),
+    );
   }
   async getById(id: string): Promise<User | undefined> {
     const user = await this.prisma.user.findUnique({
@@ -64,7 +82,8 @@ export class UserRepositoryPrisma implements UserRepository {
         id: id,
       },
     });
-    return user;
+    if (!user) return;
+    return new User(user);
   }
 
   async create(user: User): Promise<User> {
@@ -72,10 +91,10 @@ export class UserRepositoryPrisma implements UserRepository {
     const createdUser = await this.prisma.user.create({
       data: userPersistence,
     });
-    return createdUser;
+    return new User(createdUser);
   }
 
-  async update(id: string, user: User): Promise<User> {
+  async update(id: string, user: UserUpdateData): Promise<User> {
     const updatedUser = await this.prisma.user.update({
       where: {
         id: id,
@@ -84,14 +103,14 @@ export class UserRepositoryPrisma implements UserRepository {
         username: user.username,
         password: user.password,
         email: user.email,
-        avatarId: user.avatar?.id,
         role: user.role,
+        avatarId: user.avatarId,
         activationCode: user.activationCode,
         recoveryTokenHash: user.recoveryTokenHash,
         status: user.status,
       },
     });
-    return updatedUser;
+    return new User(updatedUser);
   }
 
   async delete(id: string): Promise<void> {

@@ -1,4 +1,4 @@
-import { PrismaClient, File } from "./connection/client";
+import { PrismaClient } from "./connection/client";
 import {
   FileFilter,
   FileInclude,
@@ -6,15 +6,16 @@ import {
   FileRepository,
   FileUpdateData,
 } from "@/core/domain/port/file/FileRepository";
+import { FileModel } from "@/core/domain/model/file/File";
+import { LocalFile } from "@/core/domain/model/file/LocalFile";
 
 export class FileRepositoryPrisma implements FileRepository {
   constructor(private readonly prisma: PrismaClient) {}
-
   async getAll(data?: {
     filter?: FileFilter;
     pagination?: FilePagination;
     include?: FileInclude;
-  }): Promise<File[]> {
+  }): Promise<FileModel[]> {
     const files = await this.prisma.file.findMany({
       where: {
         externalUrl: data?.filter?.externalUrl,
@@ -27,10 +28,19 @@ export class FileRepositoryPrisma implements FileRepository {
       take: data?.pagination?.limit,
       skip: data?.pagination?.offset,
     });
-    return files;
+    return files.map(
+      (file) =>
+        new FileModel({
+          ...file,
+          localFile: file.localFile ? new LocalFile(file.localFile) : null,
+        }),
+    );
   }
 
-  async getById(id: string, include?: FileInclude): Promise<File | undefined> {
+  async getById(
+    id: string,
+    include?: FileInclude,
+  ): Promise<FileModel | undefined> {
     const file = await this.prisma.file.findUnique({
       where: {
         id: id,
@@ -39,18 +49,24 @@ export class FileRepositoryPrisma implements FileRepository {
         localFile: include?.localFile,
       },
     });
-    return file;
+    if (!file) return;
+    return new FileModel({
+      ...file,
+      localFile: file.localFile ? new LocalFile(file.localFile) : null,
+    });
   }
 
-  async create(file: File): Promise<File> {
+  async create(file: FileModel): Promise<FileModel> {
     const filePersistence = file.toPersistence();
     const createdFile = await this.prisma.file.create({
       data: filePersistence,
     });
-    return createdFile;
+    return new FileModel({
+      ...createdFile,
+    });
   }
 
-  async update(id: string, file: FileUpdateData): Promise<File> {
+  async update(id: string, file: FileUpdateData): Promise<FileModel> {
     const updatedFile = await this.prisma.file.update({
       where: {
         id: id,
@@ -64,7 +80,9 @@ export class FileRepositoryPrisma implements FileRepository {
         packId: file.packId,
       },
     });
-    return updatedFile;
+    return new FileModel({
+      ...updatedFile,
+    });
   }
 
   async delete(id: string): Promise<void> {

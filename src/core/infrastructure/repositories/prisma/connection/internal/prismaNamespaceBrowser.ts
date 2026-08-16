@@ -105,6 +105,7 @@ export type LocalFileScalarFieldEnum = (typeof LocalFileScalarFieldEnum)[keyof t
 
 export const FileScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   role: 'role',
   externalUrl: 'externalUrl',
   localFileid: 'localFileid',

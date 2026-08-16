@@ -1,3 +1,4 @@
+import { CommentJson, CommentModel } from "./Comment";
 import { FileJson, FileModel } from "./file/File";
 import { Mod, ModJson } from "./Mod/Mod";
 import { Pack, PackJson } from "./pack/Pack";
@@ -10,16 +11,17 @@ export interface UserArgs {
   username: string;
   password: string;
   email: string;
-  avatar?: FileModel;
-  avatarId?: string;
+  avatar?: FileModel | null;
+  avatarId?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
   role: UserRole;
-  activationCode: string;
-  recoveryTokenHash?: string;
+  activationCode?: string | null;
+  recoveryTokenHash?: string | null;
   mods?: Mod[];
   packs?: Pack[];
   shaders?: Shader[];
+  comments?: CommentModel[];
   installations?: UserInstalation[];
   status?: UserStatus;
 }
@@ -27,11 +29,11 @@ export interface UserPersistence {
   username: string;
   password: string;
   email: string;
-  avatarId?: string;
+  avatarId?: string | null;
   createdAt: Date;
   updatedAt: Date;
   role: UserRole;
-  activationCode: string;
+  activationCode?: string;
   recoveryTokenHash?: string;
   status?: UserStatus;
 }
@@ -40,15 +42,14 @@ export interface UserJson {
   username: string;
   password: string;
   email: string;
-  avatar?: FileJson;
+  avatar?: FileJson | null;
   createdAt: Date;
   updatedAt: Date;
   role: UserRole;
-  activationCode: string;
-  recoveryTokenHash?: string;
   mods?: ModJson[];
   packs?: PackJson[];
   shaders?: ShaderJson[];
+  commnents?: CommentJson[];
   installations?: UserInstalationJson[];
   status?: UserStatus;
 }
@@ -57,18 +58,19 @@ export class User {
   username: string;
   password: string;
   email: string;
-  avatar?: FileModel;
-  avatarId?: string;
+  avatar?: FileModel | null;
+  avatarId?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
   role: UserRole;
-  activationCode: string;
-  recoveryTokenHash?: string;
+  activationCode?: string | null;
+  recoveryTokenHash?: string | null;
   mods?: Mod[];
   packs?: Pack[];
   shaders?: Shader[];
   installations?: UserInstalation[];
   status?: UserStatus;
+  comments?: CommentModel[];
   constructor(args: UserArgs) {
     this.id = args.id;
     this.username = args.username;
@@ -86,6 +88,7 @@ export class User {
     this.installations = args.installations;
     this.status = args.status;
     this.avatarId = args.avatar?.id ?? args.avatarId;
+    this.comments = args.comments ?? [];
   }
   getId(): string {
     if (!this.id) throw new Error("User must have an id");
@@ -140,8 +143,6 @@ export class User {
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
       role: this.role,
-      activationCode: this.activationCode,
-      recoveryTokenHash: this.recoveryTokenHash,
       shaders: this.shaders?.map((shader) => shader.toJson()),
       mods: this.mods?.map((mod) => mod.toJson()),
       packs: this.packs?.map((pack) => pack.toJson()),

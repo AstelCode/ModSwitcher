@@ -26,6 +26,7 @@ export type AggregateFile = {
 
 export type FileMinAggregateOutputType = {
   id: string | null
+  name: string | null
   role: string | null
   externalUrl: string | null
   localFileid: string | null
@@ -37,6 +38,7 @@ export type FileMinAggregateOutputType = {
 
 export type FileMaxAggregateOutputType = {
   id: string | null
+  name: string | null
   role: string | null
   externalUrl: string | null
   localFileid: string | null
@@ -48,6 +50,7 @@ export type FileMaxAggregateOutputType = {
 
 export type FileCountAggregateOutputType = {
   id: number
+  name: number
   role: number
   externalUrl: number
   localFileid: number
@@ -61,6 +64,7 @@ export type FileCountAggregateOutputType = {
 
 export type FileMinAggregateInputType = {
   id?: true
+  name?: true
   role?: true
   externalUrl?: true
   localFileid?: true
@@ -72,6 +76,7 @@ export type FileMinAggregateInputType = {
 
 export type FileMaxAggregateInputType = {
   id?: true
+  name?: true
   role?: true
   externalUrl?: true
   localFileid?: true
@@ -83,6 +88,7 @@ export type FileMaxAggregateInputType = {
 
 export type FileCountAggregateInputType = {
   id?: true
+  name?: true
   role?: true
   externalUrl?: true
   localFileid?: true
@@ -167,6 +173,7 @@ export type FileGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type FileGroupByOutputType = {
   id: string
+  name: string
   role: string
   externalUrl: string | null
   localFileid: string | null
@@ -199,6 +206,7 @@ export type FileWhereInput = {
   OR?: Prisma.FileWhereInput[]
   NOT?: Prisma.FileWhereInput | Prisma.FileWhereInput[]
   id?: Prisma.StringFilter<"File"> | string
+  name?: Prisma.StringFilter<"File"> | string
   role?: Prisma.StringFilter<"File"> | string
   externalUrl?: Prisma.StringNullableFilter<"File"> | string | null
   localFileid?: Prisma.StringNullableFilter<"File"> | string | null
@@ -222,6 +230,7 @@ export type FileWhereInput = {
 
 export type FileOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   externalUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   localFileid?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -249,6 +258,7 @@ export type FileWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.FileWhereInput | Prisma.FileWhereInput[]
   OR?: Prisma.FileWhereInput[]
   NOT?: Prisma.FileWhereInput | Prisma.FileWhereInput[]
+  name?: Prisma.StringFilter<"File"> | string
   role?: Prisma.StringFilter<"File"> | string
   externalUrl?: Prisma.StringNullableFilter<"File"> | string | null
   createdAt?: Prisma.DateTimeFilter<"File"> | Date | string
@@ -271,6 +281,7 @@ export type FileWhereUniqueInput = Prisma.AtLeast<{
 
 export type FileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   externalUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   localFileid?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -288,6 +299,7 @@ export type FileScalarWhereWithAggregatesInput = {
   OR?: Prisma.FileScalarWhereWithAggregatesInput[]
   NOT?: Prisma.FileScalarWhereWithAggregatesInput | Prisma.FileScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"File"> | string
+  name?: Prisma.StringWithAggregatesFilter<"File"> | string
   role?: Prisma.StringWithAggregatesFilter<"File"> | string
   externalUrl?: Prisma.StringNullableWithAggregatesFilter<"File"> | string | null
   localFileid?: Prisma.StringNullableWithAggregatesFilter<"File"> | string | null
@@ -299,6 +311,7 @@ export type FileScalarWhereWithAggregatesInput = {
 
 export type FileCreateInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -319,6 +332,7 @@ export type FileCreateInput = {
 
 export type FileUncheckedCreateInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -339,6 +353,7 @@ export type FileUncheckedCreateInput = {
 
 export type FileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -359,6 +374,7 @@ export type FileUpdateInput = {
 
 export type FileUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -379,6 +395,7 @@ export type FileUncheckedUpdateInput = {
 
 export type FileCreateManyInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -390,6 +407,7 @@ export type FileCreateManyInput = {
 
 export type FileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -398,6 +416,7 @@ export type FileUpdateManyMutationInput = {
 
 export type FileUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -414,6 +433,7 @@ export type FileNullableScalarRelationFilter = {
 
 export type FileCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   externalUrl?: Prisma.SortOrder
   localFileid?: Prisma.SortOrder
@@ -425,6 +445,7 @@ export type FileCountOrderByAggregateInput = {
 
 export type FileMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   externalUrl?: Prisma.SortOrder
   localFileid?: Prisma.SortOrder
@@ -436,6 +457,7 @@ export type FileMaxOrderByAggregateInput = {
 
 export type FileMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   externalUrl?: Prisma.SortOrder
   localFileid?: Prisma.SortOrder
@@ -490,10 +512,6 @@ export type FileUncheckedUpdateOneWithoutLocalFileNestedInput = {
   delete?: Prisma.FileWhereInput | boolean
   connect?: Prisma.FileWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.FileUpdateToOneWithWhereWithoutLocalFileInput, Prisma.FileUpdateWithoutLocalFileInput>, Prisma.FileUncheckedUpdateWithoutLocalFileInput>
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
 }
 
 export type FileCreateNestedOneWithoutUserInput = {
@@ -746,6 +764,7 @@ export type FileUncheckedUpdateManyWithoutPacksImageNestedInput = {
 
 export type FileCreateWithoutLocalFileInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -765,6 +784,7 @@ export type FileCreateWithoutLocalFileInput = {
 
 export type FileUncheckedCreateWithoutLocalFileInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -800,6 +820,7 @@ export type FileUpdateToOneWithWhereWithoutLocalFileInput = {
 
 export type FileUpdateWithoutLocalFileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -819,6 +840,7 @@ export type FileUpdateWithoutLocalFileInput = {
 
 export type FileUncheckedUpdateWithoutLocalFileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -838,6 +860,7 @@ export type FileUncheckedUpdateWithoutLocalFileInput = {
 
 export type FileCreateWithoutUserInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -857,6 +880,7 @@ export type FileCreateWithoutUserInput = {
 
 export type FileUncheckedCreateWithoutUserInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -892,6 +916,7 @@ export type FileUpdateToOneWithWhereWithoutUserInput = {
 
 export type FileUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -911,6 +936,7 @@ export type FileUpdateWithoutUserInput = {
 
 export type FileUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -930,6 +956,7 @@ export type FileUncheckedUpdateWithoutUserInput = {
 
 export type FileCreateWithoutMinecraftLoaderInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -949,6 +976,7 @@ export type FileCreateWithoutMinecraftLoaderInput = {
 
 export type FileUncheckedCreateWithoutMinecraftLoaderInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -984,6 +1012,7 @@ export type FileUpdateToOneWithWhereWithoutMinecraftLoaderInput = {
 
 export type FileUpdateWithoutMinecraftLoaderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1003,6 +1032,7 @@ export type FileUpdateWithoutMinecraftLoaderInput = {
 
 export type FileUncheckedUpdateWithoutMinecraftLoaderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1022,6 +1052,7 @@ export type FileUncheckedUpdateWithoutMinecraftLoaderInput = {
 
 export type FileCreateWithoutShaderLoaderInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -1041,6 +1072,7 @@ export type FileCreateWithoutShaderLoaderInput = {
 
 export type FileUncheckedCreateWithoutShaderLoaderInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -1076,6 +1108,7 @@ export type FileUpdateToOneWithWhereWithoutShaderLoaderInput = {
 
 export type FileUpdateWithoutShaderLoaderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1095,6 +1128,7 @@ export type FileUpdateWithoutShaderLoaderInput = {
 
 export type FileUncheckedUpdateWithoutShaderLoaderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1114,6 +1148,7 @@ export type FileUncheckedUpdateWithoutShaderLoaderInput = {
 
 export type FileCreateWithoutModFileInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -1133,6 +1168,7 @@ export type FileCreateWithoutModFileInput = {
 
 export type FileUncheckedCreateWithoutModFileInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -1168,6 +1204,7 @@ export type FileUpdateToOneWithWhereWithoutModFileInput = {
 
 export type FileUpdateWithoutModFileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1187,6 +1224,7 @@ export type FileUpdateWithoutModFileInput = {
 
 export type FileUncheckedUpdateWithoutModFileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1206,6 +1244,7 @@ export type FileUncheckedUpdateWithoutModFileInput = {
 
 export type FileCreateWithoutModIconInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -1225,6 +1264,7 @@ export type FileCreateWithoutModIconInput = {
 
 export type FileUncheckedCreateWithoutModIconInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -1249,6 +1289,7 @@ export type FileCreateOrConnectWithoutModIconInput = {
 
 export type FileCreateWithoutModImageInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -1268,6 +1309,7 @@ export type FileCreateWithoutModImageInput = {
 
 export type FileUncheckedCreateWithoutModImageInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -1308,6 +1350,7 @@ export type FileUpdateToOneWithWhereWithoutModIconInput = {
 
 export type FileUpdateWithoutModIconInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1327,6 +1370,7 @@ export type FileUpdateWithoutModIconInput = {
 
 export type FileUncheckedUpdateWithoutModIconInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1365,6 +1409,7 @@ export type FileScalarWhereInput = {
   OR?: Prisma.FileScalarWhereInput[]
   NOT?: Prisma.FileScalarWhereInput | Prisma.FileScalarWhereInput[]
   id?: Prisma.StringFilter<"File"> | string
+  name?: Prisma.StringFilter<"File"> | string
   role?: Prisma.StringFilter<"File"> | string
   externalUrl?: Prisma.StringNullableFilter<"File"> | string | null
   localFileid?: Prisma.StringNullableFilter<"File"> | string | null
@@ -1376,6 +1421,7 @@ export type FileScalarWhereInput = {
 
 export type FileCreateWithoutShaderFileInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -1395,6 +1441,7 @@ export type FileCreateWithoutShaderFileInput = {
 
 export type FileUncheckedCreateWithoutShaderFileInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -1430,6 +1477,7 @@ export type FileUpdateToOneWithWhereWithoutShaderFileInput = {
 
 export type FileUpdateWithoutShaderFileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1449,6 +1497,7 @@ export type FileUpdateWithoutShaderFileInput = {
 
 export type FileUncheckedUpdateWithoutShaderFileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1468,6 +1517,7 @@ export type FileUncheckedUpdateWithoutShaderFileInput = {
 
 export type FileCreateWithoutShadersInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -1487,6 +1537,7 @@ export type FileCreateWithoutShadersInput = {
 
 export type FileUncheckedCreateWithoutShadersInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -1511,6 +1562,7 @@ export type FileCreateOrConnectWithoutShadersInput = {
 
 export type FileCreateWithoutShadeIconInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -1530,6 +1582,7 @@ export type FileCreateWithoutShadeIconInput = {
 
 export type FileUncheckedCreateWithoutShadeIconInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -1570,6 +1623,7 @@ export type FileUpdateToOneWithWhereWithoutShadersInput = {
 
 export type FileUpdateWithoutShadersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1589,6 +1643,7 @@ export type FileUpdateWithoutShadersInput = {
 
 export type FileUncheckedUpdateWithoutShadersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1624,6 +1679,7 @@ export type FileUpdateManyWithWhereWithoutShadeIconInput = {
 
 export type FileCreateWithoutPackIconInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -1643,6 +1699,7 @@ export type FileCreateWithoutPackIconInput = {
 
 export type FileUncheckedCreateWithoutPackIconInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -1667,6 +1724,7 @@ export type FileCreateOrConnectWithoutPackIconInput = {
 
 export type FileCreateWithoutPacksImageInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   createdAt?: Date | string
@@ -1686,6 +1744,7 @@ export type FileCreateWithoutPacksImageInput = {
 
 export type FileUncheckedCreateWithoutPacksImageInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -1721,6 +1780,7 @@ export type FileUpdateToOneWithWhereWithoutPackIconInput = {
 
 export type FileUpdateWithoutPackIconInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1740,6 +1800,7 @@ export type FileUpdateWithoutPackIconInput = {
 
 export type FileUncheckedUpdateWithoutPackIconInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1775,6 +1836,7 @@ export type FileUpdateManyWithWhereWithoutPacksImageInput = {
 
 export type FileCreateManyModImageInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -1785,6 +1847,7 @@ export type FileCreateManyModImageInput = {
 
 export type FileUpdateWithoutModImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1804,6 +1867,7 @@ export type FileUpdateWithoutModImageInput = {
 
 export type FileUncheckedUpdateWithoutModImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1823,6 +1887,7 @@ export type FileUncheckedUpdateWithoutModImageInput = {
 
 export type FileUncheckedUpdateManyWithoutModImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1833,6 +1898,7 @@ export type FileUncheckedUpdateManyWithoutModImageInput = {
 
 export type FileCreateManyShadeIconInput = {
   id?: string
+  name: string
   role: string
   externalUrl?: string | null
   localFileid?: string | null
@@ -1843,6 +1909,7 @@ export type FileCreateManyShadeIconInput = {
 
 export type FileUpdateWithoutShadeIconInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1862,6 +1929,7 @@ export type FileUpdateWithoutShadeIconInput = {
 
 export type FileUncheckedUpdateWithoutShadeIconInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1881,6 +1949,7 @@ export type FileUncheckedUpdateWithoutShadeIconInput = {
 
 export type FileUncheckedUpdateManyWithoutShadeIconInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1891,6 +1960,7 @@ export type FileUncheckedUpdateManyWithoutShadeIconInput = {
 
 export type FileUpdateWithoutPacksImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1910,6 +1980,7 @@ export type FileUpdateWithoutPacksImageInput = {
 
 export type FileUncheckedUpdateWithoutPacksImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1929,6 +2000,7 @@ export type FileUncheckedUpdateWithoutPacksImageInput = {
 
 export type FileUncheckedUpdateManyWithoutPacksImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1980,6 +2052,7 @@ export type FileCountOutputTypeCountPacksImageArgs<ExtArgs extends runtime.Types
 
 export type FileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
   role?: boolean
   externalUrl?: boolean
   localFileid?: boolean
@@ -2004,6 +2077,7 @@ export type FileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 
 export type FileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
   role?: boolean
   externalUrl?: boolean
   localFileid?: boolean
@@ -2018,6 +2092,7 @@ export type FileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 
 export type FileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
   role?: boolean
   externalUrl?: boolean
   localFileid?: boolean
@@ -2032,6 +2107,7 @@ export type FileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 
 export type FileSelectScalar = {
   id?: boolean
+  name?: boolean
   role?: boolean
   externalUrl?: boolean
   localFileid?: boolean
@@ -2041,7 +2117,7 @@ export type FileSelectScalar = {
   shadeId?: boolean
 }
 
-export type FileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "role" | "externalUrl" | "localFileid" | "createdAt" | "updatedAt" | "modId" | "shadeId", ExtArgs["result"]["file"]>
+export type FileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "role" | "externalUrl" | "localFileid" | "createdAt" | "updatedAt" | "modId" | "shadeId", ExtArgs["result"]["file"]>
 export type FileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   localFile?: boolean | Prisma.File$localFileArgs<ExtArgs>
   user?: boolean | Prisma.File$userArgs<ExtArgs>
@@ -2086,6 +2162,7 @@ export type $FilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    name: string
     role: string
     externalUrl: string | null
     localFileid: string | null
@@ -2529,6 +2606,7 @@ export interface Prisma__FileClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface FileFieldRefs {
   readonly id: Prisma.FieldRef<"File", 'String'>
+  readonly name: Prisma.FieldRef<"File", 'String'>
   readonly role: Prisma.FieldRef<"File", 'String'>
   readonly externalUrl: Prisma.FieldRef<"File", 'String'>
   readonly localFileid: Prisma.FieldRef<"File", 'String'>

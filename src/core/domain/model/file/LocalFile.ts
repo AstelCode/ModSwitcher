@@ -6,7 +6,7 @@ export interface LocalFileArgs {
   path: string;
   url: string;
   bucket: string;
-  sha256: string;
+  sha256?: string | null;
   extension: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -19,7 +19,7 @@ export interface LocalFilePersistence {
   url: string;
   bucket: string;
   extension: string;
-  sha256: string;
+  sha256?: string | null;
 }
 export interface LocalFileJson {
   id: string;
@@ -32,7 +32,7 @@ export interface LocalFileJson {
   extension: string;
   createdAt: Date;
   updatedAt: Date;
-  sha256: string;
+  sha256?: string | null;
 }
 export class LocalFile {
   id?: string;
@@ -45,7 +45,7 @@ export class LocalFile {
   extension: string;
   createdAt?: Date;
   updatedAt?: Date;
-  sha256: string;
+  sha256?: string | null;
   constructor(args: LocalFileArgs) {
     this.id = args.id;
     this.name = args.name;

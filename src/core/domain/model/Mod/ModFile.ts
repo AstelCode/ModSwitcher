@@ -14,15 +14,15 @@ export interface ModFileArgs {
   id?: string;
   mod?: Mod;
   modId?: string;
-  author?: User;
-  authorId?: string;
+  author?: User | null;
+  authorId?: string | null;
   version: string;
-  minecraftVersion?: MinecraftVersion;
-  minecraftVersionId?: string;
-  loader?: MinecraftLoader;
-  loaderId?: string;
-  file?: FileModel;
-  fileId?: string;
+  minecraftVersion?: MinecraftVersion | null;
+  minecraftVersionId?: string | null;
+  loader?: MinecraftLoader | null;
+  loaderId?: string | null;
+  file?: FileModel | null;
+  fileId?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -33,11 +33,11 @@ export interface ModFilePersistence {
   modId: string;
   minecraftVersionId: string;
   version: string;
-  authorId?: string;
+  authorId?: string | null;
 }
 export interface ModFileJson {
   id: string;
-  file?: FileJson;
+  file?: FileJson | null;
   version: string;
   minecraftVersion: MinecraftVersionJson;
   loader?: MinecraftLoaderJson;
@@ -45,16 +45,16 @@ export interface ModFileJson {
   updatedAt: Date;
 }
 export class ModFile {
-  author?: User;
-  authorId?: string;
+  author?: User | null;
+  authorId?: string | null;
   id?: string;
-  file?: FileModel;
-  fileId?: string;
+  file?: FileModel | null;
+  fileId?: string | null;
   version: string;
-  minecraftVersion?: MinecraftVersion;
-  minecraftVersionId?: string;
-  loader?: MinecraftLoader;
-  loaderId?: string;
+  minecraftVersion?: MinecraftVersion | null;
+  minecraftVersionId?: string | null;
+  loader?: MinecraftLoader | null;
+  loaderId?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
   mod?: Mod;

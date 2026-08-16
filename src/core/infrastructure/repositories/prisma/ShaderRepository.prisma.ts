@@ -3,9 +3,12 @@ import {
   ShaderInclude,
   ShaderPagination,
   ShaderRepository,
+  ShaderUpdateData,
 } from "@/core/domain/port/shader/ShaderRepository";
 import { PrismaClient } from "./connection/client";
 import { Shader } from "@/core/domain/model/shader/Shader";
+import { User } from "@/core/domain/model/User";
+import { FileModel } from "@/core/domain/model/file/File";
 
 export class ShaderRepositoryPrisma implements ShaderRepository {
   constructor(private readonly prisma: PrismaClient) {}
@@ -26,12 +29,20 @@ export class ShaderRepositoryPrisma implements ShaderRepository {
         author: data?.include?.author,
         images: data?.include?.images,
         icon: data?.include?.icon,
-        externalIds: data?.include?.externalIds,
+        //externalIds: data?.include?.externalIds,
       },
       take: data?.pagination?.limit,
       skip: data?.pagination?.offset,
     });
-    return shaders;
+    return shaders.map(
+      (shader) =>
+        new Shader({
+          ...shader,
+          author: shader.author ? new User(shader.author) : null,
+          images: shader.images?.map((image) => new FileModel(image)),
+          icon: shader.icon ? new FileModel(shader.icon) : null,
+        }),
+    );
   }
   async getById(
     id: string,
@@ -48,7 +59,13 @@ export class ShaderRepositoryPrisma implements ShaderRepository {
         externalIds: include?.externalIds,
       },
     });
-    return shader;
+    if (!shader) return;
+    return new Shader({
+      ...shader,
+      author: shader.author ? new User(shader.author) : null,
+      images: shader.images?.map((image) => new FileModel(image)),
+      icon: shader.icon ? new FileModel(shader.icon) : null,
+    });
   }
 
   async create(shader: Shader): Promise<Shader> {
@@ -56,9 +73,9 @@ export class ShaderRepositoryPrisma implements ShaderRepository {
     const createdShader = await this.prisma.shader.create({
       data: shaderPersistence,
     });
-    return createdShader;
+    return new Shader(createdShader);
   }
-  async update(id: string, shader: Shader): Promise<Shader> {
+  async update(id: string, shader: ShaderUpdateData): Promise<Shader> {
     const updatedShader = await this.prisma.shader.update({
       where: {
         id: id,
@@ -72,7 +89,7 @@ export class ShaderRepositoryPrisma implements ShaderRepository {
         //externalIdsId: shader.externalIdsId,
       },
     });
-    return updatedShader;
+    return new Shader(updatedShader);
   }
   async delete(id: string): Promise<void> {
     await this.prisma.shader.delete({

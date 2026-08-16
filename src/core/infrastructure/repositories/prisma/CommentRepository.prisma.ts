@@ -4,8 +4,13 @@ import {
   CommentRepository,
   CommentUpdateData,
 } from "@/core/domain/port/CommentRepository";
-import { CommentInclude, CommentModel } from "./connection/models";
+import { CommentInclude } from "./connection/models";
 import { PrismaClient } from "./connection/client";
+import { CommentModel } from "@/core/domain/model/Comment";
+import { Mod } from "@/core/domain/model/Mod/Mod";
+import { Pack } from "@/core/domain/model/pack/Pack";
+import { Shader } from "@/core/domain/model/shader/Shader";
+import { User } from "@/core/domain/model/User";
 
 export class CommentRepositoryPrisma implements CommentRepository {
   constructor(private readonly prisma: PrismaClient) {}
@@ -33,7 +38,16 @@ export class CommentRepositoryPrisma implements CommentRepository {
       take: data?.pagination?.limit,
       skip: data?.pagination?.offset,
     });
-    return comments;
+    return comments.map(
+      (comment) =>
+        new CommentModel({
+          ...comment,
+          shader: comment.shader ? new Shader(comment.shader) : null,
+          mod: comment.mod ? new Mod(comment.mod) : null,
+          pack: comment.pack ? new Pack(comment.pack) : null,
+          author: comment.author ? new User(comment.author) : null,
+        }),
+    );
   }
   async getById(
     id: string,
@@ -50,7 +64,14 @@ export class CommentRepositoryPrisma implements CommentRepository {
         pack: include?.pack,
       },
     });
-    return comment;
+    if (!comment) return;
+    return new CommentModel({
+      ...comment,
+      shader: comment.shader ? new Shader(comment.shader) : null,
+      mod: comment.mod ? new Mod(comment.mod) : null,
+      pack: comment.pack ? new Pack(comment.pack) : null,
+      author: comment.author ? new User(comment.author) : null,
+    });
   }
 
   async create(comment: CommentModel): Promise<CommentModel> {
@@ -58,7 +79,9 @@ export class CommentRepositoryPrisma implements CommentRepository {
     const createdComment = await this.prisma.comment.create({
       data: commentPersistence,
     });
-    return createdComment;
+    return new CommentModel({
+      ...createdComment,
+    });
   }
   async update(id: string, comment: CommentUpdateData): Promise<CommentModel> {
     const updatedComment = await this.prisma.comment.update({
@@ -75,7 +98,9 @@ export class CommentRepositoryPrisma implements CommentRepository {
         packId: comment.packId,
       },
     });
-    return updatedComment;
+    return new CommentModel({
+      ...updatedComment,
+    });
   }
   async delete(id: string): Promise<void> {
     await this.prisma.comment.delete({

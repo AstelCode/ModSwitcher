@@ -1,3 +1,5 @@
+import { FileModel } from "../../model/file/File";
+
 export interface FileFilter {
   externalUrl?: string;
   localFileId?: string;
@@ -24,9 +26,9 @@ export interface FileRepository {
     filter?: FileFilter;
     pagination?: FilePagination;
     include?: FileInclude;
-  }): Promise<File[]>;
-  getById(id: string, indlude?: FileInclude): Promise<File | undefined>;
-  create(file: File): Promise<File>;
-  update(id: string, file: FileUpdateData): Promise<File>;
+  }): Promise<FileModel[]>;
+  getById(id: string, indlude?: FileInclude): Promise<FileModel | undefined>;
+  create(file: FileModel): Promise<FileModel>;
+  update(id: string, file: FileUpdateData): Promise<FileModel>;
   delete(id: string): Promise<void>;
 }

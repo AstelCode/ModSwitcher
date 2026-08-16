@@ -7,15 +7,15 @@ import {
 export interface MinecraftLoaderArgs {
   id?: string;
   name: string;
-  icon?: FileModel;
-  iconId?: string;
+  icon?: FileModel | null;
+  iconId?: string | null;
   files?: MinecraftLoaderFile[];
   createdAt?: Date;
   updatedAt?: Date;
 }
 export interface MinecraftLoaderPersistence {
   name: string;
-  iconId?: string;
+  iconId?: string | null;
 }
 export interface MinecraftLoaderJson {
   id: string;
@@ -28,8 +28,8 @@ export interface MinecraftLoaderJson {
 export class MinecraftLoader {
   id?: string;
   name: string;
-  icon?: FileModel;
-  iconId?: string;
+  icon?: FileModel | null;
+  iconId?: string | null;
   files?: MinecraftLoaderFile[];
   createdAt?: Date;
   updatedAt?: Date;

@@ -3,9 +3,11 @@ import {
   ShaderLoaderInclude,
   ShaderLoaderPagination,
   ShaderLoaderRepository,
+  ShaderLoaderUpdateData,
 } from "@/core/domain/port/loaders/ShaderLoaderRepository";
 import { PrismaClient } from "./connection/client";
 import { ShaderLoader } from "@/core/domain/model/loaders/ShaderLoader";
+import { FileModel } from "@/core/domain/model/file/File";
 
 export class ShaderLoaderRepositoryPrisma implements ShaderLoaderRepository {
   constructor(private readonly prisma: PrismaClient) {}
@@ -26,7 +28,13 @@ export class ShaderLoaderRepositoryPrisma implements ShaderLoaderRepository {
       take: data?.pagination?.limit,
       skip: data?.pagination?.offset,
     });
-    return shaderLoaders;
+    return shaderLoaders.map(
+      (shaderLoader) =>
+        new ShaderLoader({
+          ...shaderLoader,
+          icon: shaderLoader.icon ? new FileModel(shaderLoader.icon) : null,
+        }),
+    );
   }
 
   async getById(
@@ -41,7 +49,11 @@ export class ShaderLoaderRepositoryPrisma implements ShaderLoaderRepository {
         icon: include?.icon,
       },
     });
-    return shaderLoader;
+    if (!shaderLoader) return;
+    return new ShaderLoader({
+      ...shaderLoader,
+      icon: shaderLoader.icon ? new FileModel(shaderLoader.icon) : null,
+    });
   }
 
   async create(shaderLoader: ShaderLoader): Promise<ShaderLoader> {
@@ -49,10 +61,13 @@ export class ShaderLoaderRepositoryPrisma implements ShaderLoaderRepository {
     const createdShaderLoader = await this.prisma.shaderLoader.create({
       data: shaderLoaderPersistence,
     });
-    return createdShaderLoader;
+    return new ShaderLoader(createdShaderLoader);
   }
 
-  async update(id: string, shaderLoader: ShaderLoader) {
+  async update(
+    id: string,
+    shaderLoader: ShaderLoaderUpdateData,
+  ): Promise<ShaderLoader> {
     const updatedShaderLoader = await this.prisma.shaderLoader.update({
       where: {
         id: id,
@@ -62,7 +77,7 @@ export class ShaderLoaderRepositoryPrisma implements ShaderLoaderRepository {
         iconId: shaderLoader.iconId,
       },
     });
-    return updatedShaderLoader;
+    return new ShaderLoader(updatedShaderLoader);
   }
 
   async delete(id: string): Promise<void> {

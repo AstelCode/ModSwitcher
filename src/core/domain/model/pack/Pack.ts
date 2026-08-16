@@ -1,10 +1,6 @@
 import { CommentModel, CommentJson } from "../Comment";
-import {
-  ExternalId,
-  ExternalIdPersistence,
-  ExternalIdJson,
-} from "../ExternalId";
-import { FileModel, FilePersistence, FileJson } from "../file/File";
+import { ExternalId, ExternalIdJson } from "../ExternalId";
+import { FileModel, FileJson } from "../file/File";
 import { User, UserJson } from "../User";
 import { PackVersion, PackVersionJson } from "./PackVersion";
 export type PackStatus = "published" | "draft" | "rejected";
@@ -12,10 +8,10 @@ export interface PackArgs {
   id?: string;
   name: string;
   description: string;
-  author?: User;
-  authorId?: string;
-  icon?: FileModel;
-  iconId?: string;
+  author?: User | null;
+  authorId?: string | null;
+  icon?: FileModel | null;
+  iconId?: string | null;
   images?: FileModel[];
   externalIds?: ExternalId[];
   versions?: PackVersion[];
@@ -27,9 +23,9 @@ export interface PackArgs {
 export interface PackPersistence {
   name: string;
   description: string;
-  authorId?: string;
+  authorId?: string | null;
   //images: FilePersistence[];
-  iconId?: string;
+  iconId?: string | null;
   // externalIds: ExternalIdPersistence[];
   status: PackStatus;
 }
@@ -51,10 +47,10 @@ export class Pack {
   id?: string;
   name: string;
   description: string;
-  author?: User;
-  authorId?: string;
-  icon?: FileModel;
-  iconId?: string;
+  author?: User | null;
+  authorId?: string | null;
+  icon?: FileModel | null;
+  iconId?: string | null;
   images?: FileModel[];
   externalIds?: ExternalId[];
   versions?: PackVersion[];

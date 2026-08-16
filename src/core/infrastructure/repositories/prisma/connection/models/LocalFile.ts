@@ -224,7 +224,7 @@ export type LocalFileGroupByOutputType = {
   url: string
   bucket: string
   extension: string
-  sha256: string
+  sha256: string | null
   createdAt: Date
   updatedAt: Date
   _count: LocalFileCountAggregateOutputType | null
@@ -261,7 +261,7 @@ export type LocalFileWhereInput = {
   url?: Prisma.StringFilter<"LocalFile"> | string
   bucket?: Prisma.StringFilter<"LocalFile"> | string
   extension?: Prisma.StringFilter<"LocalFile"> | string
-  sha256?: Prisma.StringFilter<"LocalFile"> | string
+  sha256?: Prisma.StringNullableFilter<"LocalFile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"LocalFile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LocalFile"> | Date | string
   file?: Prisma.XOR<Prisma.FileNullableScalarRelationFilter, Prisma.FileWhereInput> | null
@@ -276,7 +276,7 @@ export type LocalFileOrderByWithRelationInput = {
   url?: Prisma.SortOrder
   bucket?: Prisma.SortOrder
   extension?: Prisma.SortOrder
-  sha256?: Prisma.SortOrder
+  sha256?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   file?: Prisma.FileOrderByWithRelationInput
@@ -294,7 +294,7 @@ export type LocalFileWhereUniqueInput = Prisma.AtLeast<{
   url?: Prisma.StringFilter<"LocalFile"> | string
   bucket?: Prisma.StringFilter<"LocalFile"> | string
   extension?: Prisma.StringFilter<"LocalFile"> | string
-  sha256?: Prisma.StringFilter<"LocalFile"> | string
+  sha256?: Prisma.StringNullableFilter<"LocalFile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"LocalFile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LocalFile"> | Date | string
   file?: Prisma.XOR<Prisma.FileNullableScalarRelationFilter, Prisma.FileWhereInput> | null
@@ -309,7 +309,7 @@ export type LocalFileOrderByWithAggregationInput = {
   url?: Prisma.SortOrder
   bucket?: Prisma.SortOrder
   extension?: Prisma.SortOrder
-  sha256?: Prisma.SortOrder
+  sha256?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.LocalFileCountOrderByAggregateInput
@@ -331,7 +331,7 @@ export type LocalFileScalarWhereWithAggregatesInput = {
   url?: Prisma.StringWithAggregatesFilter<"LocalFile"> | string
   bucket?: Prisma.StringWithAggregatesFilter<"LocalFile"> | string
   extension?: Prisma.StringWithAggregatesFilter<"LocalFile"> | string
-  sha256?: Prisma.StringWithAggregatesFilter<"LocalFile"> | string
+  sha256?: Prisma.StringNullableWithAggregatesFilter<"LocalFile"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"LocalFile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"LocalFile"> | Date | string
 }
@@ -345,7 +345,7 @@ export type LocalFileCreateInput = {
   url: string
   bucket: string
   extension: string
-  sha256: string
+  sha256?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   file?: Prisma.FileCreateNestedOneWithoutLocalFileInput
@@ -360,7 +360,7 @@ export type LocalFileUncheckedCreateInput = {
   url: string
   bucket: string
   extension: string
-  sha256: string
+  sha256?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   file?: Prisma.FileUncheckedCreateNestedOneWithoutLocalFileInput
@@ -375,7 +375,7 @@ export type LocalFileUpdateInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   bucket?: Prisma.StringFieldUpdateOperationsInput | string
   extension?: Prisma.StringFieldUpdateOperationsInput | string
-  sha256?: Prisma.StringFieldUpdateOperationsInput | string
+  sha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.FileUpdateOneWithoutLocalFileNestedInput
@@ -390,7 +390,7 @@ export type LocalFileUncheckedUpdateInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   bucket?: Prisma.StringFieldUpdateOperationsInput | string
   extension?: Prisma.StringFieldUpdateOperationsInput | string
-  sha256?: Prisma.StringFieldUpdateOperationsInput | string
+  sha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   file?: Prisma.FileUncheckedUpdateOneWithoutLocalFileNestedInput
@@ -405,7 +405,7 @@ export type LocalFileCreateManyInput = {
   url: string
   bucket: string
   extension: string
-  sha256: string
+  sha256?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -419,7 +419,7 @@ export type LocalFileUpdateManyMutationInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   bucket?: Prisma.StringFieldUpdateOperationsInput | string
   extension?: Prisma.StringFieldUpdateOperationsInput | string
-  sha256?: Prisma.StringFieldUpdateOperationsInput | string
+  sha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -433,7 +433,7 @@ export type LocalFileUncheckedUpdateManyInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   bucket?: Prisma.StringFieldUpdateOperationsInput | string
   extension?: Prisma.StringFieldUpdateOperationsInput | string
-  sha256?: Prisma.StringFieldUpdateOperationsInput | string
+  sha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -505,6 +505,10 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
@@ -534,7 +538,7 @@ export type LocalFileCreateWithoutFileInput = {
   url: string
   bucket: string
   extension: string
-  sha256: string
+  sha256?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -548,7 +552,7 @@ export type LocalFileUncheckedCreateWithoutFileInput = {
   url: string
   bucket: string
   extension: string
-  sha256: string
+  sha256?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -578,7 +582,7 @@ export type LocalFileUpdateWithoutFileInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   bucket?: Prisma.StringFieldUpdateOperationsInput | string
   extension?: Prisma.StringFieldUpdateOperationsInput | string
-  sha256?: Prisma.StringFieldUpdateOperationsInput | string
+  sha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -592,7 +596,7 @@ export type LocalFileUncheckedUpdateWithoutFileInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
   bucket?: Prisma.StringFieldUpdateOperationsInput | string
   extension?: Prisma.StringFieldUpdateOperationsInput | string
-  sha256?: Prisma.StringFieldUpdateOperationsInput | string
+  sha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -677,7 +681,7 @@ export type $LocalFilePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     url: string
     bucket: string
     extension: string
-    sha256: string
+    sha256: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["localFile"]>
