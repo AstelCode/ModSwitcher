@@ -1,4 +1,4 @@
-import { ServiceContext } from "../../port/ServiceContext";
+import { ServiceContext } from "@/core/application/port/ServiceContext";
 
 type Deps = Pick<ServiceContext, "userRepository" | "tokenService">;
 

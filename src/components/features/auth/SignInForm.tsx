@@ -1,7 +1,6 @@
 "use client";
-import { SignInAction, SignInActionState } from "@/app/actions/SignIn.action";
+import { LogInAction, SignInActionState } from "@/app/actions/LogIn.action";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
 import {
   Card,
   CardContent,
@@ -18,6 +17,8 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useActionState, useEffect, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { SubmitButton } from "@/components/shared/SubmitButton";
 
 const initialState: SignInActionState = {};
 
@@ -59,18 +60,9 @@ function PasswordInput() {
 
 export default function SignInForm() {
   const [state, formAction, pending] = useActionState(
-    SignInAction,
+    LogInAction,
     initialState,
   );
-
-  useEffect(() => {
-    if (pending) return;
-    if (state.error) {
-      toast.error(state.error, {
-        position: "top-center",
-      });
-    }
-  }, [pending, state]);
 
   return (
     <form className="flex flex-col w-full max-w-sm" action={formAction}>
@@ -78,6 +70,13 @@ export default function SignInForm() {
         <CardHeader>
           <h2 className="text-2xl font-bold text-center">Login</h2>
         </CardHeader>
+        {state.error && (
+          <Alert variant="destructive" className="max-w-[95%] mx-auto">
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{state.error}</AlertDescription>
+          </Alert>
+        )}
+
         <CardContent>
           <FieldGroup>
             <Field>
@@ -94,11 +93,10 @@ export default function SignInForm() {
             </Field>
           </FieldGroup>
         </CardContent>
+
         <CardFooter>
           <Field>
-            <Button type="submit" className="w-full">
-              Login
-            </Button>
+            <SubmitButton text="Login" />
             <FieldDescription>
               <span>Don&apos;t have an account? &nbsp;</span>
               <Link href="/auth/register">Register</Link>{" "}

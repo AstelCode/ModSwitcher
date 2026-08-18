@@ -1,6 +1,7 @@
 "use server";
 import { serviceContext } from "@/core/infrastructure/container";
 import { CreateUserUseCase } from "@/core/application/use-cases/user/CreateUser.usecase";
+import { redirect } from "next/navigation";
 
 export type RegisterUserActionState = {
   error?: string;
@@ -14,17 +15,17 @@ export async function RegisterUserAction(
   const username = formData.get("name") as string;
   const password = formData.get("password") as string;
   const email = formData.get("email") as string;
-  console.log(username, password, email);
-  return {};
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   const registerUserUseCase = new CreateUserUseCase(serviceContext);
+  let token: string;
   try {
-    const token = await registerUserUseCase.execute({
+    token = await registerUserUseCase.execute({
       email,
       username,
       password,
     });
-    console.log(token);
   } catch (e) {
-    console.log(e);
+    return { error: (e as Error).message as string };
   }
+  redirect(`/auth/activation?token=${token}`);
 }

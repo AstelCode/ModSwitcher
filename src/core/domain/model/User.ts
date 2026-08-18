@@ -30,8 +30,6 @@ export interface UserPersistence {
   password: string;
   email: string;
   avatarId?: string | null;
-  createdAt: Date;
-  updatedAt: Date;
   role: UserRole;
   activationCode?: string;
   recoveryTokenHash?: string;
@@ -102,23 +100,16 @@ export class User {
     if (!this.username) throw new Error("User must have a username");
     if (!this.password) throw new Error("User must have a password");
     if (!this.email) throw new Error("User must have an email");
-    if (!this.createdAt) throw new Error("User must have a createdAt");
-    if (!this.updatedAt) throw new Error("User must have a updatedAt");
     if (!this.role) throw new Error("User must have a role");
     if (!this.activationCode)
       throw new Error("User must have an activationCode");
-    if (!this.recoveryTokenHash)
-      throw new Error("User must have a recoveryTokenHash");
     return {
       username: this.username,
       password: this.password,
       email: this.email,
       avatarId: this.avatar?.id ?? this.avatarId,
-      createdAt: this.createdAt,
-      updatedAt: this.updatedAt,
       role: this.role,
       activationCode: this.activationCode,
-      recoveryTokenHash: this.recoveryTokenHash,
       status: this.status,
     };
   }

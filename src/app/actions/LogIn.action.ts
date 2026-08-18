@@ -7,7 +7,7 @@ export type SignInActionState = {
   message?: string;
 };
 
-export async function SignInAction(
+export async function LogInAction(
   state: SignInActionState,
   formData: FormData,
 ): Promise<SignInActionState> {

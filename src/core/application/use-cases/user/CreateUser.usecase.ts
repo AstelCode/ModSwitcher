@@ -3,7 +3,11 @@ import { ServiceContext } from "../../port/ServiceContext";
 
 type Deps = Pick<
   ServiceContext,
-  "userRepository" | "hashService" | "activationCodeService" | "emailService"
+  | "userRepository"
+  | "tokenService"
+  | "hashService"
+  | "activationCodeService"
+  | "emailService"
 >;
 export class CreateUserUseCase {
   constructor(private readonly deps: Deps) {}
@@ -12,13 +16,18 @@ export class CreateUserUseCase {
     password: string;
     email: string;
   }): Promise<string> {
-    const { emailService, userRepository, hashService, activationCodeService } =
-      this.deps;
+    const {
+      emailService,
+      userRepository,
+      hashService,
+      activationCodeService,
+      tokenService,
+    } = this.deps;
 
     const user = await userRepository.getByEmail(args.email);
     if (user) throw new Error("User already exists");
     const code = await activationCodeService.generate(args.email);
-    const newUser = new User({
+    let newUser = new User({
       username: args.username,
       password: await hashService.hash(args.password),
       email: args.email,
@@ -26,8 +35,9 @@ export class CreateUserUseCase {
       activationCode: code,
       status: "inactive",
     });
-    await userRepository.create(newUser);
+    newUser = await userRepository.create(newUser);
     await emailService.sendActivationEmail(args.email, code);
-    return newUser.getId();
+    const token = await tokenService.generate(newUser.getId(), args.email);
+    return token;
   }
 }

@@ -9,9 +9,7 @@ export class EmailServiceResend implements EmailService {
       to: to,
       subject: "Mod Switcher Activation",
       html:
-        `<h1>Activation Email</h1><p>Please click the link to activate your account</p><a href='${process.env.APP_URL}/activate?token=` +
-        body +
-        "'>Activate</a>",
+        `<h1>Activation Email</h1><p>The code of activation is:</p><p>` + body,
     });
   }
 }
