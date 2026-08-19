@@ -22,6 +22,7 @@ import Link from "next/link";
 import { useActionState, useState } from "react";
 import { PasswordValidation } from "./PasswordValidationInput";
 import { EmailValidationInput } from "./EmailValidationInput";
+import { ROUTES } from "@/constants/routes";
 const initialState: RegisterUserActionState = {};
 
 export function SignUpForm() {
@@ -66,7 +67,7 @@ export function SignUpForm() {
             <SubmitButton text="Register" />
             <FieldDescription>
               Already have an account? &nbsp;
-              <Link href="/auth/login">Login</Link>
+              <Link href={ROUTES.AUTH_LOGIN}>Login</Link>
             </FieldDescription>
           </Field>
         </CardFooter>

@@ -2,11 +2,10 @@
 import { serviceContext } from "@/core/infrastructure/container";
 import { AuthUseCase } from "@/core/application/use-cases/user/Auth.usecase";
 import { redirect } from "next/navigation";
-import { saveToken } from "@/core/infrastructure/auth/saveToken";
+import { ROUTES } from "@/constants/routes";
 
 export type SignInActionState = {
   error?: string;
-  message?: string;
 };
 
 export async function LogInAction(
@@ -21,5 +20,5 @@ export async function LogInAction(
   } catch (e) {
     return { error: (e as Error).message as string };
   }
-  redirect("/dashboard");
+  redirect(ROUTES.EXPLORER);
 }

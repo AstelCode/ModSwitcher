@@ -18,6 +18,7 @@ export class AuthUseCase {
     if (isValid) {
       const token = await tokenService.generate(user.getId(), user.email);
       tokenStorageService.set(token);
+      return;
     }
     throw new Error("Invalid credentials");
   }

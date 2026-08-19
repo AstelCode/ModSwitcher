@@ -1,5 +1,8 @@
 "use client";
-import { LogInAction, SignInActionState } from "@/app/actions/user/LogIn.action";
+import {
+  LogInAction,
+  SignInActionState,
+} from "@/app/actions/user/LogIn.action";
 import {
   Card,
   CardContent,
@@ -18,6 +21,7 @@ import { useActionState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { SubmitButton } from "@/components/shared/SubmitButton";
 import { PasswordInput } from "@/components/shared/PasswordInput";
+import { ROUTES } from "@/constants/routes";
 
 const initialState: SignInActionState = {};
 
@@ -48,7 +52,7 @@ export default function LogInForm() {
               <PasswordInput />
               <FieldDescription>
                 <span>¿Forgot your password?&nbsp;</span>
-                <Link href="/auth/password-recovery">Click Here</Link>
+                <Link href={ROUTES.AUTH_PASSWORD_RECOVERY}>Click Here</Link>
               </FieldDescription>
             </Field>
           </FieldGroup>
@@ -59,7 +63,7 @@ export default function LogInForm() {
             <SubmitButton text="Login" />
             <FieldDescription>
               <span>Don&apos;t have an account? &nbsp;</span>
-              <Link href="/auth/signup">Register</Link>
+              <Link href={ROUTES.AUTH_SIGNUP}>Register</Link>
             </FieldDescription>
           </Field>
         </CardFooter>

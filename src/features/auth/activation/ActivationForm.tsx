@@ -9,6 +9,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { ROUTES } from "@/constants/routes";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -66,7 +67,7 @@ export function ActivationForm(props: ActivationFormProps) {
             <>
               <p>You are already active</p>
               <Link
-                href="/dashboard"
+                href={ROUTES.EXPLORER}
                 className="mt-5 px-4 py-2 rounded-md bg-primary text-white"
               >
                 Dashboard

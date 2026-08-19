@@ -11,23 +11,13 @@ export function PasswordInput() {
   };
   return (
     <div className="relative">
-      {isOpen ? (
-        <Input
-          value={value}
-          onChange={handleChange}
-          type="text"
-          placeholder="Password"
-          name="password"
-        />
-      ) : (
-        <Input
-          value={value}
-          onChange={handleChange}
-          type="password"
-          placeholder="Password"
-          name="password"
-        />
-      )}
+      <Input
+        value={value}
+        onChange={handleChange}
+        type={isOpen ? "text" : "password"}
+        placeholder="Password"
+        name="password"
+      />
       <div
         onClick={handleClick}
         className="absolute top-1 right-2 cursor-pointer select-none"

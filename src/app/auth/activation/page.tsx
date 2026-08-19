@@ -1,4 +1,5 @@
 "use server";
+import { ROUTES } from "@/constants/routes";
 import { UserNotFoundError } from "@/core/application/Errors/UserNotFound";
 import { UserAlreadyActiveUseCase } from "@/core/application/use-cases/user/activation/UserAlreadyActive.usecase";
 import { serviceContext } from "@/core/infrastructure/container";
@@ -22,7 +23,7 @@ export default async function ActivationPage({
     active = await userAlreadyActive.execute(token);
   } catch (e) {
     if (e instanceof UserNotFoundError) {
-      redirect("/auth/login");
+      redirect(ROUTES.AUTH_LOGIN);
     }
   }
 

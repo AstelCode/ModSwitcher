@@ -2,6 +2,7 @@
 import { serviceContext } from "@/core/infrastructure/container";
 import { CreateUserUseCase } from "@/core/application/use-cases/user/CreateUser.usecase";
 import { redirect } from "next/navigation";
+import { ROUTES } from "@/constants/routes";
 
 export type RegisterUserActionState = {
   error?: string;
@@ -27,5 +28,5 @@ export async function RegisterUserAction(
   } catch (e) {
     return { error: (e as Error).message as string };
   }
-  redirect(`/auth/activation?token=${token}`);
+  redirect(`${ROUTES.AUTH_ACTIVATION}?token=${token}`);
 }
