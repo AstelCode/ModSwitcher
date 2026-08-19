@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { SubmitButton } from "@/components/shared/SubmitButton";
 import { PasswordInput } from "@/components/shared/PasswordInput";
@@ -27,6 +27,7 @@ const initialState: SignInActionState = {};
 
 export default function LogInForm() {
   const [state, formAction] = useActionState(LogInAction, initialState);
+  const [email, setEmail] = useState("");
 
   return (
     <form className="flex flex-col w-full max-w-sm" action={formAction}>
@@ -45,7 +46,14 @@ export default function LogInForm() {
           <FieldGroup>
             <Field>
               <FieldLabel>Email</FieldLabel>
-              <Input type="email" placeholder="Email" name="user" />
+              <Input
+                type="email"
+                placeholder="Email"
+                name="user"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </Field>
             <Field>
               <FieldLabel>Password</FieldLabel>

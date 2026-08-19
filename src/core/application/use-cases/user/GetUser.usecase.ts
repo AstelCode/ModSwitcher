@@ -1,11 +1,16 @@
 import { UserJson } from "@/core/domain/model/User";
 import { ServiceContext } from "../../port/ServiceContext";
 
-type Deps = Pick<ServiceContext, "userRepository" | "tokenService">;
+type Deps = Pick<
+  ServiceContext,
+  "userRepository" | "tokenService" | "tokenStorageService"
+>;
 export class GetUserUseCase {
   constructor(private readonly deps: Deps) {}
-  async execute(token: string): Promise<UserJson> {
-    const { userRepository, tokenService } = this.deps;
+  async execute(): Promise<UserJson> {
+    const { userRepository, tokenService, tokenStorageService } = this.deps;
+    const token = await tokenStorageService.get();
+    if (!token) throw new Error("No token found");
     const { userId } = await tokenService.verify(token);
     const user = await userRepository.getById(userId, {
       avatar: true,

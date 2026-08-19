@@ -1,3 +1,4 @@
+import { UserNotFoundError } from "@/core/application/Errors/UserNotFound";
 import { ServiceContext } from "@/core/application/port/ServiceContext";
 
 type Deps = Pick<
@@ -16,7 +17,7 @@ export class ActivateUserUseCase {
     const { userRepository, tokenService, tokenStorageService } = this.deps;
     const { userId } = await tokenService.verify(token);
     const user = await userRepository.getById(userId);
-    if (!user) throw new Error("User not found");
+    if (!user) throw new UserNotFoundError("User not found");
     if (user.activationCode != code && user.activationCode) {
       await userRepository.update(userId, { activationCode: undefined });
       throw new InvalidActivationCodeError("Invalid activation code");

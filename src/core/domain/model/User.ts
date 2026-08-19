@@ -35,6 +35,7 @@ export interface UserPersistence {
   recoveryTokenHash?: string;
   status?: UserStatus;
 }
+
 export interface UserJson {
   id: string;
   username: string;

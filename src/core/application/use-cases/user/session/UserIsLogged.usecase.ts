@@ -12,7 +12,8 @@ export class UserIsLoggedUseCase {
     if (!token) return false;
     const { userId } = await tokenService.verify(token);
     const user = await userRepository.getById(userId);
-    if (!user) return false;
+
+    if (!user || user.status != "active") return false;
     return true;
   }
 }

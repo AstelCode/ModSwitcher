@@ -70,7 +70,7 @@ export function ActivationForm(props: ActivationFormProps) {
                 href={ROUTES.EXPLORER}
                 className="mt-5 px-4 py-2 rounded-md bg-primary text-white"
               >
-                Dashboard
+                Go to explorer
               </Link>
             </>
           )}
