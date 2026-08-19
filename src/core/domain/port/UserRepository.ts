@@ -19,8 +19,8 @@ export interface UserUpdateData {
   email?: string;
   avatarId?: string;
   role?: UserRole;
-  activationCode?: string;
-  recoveryTokenHash?: string;
+  activationCode?: string | null;
+  recoveryTokenHash?: string | null;
   status?: UserStatus;
 }
 export interface UserInclude {

@@ -23,6 +23,7 @@ import { MinecraftVersionRepository } from "@/core/domain/port/loaders/Minecraft
 import { MinecraftLoaderRepository } from "@/core/domain/port/loaders/MinecraftLoaderRepository";
 //import { MinecraftLoaderFileRepository } from "@/core/domain/port/loaders/MinecraftLoaderFileRepository";
 import { ShaderLoaderRepository } from "@/core/domain/port/loaders/ShaderLoaderRepository";
+import { TokenStorageService } from "./TokenStorageService";
 
 export interface ServiceContext {
   tokenService: TokenService;
@@ -31,7 +32,8 @@ export interface ServiceContext {
   emailService: EmailService;
   secretKeyService: SecretKeyService;
   fileService: FileService;
-  uuidService: UuidService;
+  uuidService: UuidService
+  tokenStorageService: TokenStorageService;
 
   // respositories
   userRepository: UserRepository;

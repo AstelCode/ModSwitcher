@@ -23,6 +23,7 @@ import { ActivationCodeServiceUUID } from "./services/activationCode.service";
 import { SecretKeyServiceLocal } from "./services/secretKey.service";
 import { EmailServiceResend } from "./services/email.service";
 import { FileServiceLocal } from "./services/file.service";
+import { TokenStorageServiceNext } from "./services/tokenStorage.service";
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,
 });
@@ -32,6 +33,7 @@ const prisma = new PrismaClient({
 
 const fileRepository = new FileRepositoryPrisma(prisma);
 export const serviceContext: ServiceContext = {
+  tokenStorageService: new TokenStorageServiceNext(),
   userRepository: new UserRepositoryPrisma(prisma),
   commentRepository: new CommentRepositoryPrisma(prisma),
   modRepository: new ModRepositoryPrisma(prisma),

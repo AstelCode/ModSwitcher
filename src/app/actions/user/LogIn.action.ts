@@ -1,6 +1,8 @@
 "use server";
 import { serviceContext } from "@/core/infrastructure/container";
 import { AuthUseCase } from "@/core/application/use-cases/user/Auth.usecase";
+import { redirect } from "next/navigation";
+import { saveToken } from "@/core/infrastructure/auth/saveToken";
 
 export type SignInActionState = {
   error?: string;
@@ -15,10 +17,9 @@ export async function LogInAction(
   const password = formData.get("password") as string;
   const authUseCase = new AuthUseCase(serviceContext);
   try {
-    const token = await authUseCase.execute(user, password);
-    console.log(token);
+    await authUseCase.execute(user, password);
   } catch (e) {
     return { error: (e as Error).message as string };
   }
-  return { message: "Success" };
+  redirect("/dashboard");
 }

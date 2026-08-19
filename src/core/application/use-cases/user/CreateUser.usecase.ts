@@ -36,7 +36,8 @@ export class CreateUserUseCase {
       status: "inactive",
     });
     newUser = await userRepository.create(newUser);
-    await emailService.sendActivationEmail(args.email, code);
+    // TODO activade email servise
+    // await emailService.sendActivationEmail(args.email, code);
     const token = await tokenService.generate(newUser.getId(), args.email);
     return token;
   }

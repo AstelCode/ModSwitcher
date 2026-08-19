@@ -1,6 +1,5 @@
 "use client";
-import { LogInAction, SignInActionState } from "@/app/actions/LogIn.action";
-import { Button } from "@/components/ui/button";
+import { LogInAction, SignInActionState } from "@/app/actions/user/LogIn.action";
 import {
   Card,
   CardContent,
@@ -15,54 +14,15 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useActionState, useEffect, useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { useActionState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { SubmitButton } from "@/components/shared/SubmitButton";
+import { PasswordInput } from "@/components/shared/PasswordInput";
 
 const initialState: SignInActionState = {};
 
-function PasswordInput() {
-  const [value, setValue] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const handleClick = () => setIsOpen(!isOpen);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-  return (
-    <div className="relative">
-      {isOpen ? (
-        <Input
-          value={value}
-          onChange={handleChange}
-          type="text"
-          placeholder="Password"
-          name="password"
-        />
-      ) : (
-        <Input
-          value={value}
-          onChange={handleChange}
-          type="password"
-          placeholder="Password"
-          name="password"
-        />
-      )}
-      <div
-        onClick={handleClick}
-        className="absolute top-1 right-2 cursor-pointer select-none"
-      >
-        {isOpen ? <Eye /> : <EyeOff />}
-      </div>
-    </div>
-  );
-}
-
-export default function SignInForm() {
-  const [state, formAction, pending] = useActionState(
-    LogInAction,
-    initialState,
-  );
+export default function LogInForm() {
+  const [state, formAction] = useActionState(LogInAction, initialState);
 
   return (
     <form className="flex flex-col w-full max-w-sm" action={formAction}>
@@ -99,7 +59,7 @@ export default function SignInForm() {
             <SubmitButton text="Login" />
             <FieldDescription>
               <span>Don&apos;t have an account? &nbsp;</span>
-              <Link href="/auth/register">Register</Link>{" "}
+              <Link href="/auth/signup">Register</Link>
             </FieldDescription>
           </Field>
         </CardFooter>

@@ -88,11 +88,6 @@ model User {
   recoveryTokenHash String?
   status            UserStatus @default(inactive)
 
-  //mods       Mod[]  @relation("mod_author")
-  //packs      Pack[] @relation("pack_author")
-  //shaders    Shader[] @relation("shader_author")
-  //installations UserInstalation[] @relation("user_installation")  
-
   mods     Mod[]
   shaders  Shader[]
   packs    Pack[]
