@@ -1,9 +1,5 @@
 "use client";
 import {
-  LogInAction,
-  SignInActionState,
-} from "@/app/actions/user/LogIn.action";
-import {
   Card,
   CardContent,
   CardFooter,
@@ -21,7 +17,8 @@ import { useActionState, useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { SubmitButton } from "@/components/shared/SubmitButton";
 import { PasswordInput } from "@/components/shared/PasswordInput";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES } from "@/lib/constants/routes";
+import { LogInAction, SignInActionState } from "@/core/presentation/user";
 
 const initialState: SignInActionState = {};
 

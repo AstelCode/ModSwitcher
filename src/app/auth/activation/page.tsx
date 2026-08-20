@@ -1,9 +1,9 @@
 "use server";
-import { ROUTES } from "@/constants/routes";
 import { UserNotFoundError } from "@/core/application/Errors/UserNotFound";
 import { UserAlreadyActiveUseCase } from "@/core/application/use-cases/user/activation/UserAlreadyActive.usecase";
 import { serviceContext } from "@/core/infrastructure/container";
 import { ActivationForm } from "@/features/auth/activation/ActivationForm";
+import { ROUTES } from "@/lib/constants/routes";
 import { redirect } from "next/navigation";
 
 type ActivationPageProps = {

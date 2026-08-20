@@ -6,8 +6,8 @@ import {
   ModUpdateData,
 } from "@/core/domain/port/mod/ModRepository";
 import { PrismaClient } from "./connection/client";
-import { Mod } from "@/core/domain/model/Mod/Mod";
-import { User } from "@/core/domain/model/User";
+import { Mod } from "@/core/domain/model/mod/Mod";
+import { User } from "@/core/domain/model/user/User";
 import { FileModel } from "@/core/domain/model/file/File";
 import { ModFile } from "@/core/domain/model/Mod/ModFile";
 

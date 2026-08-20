@@ -1,7 +1,7 @@
-import { Mod, ModJson } from "./Mod/Mod";
+import { Mod, ModJson } from "./mod/Mod";
 import { Pack, PackJson } from "./pack/Pack";
 import { Shader, ShaderJson } from "./shader/Shader";
-import { User, UserJson } from "./User";
+import { User, UserJson } from "./user/User";
 
 export interface CommentArgs {
   id?: string;

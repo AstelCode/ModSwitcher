@@ -1,8 +1,8 @@
 "use server";
 
-import { UserIsLoggedAction } from "@/app/actions/user/UserIsLogged.action";
-import { ROUTES } from "@/constants/routes";
+import { UserIsLoggedAction } from "@/core/presentation/user";
 import LogInForm from "@/features/auth/login/LogInForm";
+import { ROUTES } from "@/lib/constants/routes";
 import { redirect } from "next/navigation";
 
 export default async function AuthPage() {

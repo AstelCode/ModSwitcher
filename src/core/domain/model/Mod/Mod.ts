@@ -5,7 +5,7 @@ import {
   ExternalIdJson,
 } from "../ExternalId";
 import { FileModel, FileJson } from "../file/File";
-import { User, UserJson } from "../User";
+import { User, UserJson } from "../user/User";
 import { ModFile, ModFileJson } from "./ModFile";
 
 export type ModStatus = "published" | "draft" | "rejected";

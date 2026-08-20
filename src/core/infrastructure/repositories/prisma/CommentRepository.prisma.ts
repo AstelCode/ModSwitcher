@@ -7,10 +7,10 @@ import {
 import { CommentInclude } from "./connection/models";
 import { PrismaClient } from "./connection/client";
 import { CommentModel } from "@/core/domain/model/Comment";
-import { Mod } from "@/core/domain/model/Mod/Mod";
+import { Mod } from "@/core/domain/model/mod/Mod";
 import { Pack } from "@/core/domain/model/pack/Pack";
 import { Shader } from "@/core/domain/model/shader/Shader";
-import { User } from "@/core/domain/model/User";
+import { User } from "@/core/domain/model/user/User";
 
 export class CommentRepositoryPrisma implements CommentRepository {
   constructor(private readonly prisma: PrismaClient) {}

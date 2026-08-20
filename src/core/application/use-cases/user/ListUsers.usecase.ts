@@ -1,6 +1,6 @@
 import { UserFilter, UserPagination } from "@/core/domain/port/UserRepository";
 import { ServiceContext } from "../../port/ServiceContext";
-import { UserJson } from "@/core/domain/model/User";
+import { UserJson } from "@/core/domain/model/user/User";
 
 type Deps = Pick<
   ServiceContext,

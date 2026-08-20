@@ -7,7 +7,7 @@ import {
 } from "@/core/domain/port/shader/ShaderRepository";
 import { PrismaClient } from "./connection/client";
 import { Shader } from "@/core/domain/model/shader/Shader";
-import { User } from "@/core/domain/model/User";
+import { User } from "@/core/domain/model/user/User";
 import { FileModel } from "@/core/domain/model/file/File";
 
 export class ShaderRepositoryPrisma implements ShaderRepository {

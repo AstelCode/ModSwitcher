@@ -1,5 +1,5 @@
 import { PrismaClient } from "./connection/client";
-import { User } from "@/core/domain/model/User";
+import { User } from "@/core/domain/model/user/User";
 import {
   UserFilter,
   UserInclude,
@@ -8,7 +8,7 @@ import {
   UserUpdateData,
 } from "@/core/domain/port/UserRepository";
 import { FileModel } from "@/core/domain/model/file/File";
-import { Mod } from "@/core/domain/model/Mod/Mod";
+import { Mod } from "@/core/domain/model/mod/Mod";
 import { Pack } from "@/core/domain/model/pack/Pack";
 import { Shader } from "@/core/domain/model/shader/Shader";
 import { CommentModel } from "@/core/domain/model/Comment";

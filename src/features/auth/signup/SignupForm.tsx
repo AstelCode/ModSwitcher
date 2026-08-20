@@ -2,7 +2,7 @@
 import {
   RegisterUserAction,
   RegisterUserActionState,
-} from "@/app/actions/user/RegisterUser.action";
+} from "@/app/actions/user/signup/RegisterUser.action";
 import { SubmitButton } from "@/components/shared/SubmitButton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {

@@ -1,4 +1,4 @@
-import { User, UserRole, UserStatus } from "../model/User";
+import { User, UserRole, UserStatus } from "../model/user/User";
 
 export interface UserFilter {
   username?: string;

@@ -1,7 +1,7 @@
 import { CommentModel, CommentJson } from "../Comment";
 import { ExternalId, ExternalIdJson } from "../ExternalId";
 import { FileModel, FileJson } from "../file/File";
-import { User, UserJson } from "../User";
+import { User, UserJson } from "../user/User";
 import { PackVersion, PackVersionJson } from "./PackVersion";
 export type PackStatus = "published" | "draft" | "rejected";
 export interface PackArgs {

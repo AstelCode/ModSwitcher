@@ -1,4 +1,4 @@
-import { UserJson } from "@/core/domain/model/User";
+import { UserJson } from "@/core/domain/model/user/User";
 import { ServiceContext } from "../../port/ServiceContext";
 
 type Deps = Pick<

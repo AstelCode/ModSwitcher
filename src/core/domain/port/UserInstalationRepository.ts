@@ -1,4 +1,4 @@
-import { UserInstalation } from "../model/UserInstalation";
+import { UserInstalation } from "../model/user/UserInstalation";
 
 export interface UserInstalationFilter {
   userId?: string;
