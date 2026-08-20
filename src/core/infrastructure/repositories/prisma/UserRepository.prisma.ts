@@ -8,10 +8,10 @@ import {
   UserUpdateData,
 } from "@/core/domain/port/UserRepository";
 import { FileModel } from "@/core/domain/model/file/File";
-import { Mod } from "@/core/domain/model/mod/Mod";
 import { Pack } from "@/core/domain/model/pack/Pack";
 import { Shader } from "@/core/domain/model/shader/Shader";
 import { CommentModel } from "@/core/domain/model/Comment";
+import { Mod } from "@/core/domain/model";
 
 export class UserRepositoryPrisma implements UserRepository {
   constructor(private readonly prisma: PrismaClient) {}

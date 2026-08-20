@@ -1,18 +1,12 @@
-import { ServiceContext } from "@/core/application/port/ServiceContext";
+import { ServiceContext } from "@/core/application/port";
 
-type Deps = Pick<
-  ServiceContext,
-  "userRepository" | "tokenService" | "tokenStorageService"
->;
+type Deps = Pick<ServiceContext, "userRepository">;
+
 export class UserIsLoggedUseCase {
   constructor(private readonly deps: Deps) {}
-  async execute() {
-    const { userRepository, tokenService, tokenStorageService } = this.deps;
-    const token = await tokenStorageService.get();
-    if (!token) return false;
-    const { userId } = await tokenService.verify(token);
+  async execute(userId: string): Promise<boolean> {
+    const { userRepository } = this.deps;
     const user = await userRepository.getById(userId);
-
     if (!user || user.status != "active") return false;
     return true;
   }

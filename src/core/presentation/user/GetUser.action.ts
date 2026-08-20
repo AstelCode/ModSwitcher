@@ -1,15 +1,25 @@
 "use server";
 
+import { GetSessionUseCase } from "@/core/application/use-cases/user";
 import { GetUserUseCase } from "@/core/application/use-cases/user/GetUser.usecase";
 import { UserJson } from "@/core/domain/model/user";
 import { serviceContext } from "@/core/infrastructure/container";
+import { cacheLife } from "next/cache";
+
+async function GetUserCached(userId: string) {
+  "use cache";
+  cacheLife("minutes");
+  const getUserUseCase = new GetUserUseCase(serviceContext);
+  return getUserUseCase.execute(userId);
+}
 
 export async function GetUserAction(): Promise<UserJson | null> {
-  const getUserUseCase = new GetUserUseCase(serviceContext);
   try {
-    const user = await getUserUseCase.execute();
+    const getSessionUseCase = new GetSessionUseCase(serviceContext);
+    const { userId } = await getSessionUseCase.execute();
+    const user = await GetUserCached(userId);
     return user;
-  } catch (e) {
+  } catch (_) {
     return null;
   }
 }

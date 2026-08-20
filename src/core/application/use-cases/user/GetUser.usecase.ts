@@ -7,11 +7,8 @@ type Deps = Pick<
 >;
 export class GetUserUseCase {
   constructor(private readonly deps: Deps) {}
-  async execute(): Promise<UserJson> {
-    const { userRepository, tokenService, tokenStorageService } = this.deps;
-    const token = await tokenStorageService.get();
-    if (!token) throw new Error("No token found");
-    const { userId } = await tokenService.verify(token);
+  async execute(userId: string): Promise<UserJson> {
+    const { userRepository } = this.deps;
     const user = await userRepository.getById(userId, {
       avatar: true,
       shaders: true,

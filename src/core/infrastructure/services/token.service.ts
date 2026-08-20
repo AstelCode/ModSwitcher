@@ -1,7 +1,19 @@
 import { TokenService } from "@/core/application/port/TokenService";
 import { SignJWT, jwtVerify } from "jose";
+import { randomUUID } from "node:crypto";
+import { z } from "zod";
 
-const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+const jwtSecret = process.env.JWT_SECRET;
+if (!jwtSecret) {
+  throw new Error("JWT_SECRET is not defined");
+}
+
+const TokenPayloadSchema = z.object({
+  userId: z.string(),
+  email: z.email(),
+});
+
+const secret = new TextEncoder().encode(jwtSecret);
 
 export class TokenServiceJose implements TokenService {
   constructor() {}
@@ -12,6 +24,7 @@ export class TokenServiceJose implements TokenService {
     };
     return new SignJWT(payload)
       .setProtectedHeader({ alg: "HS256" })
+      .setJti(randomUUID())
       .setIssuedAt()
       .setExpirationTime("1h")
       .sign(secret);
@@ -19,6 +32,6 @@ export class TokenServiceJose implements TokenService {
 
   async verify(token: string): Promise<{ userId: string; email: string }> {
     const { payload } = await jwtVerify(token, secret);
-    return payload as { userId: string; email: string };
+    return TokenPayloadSchema.parse(payload);
   }
 }
