@@ -1,5 +1,6 @@
 import { GetUserAction } from "@/core/presentation/user";
 import { ExplorerNav } from "@/features/Explorer/ExplorerNav";
+import { UserContextProvider } from "@/hooks/UserContext";
 export const instant = false;
 export default async function DashboradLayout({
   children,
@@ -8,9 +9,11 @@ export default async function DashboradLayout({
 }) {
   const user = await GetUserAction();
   return (
-    <div className="w-screen h-screen ">
-      <ExplorerNav user={user} />
-      {children}
-    </div>
+    <UserContextProvider user={user}>
+      <div className="w-screen h-screen ">
+        <ExplorerNav />
+        {children}
+      </div>
+    </UserContextProvider>
   );
 }

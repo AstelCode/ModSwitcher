@@ -4,11 +4,12 @@ import { GetSessionUseCase } from "@/core/application/use-cases/user";
 import { GetUserUseCase } from "@/core/application/use-cases/user/GetUser.usecase";
 import { UserJson } from "@/core/domain/model/user";
 import { serviceContext } from "@/core/infrastructure/container";
-import { cacheLife } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 
 async function GetUserCached(userId: string) {
   "use cache";
   cacheLife("minutes");
+  cacheTag(`user:${userId}`);
   const getUserUseCase = new GetUserUseCase(serviceContext);
   return getUserUseCase.execute(userId);
 }

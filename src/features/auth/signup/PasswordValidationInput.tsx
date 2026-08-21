@@ -43,36 +43,32 @@ export function PasswordValidation({
   };
 
   return (
-    <FieldSet>
-      <Field>
-        <FieldLabel>Password</FieldLabel>
-        <div className="w-fulw-fulll">
-          <Input
-            className="mb-[-2px]"
-            type="text"
-            placeholder="Password"
-            name="password"
-            onChange={handlePasswordChange}
-            required
-          />
-          <PasswordStrengthIndicator
-            className="mt-2 px-[10px] w-full"
-            strength={strength}
-          />
-        </div>
-        {dataError && <FieldError>{dataError}</FieldError>}
-      </Field>
-      <Field>
+    <>
+      <div className="w-fulw-fulll">
         <Input
+          className="mb-[-2px]"
           type="text"
-          placeholder="Confirm Password"
-          onChange={handleConfirmPasswordChange}
+          placeholder="Password"
+          name="password"
+          onChange={handlePasswordChange}
           required
         />
-        {password !== confirmPassword && (
-          <FieldError>Passwords do not match</FieldError>
-        )}
-      </Field>
-    </FieldSet>
+        <PasswordStrengthIndicator
+          className="mt-2 px-[10px] w-full"
+          strength={strength}
+        />
+      </div>
+      {dataError && <FieldError>{dataError}</FieldError>}
+
+      <Input
+        type="text"
+        placeholder="Confirm Password"
+        onChange={handleConfirmPasswordChange}
+        required
+      />
+      {password !== confirmPassword && (
+        <FieldError>Passwords do not match</FieldError>
+      )}
+    </>
   );
 }

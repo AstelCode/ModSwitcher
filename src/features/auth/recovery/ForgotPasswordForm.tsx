@@ -10,6 +10,7 @@ import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { PasswordValidation } from "../signup/PasswordValidationInput";
 import { SubmitButton } from "@/components/shared/SubmitButton";
+import { Field } from "@/components/ui/field";
 
 export function ForgotPasswordForm({ token }: { token: string }) {
   const [state, formAction] = useActionState(ChangePasswordAction, {});
@@ -33,7 +34,10 @@ export function ForgotPasswordForm({ token }: { token: string }) {
             <h1 className="text-2xl font-bold text-center">Change Password</h1>
           </CardHeader>
           <CardContent className="py-4">
-            <PasswordValidation hasError={setHasError} />
+            <Field>
+              <Field>New Password</Field>
+              <PasswordValidation hasError={setHasError} />
+            </Field>
           </CardContent>
           <CardFooter>
             <SubmitButton text="Change Password" />

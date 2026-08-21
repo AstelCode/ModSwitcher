@@ -19,7 +19,9 @@ export class UpdatePasswordUseCase {
     const isValid = await hashService.compare(user.password, args.lastPassword);
     if (!isValid) throw new Error("Invalid password");
     user.password = await hashService.hash(args.password);
-    await userRepository.update(userId, user);
+    await userRepository.update(userId, {
+      password: user.password,
+    });
     return user;
   }
 }

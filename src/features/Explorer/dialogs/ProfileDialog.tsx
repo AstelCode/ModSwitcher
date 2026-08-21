@@ -1,0 +1,86 @@
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+} from "@/components/ui/sidebar";
+import { User } from "lucide-react";
+import { ChangePasswordDialog } from "./ChangePasswordDialog";
+import { ChangeUserNameDialog } from "./ChangeUserNameDialog";
+import { useUserContext } from "@/hooks/UserContext";
+
+export function ProfileDialog({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
+  const user = useUserContext();
+  if (!user) {
+    return;
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="w-[80vw] h-[80vh]   2xl:max-w-[50rem]  sm:max-w-[50rem] overflow-hidden flex flex-col">
+        <SidebarProvider
+          style={{ "--sidebar-width": "10rem" } as React.CSSProperties}
+          className="min-h-full"
+        >
+          <Sidebar collapsible="none">
+            <SidebarContent>
+              <SidebarGroup>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton>
+                      <User size={20} />
+                      <span>Profile</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroup>
+            </SidebarContent>
+          </Sidebar>
+          <SidebarInset className="bg-card p-4">
+            <ScrollArea>
+              <section className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2">
+                  <span className="text-lg font-bold">Avatar</span>
+                  <div className="w-full flex items-center justify-center">
+                    <div className="w-40 h-40 rounded-full bg-background"></div>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="text-lg font-bold">General Information</span>
+                  <div className="w-full flex flex-col gap-2">
+                    <div className="flex gap-4 items-center">
+                      <div className="flex justify-between w-full">
+                        <span className="text-base">Username</span>
+                        <span className="text-base">{user.username}</span>
+                      </div>
+                      <ChangeUserNameDialog />
+                    </div>
+                    <div className="flex gap-4 items-center">
+                      <div className="flex justify-between w-full">
+                        <span className="text-base">Password</span>
+                        <span className="text-base font-size">••••••••••</span>
+                      </div>
+                      <ChangePasswordDialog />
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </ScrollArea>
+          </SidebarInset>
+        </SidebarProvider>
+      </DialogContent>
+    </Dialog>
+  );
+}
