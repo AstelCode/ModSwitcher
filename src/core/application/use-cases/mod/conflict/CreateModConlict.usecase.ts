@@ -1,4 +1,4 @@
-import { ModConflict } from "@/core/domain/model/Mod/ModConflict";
+import { ModConflict } from "@/core/domain/model/mod/ModConflict";
 import { ServiceContext } from "../../../port/ServiceContext";
 
 type Deps = Pick<

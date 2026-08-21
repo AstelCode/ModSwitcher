@@ -11,7 +11,6 @@ export interface UpdateUsernameActionState {
   error?: string;
 }
 export async function UpdateUsernameAction(
-  prevState: UpdateUsernameActionState,
   formData: FormData,
 ): Promise<UpdateUsernameActionState> {
   const getSessionUseCase = new GetSessionUseCase(serviceContext);

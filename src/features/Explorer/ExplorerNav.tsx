@@ -5,7 +5,7 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { SearchIcon } from "lucide-react";
-import { UserMenu } from "./UserMenu";
+import { UserMenu } from "../userMenu/UserMenu";
 
 export function ExplorerNav() {
   return (

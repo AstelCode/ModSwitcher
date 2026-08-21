@@ -1,7 +1,7 @@
 import {
   ModDependency,
   ModDependencyRole,
-} from "../../model/Mod/ModDependency";
+} from "../../model/mod/ModDependency";
 
 export interface ModDependencyFilter {
   modId?: string;

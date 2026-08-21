@@ -6,7 +6,7 @@ import {
   ModConflictUpdateData,
 } from "@/core/domain/port/mod/ModConflictRepository";
 import { PrismaClient } from "./connection/client";
-import { ModConflict } from "@/core/domain/model/Mod/ModConflict";
+import { ModConflict } from "@/core/domain/model/mod/ModConflict";
 
 export class ModConflictRepositoryPrisma implements ModConflictRepository {
   constructor(private readonly prisma: PrismaClient) {}

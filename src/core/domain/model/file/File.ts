@@ -1,4 +1,4 @@
-import { Mod } from "../Mod/Mod";
+import { Mod } from "../mod/Mod";
 import { Pack } from "../pack/Pack";
 import { Shader } from "../shader/Shader";
 import { LocalFile, LocalFileJson } from "./LocalFile";

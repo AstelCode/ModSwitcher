@@ -6,7 +6,7 @@ import {
   ModDependencyUpdateData,
 } from "@/core/domain/port/mod/ModDependencyRepository";
 import { PrismaClient } from "./connection/client";
-import { ModDependency } from "@/core/domain/model/Mod/ModDependency";
+import { ModDependency } from "@/core/domain/model/mod/ModDependency";
 
 export class ModDependencyRepositoryPrisma implements ModDependencyRepository {
   constructor(private readonly prisma: PrismaClient) {}

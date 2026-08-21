@@ -1,4 +1,4 @@
-import { ModFile } from "@/core/domain/model/Mod/ModFile";
+import { ModFile } from "@/core/domain/model/mod/ModFile";
 import { UploadLocalFileInput } from "../../../port/FileService";
 import { ServiceContext } from "../../../port/ServiceContext";
 

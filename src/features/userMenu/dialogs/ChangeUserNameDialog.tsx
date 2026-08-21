@@ -13,23 +13,19 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { UpdateUsernameAction } from "@/core/presentation/user/UpdateUserName.action";
 import { Edit } from "lucide-react";
-import { useActionState, useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 
 export function ChangeUserNameDialog() {
-  const [state, action] = useActionState(UpdateUsernameAction, {});
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (state.error) {
-      toast.error(state.error, {
+  const handleAction = async (formData: FormData) => {
+    const result = await UpdateUsernameAction(formData);
+    if (result.error) {
+      toast.error(result.error, {
         position: "top-center",
       });
       return;
     }
-  }, [state]);
-  const handleAction = async (formData: FormData) => {
-    await action(formData);
     setOpen(false);
   };
 

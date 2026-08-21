@@ -1,4 +1,4 @@
-import { ModFile } from "../../model/Mod/ModFile";
+import { ModFile } from "../../model/mod/ModFile";
 
 export interface ModFileFilter {
   fileId?: string;

@@ -1,4 +1,4 @@
-import { Mod } from "@/core/domain/model/Mod/Mod";
+import { Mod } from "@/core/domain/model/mod/Mod";
 import { ServiceContext } from "../../port/ServiceContext";
 
 type Deps = Pick<

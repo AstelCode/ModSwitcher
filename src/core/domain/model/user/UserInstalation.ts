@@ -1,4 +1,4 @@
-import { ModFile, ModFilePersistence, ModFileJson } from "../Mod/ModFile";
+import { ModFile, ModFilePersistence, ModFileJson } from "../mod/ModFile";
 import { PackVersion, PackVersionJson } from "../pack/PackVersion";
 import { ShaderFile, ShaderFileJson } from "../shader/ShaderFile";
 import { User, UserJson } from "./User";

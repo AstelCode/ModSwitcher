@@ -1,5 +1,5 @@
 import { ServiceContext } from "@/core/application/port/ServiceContext";
-import { ModConflictJson } from "@/core/domain/model/Mod/ModConflict";
+import { ModConflictJson } from "@/core/domain/model/mod/ModConflict";
 
 type Deps = Pick<
   ServiceContext,

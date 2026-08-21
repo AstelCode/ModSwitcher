@@ -1,4 +1,4 @@
-import { ModFile, ModFileJson } from "../Mod/ModFile";
+import { ModFile, ModFileJson } from "../mod/ModFile";
 import { PackVersion, PackVersionJson } from "./PackVersion";
 
 export interface PackModArgs {

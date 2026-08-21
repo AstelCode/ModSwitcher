@@ -6,7 +6,7 @@ import {
   ModFileUpdateData,
 } from "@/core/domain/port/mod/ModFileRepository";
 import { PrismaClient } from "./connection/client";
-import { ModFile } from "@/core/domain/model/Mod/ModFile";
+import { ModFile } from "@/core/domain/model/mod/ModFile";
 import { FileModel } from "@/core/domain/model/file/File";
 import { MinecraftLoader } from "@/core/domain/model/loaders/MinecraftLoader";
 import { MinecraftVersion } from "@/core/domain/model/loaders/MinecraftVersion";

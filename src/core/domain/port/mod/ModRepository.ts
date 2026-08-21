@@ -1,4 +1,4 @@
-import { Mod, ModStatus } from "../../model/Mod/Mod";
+import { Mod, ModStatus } from "../../model/mod/Mod";
 
 export interface ModFilter {
   name?: string;

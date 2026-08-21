@@ -1,4 +1,4 @@
-import { ModConflict } from "../../model/Mod/ModConflict";
+import { ModConflict } from "../../model/mod/ModConflict";
 
 export interface ModConflictFilter {
   modId?: string;

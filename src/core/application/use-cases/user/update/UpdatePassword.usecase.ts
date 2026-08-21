@@ -9,11 +9,10 @@ export class UpdatePasswordUseCase {
   constructor(private readonly deps: Deps) {}
 
   async execute(
-    token: string,
+    userId: string,
     args: { lastPassword: string; password: string },
   ): Promise<User> {
-    const { userRepository, tokenService, hashService } = this.deps;
-    const { userId } = await tokenService.verify(token);
+    const { userRepository, hashService } = this.deps;
     const user = await userRepository.getById(userId);
     if (!user) throw new Error("User not found");
     const isValid = await hashService.compare(user.password, args.lastPassword);
