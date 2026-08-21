@@ -76,14 +76,32 @@ export class UserRepositoryPrisma implements UserRepository {
         }),
     );
   }
-  async getById(id: string): Promise<User | undefined> {
+  async getById(id: string, include?: UserInclude): Promise<User | undefined> {
     const user = await this.prisma.user.findUnique({
       where: {
         id: id,
       },
+      include: {
+        avatar: include?.avatar,
+        mods: include?.mods,
+        packs: include?.packs,
+        shaders: include?.shaders,
+        comments: include?.comments,
+        // installations: include?.installations,
+      },
     });
     if (!user) return;
-    return new User(user);
+    return new User({
+      ...user,
+      avatar: user.avatar ? new FileModel(user.avatar) : null,
+      mods: user.mods?.map((mod) => new Mod(mod)),
+      packs: user.packs?.map((pack) => new Pack(pack)),
+      shaders: user.shaders?.map((shader) => new Shader(shader)),
+      comments: user.comments?.map((comment) => new CommentModel(comment)),
+      /*       installations: user.installations?.map((installation) =>
+        new UserInstalation(installation),
+      ), */
+    });
   }
 
   async create(user: User): Promise<User> {
@@ -104,7 +122,13 @@ export class UserRepositoryPrisma implements UserRepository {
         password: user.password,
         email: user.email,
         role: user.role,
-        avatarId: user.avatarId,
+        avatar: user.avatarId
+          ? {
+              connect: {
+                id: user.avatarId,
+              },
+            }
+          : undefined,
         activationCode: user.activationCode,
         recoveryTokenHash: user.recoveryTokenHash,
         status: user.status,

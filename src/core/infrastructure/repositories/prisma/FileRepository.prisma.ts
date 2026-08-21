@@ -57,9 +57,29 @@ export class FileRepositoryPrisma implements FileRepository {
   }
 
   async create(file: FileModel): Promise<FileModel> {
-    const filePersistence = file.toPersistence();
+    const {
+      _localFileId,
+      _modFileId,
+      _modImageId,
+      _packImageId,
+      _shaderImageId,
+      _shaderFileId,
+      ...filePersistence
+    } = file.toPersistence();
     const createdFile = await this.prisma.file.create({
-      data: filePersistence,
+      data: {
+        ...filePersistence,
+        localFile: _localFileId ? { connect: { id: _localFileId } } : undefined,
+        modFile: _modFileId ? { connect: { id: _modFileId } } : undefined,
+        modImage: _modImageId ? { connect: { id: _modImageId } } : undefined,
+        packImage: _packImageId ? { connect: { id: _packImageId } } : undefined,
+        shaderImage: _shaderImageId
+          ? { connect: { id: _shaderImageId } }
+          : undefined,
+        shaderFile: _shaderFileId
+          ? { connect: { id: _shaderFileId } }
+          : undefined,
+      },
     });
     return new FileModel({
       ...createdFile,

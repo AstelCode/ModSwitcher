@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { UserJson } from "@/core/domain/model";
 import { ChevronDown, CircleUser, LogOut, User } from "lucide-react";
-import { ProfileDialog } from "./dialogs/ProfileDialog";
+import { ProfileDialog } from "../profile/ProfileDialog";
 import { useState } from "react";
 import { LogoutAction } from "@/core/presentation/user";
 import { Button } from "@/components/ui/button";
@@ -44,7 +44,10 @@ export function UserMenu() {
           <div className="flex gap-1.5 items-center justify-center cursor-pointer">
             {user.avatar && (
               <Avatar>
-                <AvatarImage src={user.avatar.externalUrl!} />
+                <AvatarImage
+                  src={user.avatar.externalUrl!}
+                  alt={user.username!}
+                />
               </Avatar>
             )}
             {!user.avatar && <CircleUser size={30} />}

@@ -46,6 +46,7 @@ export type LocalFileMinAggregateOutputType = {
   sha256: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  fileId: string | null
 }
 
 export type LocalFileMaxAggregateOutputType = {
@@ -60,6 +61,7 @@ export type LocalFileMaxAggregateOutputType = {
   sha256: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  fileId: string | null
 }
 
 export type LocalFileCountAggregateOutputType = {
@@ -74,6 +76,7 @@ export type LocalFileCountAggregateOutputType = {
   sha256: number
   createdAt: number
   updatedAt: number
+  fileId: number
   _all: number
 }
 
@@ -98,6 +101,7 @@ export type LocalFileMinAggregateInputType = {
   sha256?: true
   createdAt?: true
   updatedAt?: true
+  fileId?: true
 }
 
 export type LocalFileMaxAggregateInputType = {
@@ -112,6 +116,7 @@ export type LocalFileMaxAggregateInputType = {
   sha256?: true
   createdAt?: true
   updatedAt?: true
+  fileId?: true
 }
 
 export type LocalFileCountAggregateInputType = {
@@ -126,6 +131,7 @@ export type LocalFileCountAggregateInputType = {
   sha256?: true
   createdAt?: true
   updatedAt?: true
+  fileId?: true
   _all?: true
 }
 
@@ -227,6 +233,7 @@ export type LocalFileGroupByOutputType = {
   sha256: string | null
   createdAt: Date
   updatedAt: Date
+  fileId: string | null
   _count: LocalFileCountAggregateOutputType | null
   _avg: LocalFileAvgAggregateOutputType | null
   _sum: LocalFileSumAggregateOutputType | null
@@ -264,6 +271,7 @@ export type LocalFileWhereInput = {
   sha256?: Prisma.StringNullableFilter<"LocalFile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"LocalFile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LocalFile"> | Date | string
+  fileId?: Prisma.StringNullableFilter<"LocalFile"> | string | null
   file?: Prisma.XOR<Prisma.FileNullableScalarRelationFilter, Prisma.FileWhereInput> | null
 }
 
@@ -279,11 +287,13 @@ export type LocalFileOrderByWithRelationInput = {
   sha256?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  fileId?: Prisma.SortOrderInput | Prisma.SortOrder
   file?: Prisma.FileOrderByWithRelationInput
 }
 
 export type LocalFileWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  fileId?: string
   AND?: Prisma.LocalFileWhereInput | Prisma.LocalFileWhereInput[]
   OR?: Prisma.LocalFileWhereInput[]
   NOT?: Prisma.LocalFileWhereInput | Prisma.LocalFileWhereInput[]
@@ -298,7 +308,7 @@ export type LocalFileWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"LocalFile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"LocalFile"> | Date | string
   file?: Prisma.XOR<Prisma.FileNullableScalarRelationFilter, Prisma.FileWhereInput> | null
-}, "id">
+}, "id" | "fileId">
 
 export type LocalFileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -312,6 +322,7 @@ export type LocalFileOrderByWithAggregationInput = {
   sha256?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  fileId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.LocalFileCountOrderByAggregateInput
   _avg?: Prisma.LocalFileAvgOrderByAggregateInput
   _max?: Prisma.LocalFileMaxOrderByAggregateInput
@@ -334,6 +345,7 @@ export type LocalFileScalarWhereWithAggregatesInput = {
   sha256?: Prisma.StringNullableWithAggregatesFilter<"LocalFile"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"LocalFile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"LocalFile"> | Date | string
+  fileId?: Prisma.StringNullableWithAggregatesFilter<"LocalFile"> | string | null
 }
 
 export type LocalFileCreateInput = {
@@ -363,7 +375,7 @@ export type LocalFileUncheckedCreateInput = {
   sha256?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  file?: Prisma.FileUncheckedCreateNestedOneWithoutLocalFileInput
+  fileId?: string | null
 }
 
 export type LocalFileUpdateInput = {
@@ -393,7 +405,7 @@ export type LocalFileUncheckedUpdateInput = {
   sha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  file?: Prisma.FileUncheckedUpdateOneWithoutLocalFileNestedInput
+  fileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LocalFileCreateManyInput = {
@@ -408,6 +420,7 @@ export type LocalFileCreateManyInput = {
   sha256?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  fileId?: string | null
 }
 
 export type LocalFileUpdateManyMutationInput = {
@@ -436,6 +449,7 @@ export type LocalFileUncheckedUpdateManyInput = {
   sha256?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  fileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LocalFileCountOrderByAggregateInput = {
@@ -450,6 +464,7 @@ export type LocalFileCountOrderByAggregateInput = {
   sha256?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  fileId?: Prisma.SortOrder
 }
 
 export type LocalFileAvgOrderByAggregateInput = {
@@ -468,6 +483,7 @@ export type LocalFileMaxOrderByAggregateInput = {
   sha256?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  fileId?: Prisma.SortOrder
 }
 
 export type LocalFileMinOrderByAggregateInput = {
@@ -482,6 +498,7 @@ export type LocalFileMinOrderByAggregateInput = {
   sha256?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  fileId?: Prisma.SortOrder
 }
 
 export type LocalFileSumOrderByAggregateInput = {
@@ -519,7 +536,23 @@ export type LocalFileCreateNestedOneWithoutFileInput = {
   connect?: Prisma.LocalFileWhereUniqueInput
 }
 
+export type LocalFileUncheckedCreateNestedOneWithoutFileInput = {
+  create?: Prisma.XOR<Prisma.LocalFileCreateWithoutFileInput, Prisma.LocalFileUncheckedCreateWithoutFileInput>
+  connectOrCreate?: Prisma.LocalFileCreateOrConnectWithoutFileInput
+  connect?: Prisma.LocalFileWhereUniqueInput
+}
+
 export type LocalFileUpdateOneWithoutFileNestedInput = {
+  create?: Prisma.XOR<Prisma.LocalFileCreateWithoutFileInput, Prisma.LocalFileUncheckedCreateWithoutFileInput>
+  connectOrCreate?: Prisma.LocalFileCreateOrConnectWithoutFileInput
+  upsert?: Prisma.LocalFileUpsertWithoutFileInput
+  disconnect?: Prisma.LocalFileWhereInput | boolean
+  delete?: Prisma.LocalFileWhereInput | boolean
+  connect?: Prisma.LocalFileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LocalFileUpdateToOneWithWhereWithoutFileInput, Prisma.LocalFileUpdateWithoutFileInput>, Prisma.LocalFileUncheckedUpdateWithoutFileInput>
+}
+
+export type LocalFileUncheckedUpdateOneWithoutFileNestedInput = {
   create?: Prisma.XOR<Prisma.LocalFileCreateWithoutFileInput, Prisma.LocalFileUncheckedCreateWithoutFileInput>
   connectOrCreate?: Prisma.LocalFileCreateOrConnectWithoutFileInput
   upsert?: Prisma.LocalFileUpsertWithoutFileInput
@@ -615,6 +648,7 @@ export type LocalFileSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   sha256?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  fileId?: boolean
   file?: boolean | Prisma.LocalFile$fileArgs<ExtArgs>
 }, ExtArgs["result"]["localFile"]>
 
@@ -630,6 +664,8 @@ export type LocalFileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   sha256?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  fileId?: boolean
+  file?: boolean | Prisma.LocalFile$fileArgs<ExtArgs>
 }, ExtArgs["result"]["localFile"]>
 
 export type LocalFileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -644,6 +680,8 @@ export type LocalFileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   sha256?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  fileId?: boolean
+  file?: boolean | Prisma.LocalFile$fileArgs<ExtArgs>
 }, ExtArgs["result"]["localFile"]>
 
 export type LocalFileSelectScalar = {
@@ -658,14 +696,19 @@ export type LocalFileSelectScalar = {
   sha256?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  fileId?: boolean
 }
 
-export type LocalFileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "size" | "mimeType" | "path" | "url" | "bucket" | "extension" | "sha256" | "createdAt" | "updatedAt", ExtArgs["result"]["localFile"]>
+export type LocalFileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "size" | "mimeType" | "path" | "url" | "bucket" | "extension" | "sha256" | "createdAt" | "updatedAt" | "fileId", ExtArgs["result"]["localFile"]>
 export type LocalFileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   file?: boolean | Prisma.LocalFile$fileArgs<ExtArgs>
 }
-export type LocalFileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type LocalFileIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type LocalFileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  file?: boolean | Prisma.LocalFile$fileArgs<ExtArgs>
+}
+export type LocalFileIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  file?: boolean | Prisma.LocalFile$fileArgs<ExtArgs>
+}
 
 export type $LocalFilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "LocalFile"
@@ -684,6 +727,7 @@ export type $LocalFilePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     sha256: string | null
     createdAt: Date
     updatedAt: Date
+    fileId: string | null
   }, ExtArgs["result"]["localFile"]>
   composites: {}
 }
@@ -1119,6 +1163,7 @@ export interface LocalFileFieldRefs {
   readonly sha256: Prisma.FieldRef<"LocalFile", 'String'>
   readonly createdAt: Prisma.FieldRef<"LocalFile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"LocalFile", 'DateTime'>
+  readonly fileId: Prisma.FieldRef<"LocalFile", 'String'>
 }
     
 
@@ -1373,6 +1418,10 @@ export type LocalFileCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    */
   data: Prisma.LocalFileCreateManyInput | Prisma.LocalFileCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LocalFileIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1443,6 +1492,10 @@ export type LocalFileUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    * Limit how many LocalFiles to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LocalFileIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

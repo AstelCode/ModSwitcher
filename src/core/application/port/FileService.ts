@@ -23,9 +23,11 @@ export interface FileService {
     input: UploadLocalFileInput | string,
     config?: {
       path?: string;
-      shaderId?: string;
-      modId?: string;
-      packId?: string;
+      shaderImageId?: string;
+      shaderFileId?: string;
+      modImageId?: string;
+      modFileId?: string;
+      packImageId?: string;
     },
   ): Promise<FileModel>;
   update(id: string, input: UploadLocalFileInput | string): Promise<void>;

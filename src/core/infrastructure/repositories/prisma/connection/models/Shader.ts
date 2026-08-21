@@ -272,7 +272,7 @@ export type ShaderCreateInput = {
   updatedAt?: Date | string
   author?: Prisma.UserCreateNestedOneWithoutShadersInput
   icon?: Prisma.FileCreateNestedOneWithoutShadersInput
-  images?: Prisma.FileCreateNestedManyWithoutShadeIconInput
+  images?: Prisma.FileCreateNestedManyWithoutShaderIconInput
   shaderFiles?: Prisma.ShaderFileCreateNestedManyWithoutShaderInput
   comments?: Prisma.CommentCreateNestedManyWithoutShaderInput
 }
@@ -285,7 +285,7 @@ export type ShaderUncheckedCreateInput = {
   updatedAt?: Date | string
   authorId?: string | null
   iconId?: string | null
-  images?: Prisma.FileUncheckedCreateNestedManyWithoutShadeIconInput
+  images?: Prisma.FileUncheckedCreateNestedManyWithoutShaderIconInput
   shaderFiles?: Prisma.ShaderFileUncheckedCreateNestedManyWithoutShaderInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutShaderInput
 }
@@ -298,7 +298,7 @@ export type ShaderUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneWithoutShadersNestedInput
   icon?: Prisma.FileUpdateOneWithoutShadersNestedInput
-  images?: Prisma.FileUpdateManyWithoutShadeIconNestedInput
+  images?: Prisma.FileUpdateManyWithoutShaderIconNestedInput
   shaderFiles?: Prisma.ShaderFileUpdateManyWithoutShaderNestedInput
   comments?: Prisma.CommentUpdateManyWithoutShaderNestedInput
 }
@@ -311,7 +311,7 @@ export type ShaderUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   iconId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  images?: Prisma.FileUncheckedUpdateManyWithoutShadeIconNestedInput
+  images?: Prisma.FileUncheckedUpdateManyWithoutShaderIconNestedInput
   shaderFiles?: Prisma.ShaderFileUncheckedUpdateManyWithoutShaderNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutShaderNestedInput
 }
@@ -528,7 +528,7 @@ export type ShaderCreateWithoutIconInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   author?: Prisma.UserCreateNestedOneWithoutShadersInput
-  images?: Prisma.FileCreateNestedManyWithoutShadeIconInput
+  images?: Prisma.FileCreateNestedManyWithoutShaderIconInput
   shaderFiles?: Prisma.ShaderFileCreateNestedManyWithoutShaderInput
   comments?: Prisma.CommentCreateNestedManyWithoutShaderInput
 }
@@ -540,7 +540,7 @@ export type ShaderUncheckedCreateWithoutIconInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   authorId?: string | null
-  images?: Prisma.FileUncheckedCreateNestedManyWithoutShadeIconInput
+  images?: Prisma.FileUncheckedCreateNestedManyWithoutShaderIconInput
   shaderFiles?: Prisma.ShaderFileUncheckedCreateNestedManyWithoutShaderInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutShaderInput
 }
@@ -655,7 +655,7 @@ export type ShaderCreateWithoutAuthorInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   icon?: Prisma.FileCreateNestedOneWithoutShadersInput
-  images?: Prisma.FileCreateNestedManyWithoutShadeIconInput
+  images?: Prisma.FileCreateNestedManyWithoutShaderIconInput
   shaderFiles?: Prisma.ShaderFileCreateNestedManyWithoutShaderInput
   comments?: Prisma.CommentCreateNestedManyWithoutShaderInput
 }
@@ -667,7 +667,7 @@ export type ShaderUncheckedCreateWithoutAuthorInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   iconId?: string | null
-  images?: Prisma.FileUncheckedCreateNestedManyWithoutShadeIconInput
+  images?: Prisma.FileUncheckedCreateNestedManyWithoutShaderIconInput
   shaderFiles?: Prisma.ShaderFileUncheckedCreateNestedManyWithoutShaderInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutShaderInput
 }
@@ -706,7 +706,7 @@ export type ShaderCreateWithoutShaderFilesInput = {
   updatedAt?: Date | string
   author?: Prisma.UserCreateNestedOneWithoutShadersInput
   icon?: Prisma.FileCreateNestedOneWithoutShadersInput
-  images?: Prisma.FileCreateNestedManyWithoutShadeIconInput
+  images?: Prisma.FileCreateNestedManyWithoutShaderIconInput
   comments?: Prisma.CommentCreateNestedManyWithoutShaderInput
 }
 
@@ -718,7 +718,7 @@ export type ShaderUncheckedCreateWithoutShaderFilesInput = {
   updatedAt?: Date | string
   authorId?: string | null
   iconId?: string | null
-  images?: Prisma.FileUncheckedCreateNestedManyWithoutShadeIconInput
+  images?: Prisma.FileUncheckedCreateNestedManyWithoutShaderIconInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutShaderInput
 }
 
@@ -746,7 +746,7 @@ export type ShaderUpdateWithoutShaderFilesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneWithoutShadersNestedInput
   icon?: Prisma.FileUpdateOneWithoutShadersNestedInput
-  images?: Prisma.FileUpdateManyWithoutShadeIconNestedInput
+  images?: Prisma.FileUpdateManyWithoutShaderIconNestedInput
   comments?: Prisma.CommentUpdateManyWithoutShaderNestedInput
 }
 
@@ -758,7 +758,7 @@ export type ShaderUncheckedUpdateWithoutShaderFilesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   iconId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  images?: Prisma.FileUncheckedUpdateManyWithoutShadeIconNestedInput
+  images?: Prisma.FileUncheckedUpdateManyWithoutShaderIconNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutShaderNestedInput
 }
 
@@ -770,7 +770,7 @@ export type ShaderCreateWithoutCommentsInput = {
   updatedAt?: Date | string
   author?: Prisma.UserCreateNestedOneWithoutShadersInput
   icon?: Prisma.FileCreateNestedOneWithoutShadersInput
-  images?: Prisma.FileCreateNestedManyWithoutShadeIconInput
+  images?: Prisma.FileCreateNestedManyWithoutShaderIconInput
   shaderFiles?: Prisma.ShaderFileCreateNestedManyWithoutShaderInput
 }
 
@@ -782,7 +782,7 @@ export type ShaderUncheckedCreateWithoutCommentsInput = {
   updatedAt?: Date | string
   authorId?: string | null
   iconId?: string | null
-  images?: Prisma.FileUncheckedCreateNestedManyWithoutShadeIconInput
+  images?: Prisma.FileUncheckedCreateNestedManyWithoutShaderIconInput
   shaderFiles?: Prisma.ShaderFileUncheckedCreateNestedManyWithoutShaderInput
 }
 
@@ -810,7 +810,7 @@ export type ShaderUpdateWithoutCommentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneWithoutShadersNestedInput
   icon?: Prisma.FileUpdateOneWithoutShadersNestedInput
-  images?: Prisma.FileUpdateManyWithoutShadeIconNestedInput
+  images?: Prisma.FileUpdateManyWithoutShaderIconNestedInput
   shaderFiles?: Prisma.ShaderFileUpdateManyWithoutShaderNestedInput
 }
 
@@ -822,7 +822,7 @@ export type ShaderUncheckedUpdateWithoutCommentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   iconId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  images?: Prisma.FileUncheckedUpdateManyWithoutShadeIconNestedInput
+  images?: Prisma.FileUncheckedUpdateManyWithoutShaderIconNestedInput
   shaderFiles?: Prisma.ShaderFileUncheckedUpdateManyWithoutShaderNestedInput
 }
 
@@ -842,7 +842,7 @@ export type ShaderUpdateWithoutIconInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneWithoutShadersNestedInput
-  images?: Prisma.FileUpdateManyWithoutShadeIconNestedInput
+  images?: Prisma.FileUpdateManyWithoutShaderIconNestedInput
   shaderFiles?: Prisma.ShaderFileUpdateManyWithoutShaderNestedInput
   comments?: Prisma.CommentUpdateManyWithoutShaderNestedInput
 }
@@ -854,7 +854,7 @@ export type ShaderUncheckedUpdateWithoutIconInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authorId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  images?: Prisma.FileUncheckedUpdateManyWithoutShadeIconNestedInput
+  images?: Prisma.FileUncheckedUpdateManyWithoutShaderIconNestedInput
   shaderFiles?: Prisma.ShaderFileUncheckedUpdateManyWithoutShaderNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutShaderNestedInput
 }
@@ -884,7 +884,7 @@ export type ShaderUpdateWithoutAuthorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   icon?: Prisma.FileUpdateOneWithoutShadersNestedInput
-  images?: Prisma.FileUpdateManyWithoutShadeIconNestedInput
+  images?: Prisma.FileUpdateManyWithoutShaderIconNestedInput
   shaderFiles?: Prisma.ShaderFileUpdateManyWithoutShaderNestedInput
   comments?: Prisma.CommentUpdateManyWithoutShaderNestedInput
 }
@@ -896,7 +896,7 @@ export type ShaderUncheckedUpdateWithoutAuthorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   iconId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  images?: Prisma.FileUncheckedUpdateManyWithoutShadeIconNestedInput
+  images?: Prisma.FileUncheckedUpdateManyWithoutShaderIconNestedInput
   shaderFiles?: Prisma.ShaderFileUncheckedUpdateManyWithoutShaderNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutShaderNestedInput
 }

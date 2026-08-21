@@ -14,6 +14,7 @@ import { User } from "lucide-react";
 import { ChangePasswordDialog } from "./ChangePasswordDialog";
 import { ChangeUserNameDialog } from "./ChangeUserNameDialog";
 import { useUserContext } from "@/hooks/UserContext";
+import { ChangeAvatar } from "./ChangeAvatar.";
 
 export function ProfileDialog({
   open,
@@ -53,9 +54,7 @@ export function ProfileDialog({
               <section className="flex flex-col gap-2">
                 <div className="flex flex-col gap-2">
                   <span className="text-lg font-bold">Avatar</span>
-                  <div className="w-full flex items-center justify-center">
-                    <div className="w-40 h-40 rounded-full bg-background"></div>
-                  </div>
+                  <ChangeAvatar />
                 </div>
                 <div className="flex flex-col gap-2">
                   <span className="text-lg font-bold">General Information</span>

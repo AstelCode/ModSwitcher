@@ -29,11 +29,10 @@ export type FileMinAggregateOutputType = {
   name: string | null
   role: string | null
   externalUrl: string | null
-  localFileid: string | null
   createdAt: Date | null
   updatedAt: Date | null
   modId: string | null
-  shadeId: string | null
+  shaderId: string | null
 }
 
 export type FileMaxAggregateOutputType = {
@@ -41,11 +40,10 @@ export type FileMaxAggregateOutputType = {
   name: string | null
   role: string | null
   externalUrl: string | null
-  localFileid: string | null
   createdAt: Date | null
   updatedAt: Date | null
   modId: string | null
-  shadeId: string | null
+  shaderId: string | null
 }
 
 export type FileCountAggregateOutputType = {
@@ -53,11 +51,10 @@ export type FileCountAggregateOutputType = {
   name: number
   role: number
   externalUrl: number
-  localFileid: number
   createdAt: number
   updatedAt: number
   modId: number
-  shadeId: number
+  shaderId: number
   _all: number
 }
 
@@ -67,11 +64,10 @@ export type FileMinAggregateInputType = {
   name?: true
   role?: true
   externalUrl?: true
-  localFileid?: true
   createdAt?: true
   updatedAt?: true
   modId?: true
-  shadeId?: true
+  shaderId?: true
 }
 
 export type FileMaxAggregateInputType = {
@@ -79,11 +75,10 @@ export type FileMaxAggregateInputType = {
   name?: true
   role?: true
   externalUrl?: true
-  localFileid?: true
   createdAt?: true
   updatedAt?: true
   modId?: true
-  shadeId?: true
+  shaderId?: true
 }
 
 export type FileCountAggregateInputType = {
@@ -91,11 +86,10 @@ export type FileCountAggregateInputType = {
   name?: true
   role?: true
   externalUrl?: true
-  localFileid?: true
   createdAt?: true
   updatedAt?: true
   modId?: true
-  shadeId?: true
+  shaderId?: true
   _all?: true
 }
 
@@ -176,11 +170,10 @@ export type FileGroupByOutputType = {
   name: string
   role: string
   externalUrl: string | null
-  localFileid: string | null
   createdAt: Date
   updatedAt: Date
   modId: string | null
-  shadeId: string | null
+  shaderId: string | null
   _count: FileCountAggregateOutputType | null
   _min: FileMinAggregateOutputType | null
   _max: FileMaxAggregateOutputType | null
@@ -209,11 +202,10 @@ export type FileWhereInput = {
   name?: Prisma.StringFilter<"File"> | string
   role?: Prisma.StringFilter<"File"> | string
   externalUrl?: Prisma.StringNullableFilter<"File"> | string | null
-  localFileid?: Prisma.StringNullableFilter<"File"> | string | null
   createdAt?: Prisma.DateTimeFilter<"File"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"File"> | Date | string
   modId?: Prisma.StringNullableFilter<"File"> | string | null
-  shadeId?: Prisma.StringNullableFilter<"File"> | string | null
+  shaderId?: Prisma.StringNullableFilter<"File"> | string | null
   localFile?: Prisma.XOR<Prisma.LocalFileNullableScalarRelationFilter, Prisma.LocalFileWhereInput> | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   minecraftLoader?: Prisma.XOR<Prisma.MinecraftLoaderNullableScalarRelationFilter, Prisma.MinecraftLoaderWhereInput> | null
@@ -223,8 +215,8 @@ export type FileWhereInput = {
   modImage?: Prisma.XOR<Prisma.ModNullableScalarRelationFilter, Prisma.ModWhereInput> | null
   shaderFile?: Prisma.XOR<Prisma.ShaderFileNullableScalarRelationFilter, Prisma.ShaderFileWhereInput> | null
   shaders?: Prisma.ShaderListRelationFilter
-  shadeIcon?: Prisma.XOR<Prisma.ShaderNullableScalarRelationFilter, Prisma.ShaderWhereInput> | null
-  packsImage?: Prisma.PackListRelationFilter
+  shaderIcon?: Prisma.XOR<Prisma.ShaderNullableScalarRelationFilter, Prisma.ShaderWhereInput> | null
+  packImage?: Prisma.PackListRelationFilter
   packIcon?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
 }
 
@@ -233,11 +225,10 @@ export type FileOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   externalUrl?: Prisma.SortOrderInput | Prisma.SortOrder
-  localFileid?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   modId?: Prisma.SortOrderInput | Prisma.SortOrder
-  shadeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  shaderId?: Prisma.SortOrderInput | Prisma.SortOrder
   localFile?: Prisma.LocalFileOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
   minecraftLoader?: Prisma.MinecraftLoaderOrderByWithRelationInput
@@ -247,14 +238,13 @@ export type FileOrderByWithRelationInput = {
   modImage?: Prisma.ModOrderByWithRelationInput
   shaderFile?: Prisma.ShaderFileOrderByWithRelationInput
   shaders?: Prisma.ShaderOrderByRelationAggregateInput
-  shadeIcon?: Prisma.ShaderOrderByWithRelationInput
-  packsImage?: Prisma.PackOrderByRelationAggregateInput
+  shaderIcon?: Prisma.ShaderOrderByWithRelationInput
+  packImage?: Prisma.PackOrderByRelationAggregateInput
   packIcon?: Prisma.PackOrderByWithRelationInput
 }
 
 export type FileWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  localFileid?: string
   AND?: Prisma.FileWhereInput | Prisma.FileWhereInput[]
   OR?: Prisma.FileWhereInput[]
   NOT?: Prisma.FileWhereInput | Prisma.FileWhereInput[]
@@ -264,7 +254,7 @@ export type FileWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"File"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"File"> | Date | string
   modId?: Prisma.StringNullableFilter<"File"> | string | null
-  shadeId?: Prisma.StringNullableFilter<"File"> | string | null
+  shaderId?: Prisma.StringNullableFilter<"File"> | string | null
   localFile?: Prisma.XOR<Prisma.LocalFileNullableScalarRelationFilter, Prisma.LocalFileWhereInput> | null
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   minecraftLoader?: Prisma.XOR<Prisma.MinecraftLoaderNullableScalarRelationFilter, Prisma.MinecraftLoaderWhereInput> | null
@@ -274,21 +264,20 @@ export type FileWhereUniqueInput = Prisma.AtLeast<{
   modImage?: Prisma.XOR<Prisma.ModNullableScalarRelationFilter, Prisma.ModWhereInput> | null
   shaderFile?: Prisma.XOR<Prisma.ShaderFileNullableScalarRelationFilter, Prisma.ShaderFileWhereInput> | null
   shaders?: Prisma.ShaderListRelationFilter
-  shadeIcon?: Prisma.XOR<Prisma.ShaderNullableScalarRelationFilter, Prisma.ShaderWhereInput> | null
-  packsImage?: Prisma.PackListRelationFilter
+  shaderIcon?: Prisma.XOR<Prisma.ShaderNullableScalarRelationFilter, Prisma.ShaderWhereInput> | null
+  packImage?: Prisma.PackListRelationFilter
   packIcon?: Prisma.XOR<Prisma.PackNullableScalarRelationFilter, Prisma.PackWhereInput> | null
-}, "id" | "localFileid">
+}, "id">
 
 export type FileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   externalUrl?: Prisma.SortOrderInput | Prisma.SortOrder
-  localFileid?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   modId?: Prisma.SortOrderInput | Prisma.SortOrder
-  shadeId?: Prisma.SortOrderInput | Prisma.SortOrder
+  shaderId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.FileCountOrderByAggregateInput
   _max?: Prisma.FileMaxOrderByAggregateInput
   _min?: Prisma.FileMinOrderByAggregateInput
@@ -302,11 +291,10 @@ export type FileScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"File"> | string
   role?: Prisma.StringWithAggregatesFilter<"File"> | string
   externalUrl?: Prisma.StringNullableWithAggregatesFilter<"File"> | string | null
-  localFileid?: Prisma.StringNullableWithAggregatesFilter<"File"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"File"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"File"> | Date | string
   modId?: Prisma.StringNullableWithAggregatesFilter<"File"> | string | null
-  shadeId?: Prisma.StringNullableWithAggregatesFilter<"File"> | string | null
+  shaderId?: Prisma.StringNullableWithAggregatesFilter<"File"> | string | null
 }
 
 export type FileCreateInput = {
@@ -325,8 +313,8 @@ export type FileCreateInput = {
   modImage?: Prisma.ModCreateNestedOneWithoutImagesInput
   shaderFile?: Prisma.ShaderFileCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutIconInput
-  shadeIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
-  packsImage?: Prisma.PackCreateNestedManyWithoutImagesInput
+  shaderIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
+  packImage?: Prisma.PackCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackCreateNestedOneWithoutIconInput
 }
 
@@ -335,11 +323,11 @@ export type FileUncheckedCreateInput = {
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
-  shadeId?: string | null
+  shaderId?: string | null
+  localFile?: Prisma.LocalFileUncheckedCreateNestedOneWithoutFileInput
   user?: Prisma.UserUncheckedCreateNestedOneWithoutAvatarInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedCreateNestedOneWithoutIconInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedCreateNestedOneWithoutIconInput
@@ -347,7 +335,7 @@ export type FileUncheckedCreateInput = {
   modIcon?: Prisma.ModUncheckedCreateNestedOneWithoutIconInput
   shaderFile?: Prisma.ShaderFileUncheckedCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutIconInput
-  packsImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackUncheckedCreateNestedOneWithoutIconInput
 }
 
@@ -367,8 +355,8 @@ export type FileUpdateInput = {
   modImage?: Prisma.ModUpdateOneWithoutImagesNestedInput
   shaderFile?: Prisma.ShaderFileUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutIconNestedInput
-  shadeIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
-  packsImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
+  shaderIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
+  packImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUpdateOneWithoutIconNestedInput
 }
 
@@ -377,11 +365,11 @@ export type FileUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localFile?: Prisma.LocalFileUncheckedUpdateOneWithoutFileNestedInput
   user?: Prisma.UserUncheckedUpdateOneWithoutAvatarNestedInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedUpdateOneWithoutIconNestedInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedUpdateOneWithoutIconNestedInput
@@ -389,7 +377,7 @@ export type FileUncheckedUpdateInput = {
   modIcon?: Prisma.ModUncheckedUpdateOneWithoutIconNestedInput
   shaderFile?: Prisma.ShaderFileUncheckedUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutIconNestedInput
-  packsImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUncheckedUpdateOneWithoutIconNestedInput
 }
 
@@ -398,11 +386,10 @@ export type FileCreateManyInput = {
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
-  shadeId?: string | null
+  shaderId?: string | null
 }
 
 export type FileUpdateManyMutationInput = {
@@ -419,11 +406,10 @@ export type FileUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type FileNullableScalarRelationFilter = {
@@ -436,11 +422,10 @@ export type FileCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   externalUrl?: Prisma.SortOrder
-  localFileid?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   modId?: Prisma.SortOrder
-  shadeId?: Prisma.SortOrder
+  shaderId?: Prisma.SortOrder
 }
 
 export type FileMaxOrderByAggregateInput = {
@@ -448,11 +433,10 @@ export type FileMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   externalUrl?: Prisma.SortOrder
-  localFileid?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   modId?: Prisma.SortOrder
-  shadeId?: Prisma.SortOrder
+  shaderId?: Prisma.SortOrder
 }
 
 export type FileMinOrderByAggregateInput = {
@@ -460,11 +444,10 @@ export type FileMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   role?: Prisma.SortOrder
   externalUrl?: Prisma.SortOrder
-  localFileid?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   modId?: Prisma.SortOrder
-  shadeId?: Prisma.SortOrder
+  shaderId?: Prisma.SortOrder
 }
 
 export type FileScalarRelationFilter = {
@@ -488,23 +471,7 @@ export type FileCreateNestedOneWithoutLocalFileInput = {
   connect?: Prisma.FileWhereUniqueInput
 }
 
-export type FileUncheckedCreateNestedOneWithoutLocalFileInput = {
-  create?: Prisma.XOR<Prisma.FileCreateWithoutLocalFileInput, Prisma.FileUncheckedCreateWithoutLocalFileInput>
-  connectOrCreate?: Prisma.FileCreateOrConnectWithoutLocalFileInput
-  connect?: Prisma.FileWhereUniqueInput
-}
-
 export type FileUpdateOneWithoutLocalFileNestedInput = {
-  create?: Prisma.XOR<Prisma.FileCreateWithoutLocalFileInput, Prisma.FileUncheckedCreateWithoutLocalFileInput>
-  connectOrCreate?: Prisma.FileCreateOrConnectWithoutLocalFileInput
-  upsert?: Prisma.FileUpsertWithoutLocalFileInput
-  disconnect?: Prisma.FileWhereInput | boolean
-  delete?: Prisma.FileWhereInput | boolean
-  connect?: Prisma.FileWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.FileUpdateToOneWithWhereWithoutLocalFileInput, Prisma.FileUpdateWithoutLocalFileInput>, Prisma.FileUncheckedUpdateWithoutLocalFileInput>
-}
-
-export type FileUncheckedUpdateOneWithoutLocalFileNestedInput = {
   create?: Prisma.XOR<Prisma.FileCreateWithoutLocalFileInput, Prisma.FileUncheckedCreateWithoutLocalFileInput>
   connectOrCreate?: Prisma.FileCreateOrConnectWithoutLocalFileInput
   upsert?: Prisma.FileUpsertWithoutLocalFileInput
@@ -656,17 +623,17 @@ export type FileCreateNestedOneWithoutShadersInput = {
   connect?: Prisma.FileWhereUniqueInput
 }
 
-export type FileCreateNestedManyWithoutShadeIconInput = {
-  create?: Prisma.XOR<Prisma.FileCreateWithoutShadeIconInput, Prisma.FileUncheckedCreateWithoutShadeIconInput> | Prisma.FileCreateWithoutShadeIconInput[] | Prisma.FileUncheckedCreateWithoutShadeIconInput[]
-  connectOrCreate?: Prisma.FileCreateOrConnectWithoutShadeIconInput | Prisma.FileCreateOrConnectWithoutShadeIconInput[]
-  createMany?: Prisma.FileCreateManyShadeIconInputEnvelope
+export type FileCreateNestedManyWithoutShaderIconInput = {
+  create?: Prisma.XOR<Prisma.FileCreateWithoutShaderIconInput, Prisma.FileUncheckedCreateWithoutShaderIconInput> | Prisma.FileCreateWithoutShaderIconInput[] | Prisma.FileUncheckedCreateWithoutShaderIconInput[]
+  connectOrCreate?: Prisma.FileCreateOrConnectWithoutShaderIconInput | Prisma.FileCreateOrConnectWithoutShaderIconInput[]
+  createMany?: Prisma.FileCreateManyShaderIconInputEnvelope
   connect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
 }
 
-export type FileUncheckedCreateNestedManyWithoutShadeIconInput = {
-  create?: Prisma.XOR<Prisma.FileCreateWithoutShadeIconInput, Prisma.FileUncheckedCreateWithoutShadeIconInput> | Prisma.FileCreateWithoutShadeIconInput[] | Prisma.FileUncheckedCreateWithoutShadeIconInput[]
-  connectOrCreate?: Prisma.FileCreateOrConnectWithoutShadeIconInput | Prisma.FileCreateOrConnectWithoutShadeIconInput[]
-  createMany?: Prisma.FileCreateManyShadeIconInputEnvelope
+export type FileUncheckedCreateNestedManyWithoutShaderIconInput = {
+  create?: Prisma.XOR<Prisma.FileCreateWithoutShaderIconInput, Prisma.FileUncheckedCreateWithoutShaderIconInput> | Prisma.FileCreateWithoutShaderIconInput[] | Prisma.FileUncheckedCreateWithoutShaderIconInput[]
+  connectOrCreate?: Prisma.FileCreateOrConnectWithoutShaderIconInput | Prisma.FileCreateOrConnectWithoutShaderIconInput[]
+  createMany?: Prisma.FileCreateManyShaderIconInputEnvelope
   connect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
 }
 
@@ -680,31 +647,31 @@ export type FileUpdateOneWithoutShadersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.FileUpdateToOneWithWhereWithoutShadersInput, Prisma.FileUpdateWithoutShadersInput>, Prisma.FileUncheckedUpdateWithoutShadersInput>
 }
 
-export type FileUpdateManyWithoutShadeIconNestedInput = {
-  create?: Prisma.XOR<Prisma.FileCreateWithoutShadeIconInput, Prisma.FileUncheckedCreateWithoutShadeIconInput> | Prisma.FileCreateWithoutShadeIconInput[] | Prisma.FileUncheckedCreateWithoutShadeIconInput[]
-  connectOrCreate?: Prisma.FileCreateOrConnectWithoutShadeIconInput | Prisma.FileCreateOrConnectWithoutShadeIconInput[]
-  upsert?: Prisma.FileUpsertWithWhereUniqueWithoutShadeIconInput | Prisma.FileUpsertWithWhereUniqueWithoutShadeIconInput[]
-  createMany?: Prisma.FileCreateManyShadeIconInputEnvelope
+export type FileUpdateManyWithoutShaderIconNestedInput = {
+  create?: Prisma.XOR<Prisma.FileCreateWithoutShaderIconInput, Prisma.FileUncheckedCreateWithoutShaderIconInput> | Prisma.FileCreateWithoutShaderIconInput[] | Prisma.FileUncheckedCreateWithoutShaderIconInput[]
+  connectOrCreate?: Prisma.FileCreateOrConnectWithoutShaderIconInput | Prisma.FileCreateOrConnectWithoutShaderIconInput[]
+  upsert?: Prisma.FileUpsertWithWhereUniqueWithoutShaderIconInput | Prisma.FileUpsertWithWhereUniqueWithoutShaderIconInput[]
+  createMany?: Prisma.FileCreateManyShaderIconInputEnvelope
   set?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
   disconnect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
   delete?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
   connect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
-  update?: Prisma.FileUpdateWithWhereUniqueWithoutShadeIconInput | Prisma.FileUpdateWithWhereUniqueWithoutShadeIconInput[]
-  updateMany?: Prisma.FileUpdateManyWithWhereWithoutShadeIconInput | Prisma.FileUpdateManyWithWhereWithoutShadeIconInput[]
+  update?: Prisma.FileUpdateWithWhereUniqueWithoutShaderIconInput | Prisma.FileUpdateWithWhereUniqueWithoutShaderIconInput[]
+  updateMany?: Prisma.FileUpdateManyWithWhereWithoutShaderIconInput | Prisma.FileUpdateManyWithWhereWithoutShaderIconInput[]
   deleteMany?: Prisma.FileScalarWhereInput | Prisma.FileScalarWhereInput[]
 }
 
-export type FileUncheckedUpdateManyWithoutShadeIconNestedInput = {
-  create?: Prisma.XOR<Prisma.FileCreateWithoutShadeIconInput, Prisma.FileUncheckedCreateWithoutShadeIconInput> | Prisma.FileCreateWithoutShadeIconInput[] | Prisma.FileUncheckedCreateWithoutShadeIconInput[]
-  connectOrCreate?: Prisma.FileCreateOrConnectWithoutShadeIconInput | Prisma.FileCreateOrConnectWithoutShadeIconInput[]
-  upsert?: Prisma.FileUpsertWithWhereUniqueWithoutShadeIconInput | Prisma.FileUpsertWithWhereUniqueWithoutShadeIconInput[]
-  createMany?: Prisma.FileCreateManyShadeIconInputEnvelope
+export type FileUncheckedUpdateManyWithoutShaderIconNestedInput = {
+  create?: Prisma.XOR<Prisma.FileCreateWithoutShaderIconInput, Prisma.FileUncheckedCreateWithoutShaderIconInput> | Prisma.FileCreateWithoutShaderIconInput[] | Prisma.FileUncheckedCreateWithoutShaderIconInput[]
+  connectOrCreate?: Prisma.FileCreateOrConnectWithoutShaderIconInput | Prisma.FileCreateOrConnectWithoutShaderIconInput[]
+  upsert?: Prisma.FileUpsertWithWhereUniqueWithoutShaderIconInput | Prisma.FileUpsertWithWhereUniqueWithoutShaderIconInput[]
+  createMany?: Prisma.FileCreateManyShaderIconInputEnvelope
   set?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
   disconnect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
   delete?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
   connect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
-  update?: Prisma.FileUpdateWithWhereUniqueWithoutShadeIconInput | Prisma.FileUpdateWithWhereUniqueWithoutShadeIconInput[]
-  updateMany?: Prisma.FileUpdateManyWithWhereWithoutShadeIconInput | Prisma.FileUpdateManyWithWhereWithoutShadeIconInput[]
+  update?: Prisma.FileUpdateWithWhereUniqueWithoutShaderIconInput | Prisma.FileUpdateWithWhereUniqueWithoutShaderIconInput[]
+  updateMany?: Prisma.FileUpdateManyWithWhereWithoutShaderIconInput | Prisma.FileUpdateManyWithWhereWithoutShaderIconInput[]
   deleteMany?: Prisma.FileScalarWhereInput | Prisma.FileScalarWhereInput[]
 }
 
@@ -714,15 +681,15 @@ export type FileCreateNestedOneWithoutPackIconInput = {
   connect?: Prisma.FileWhereUniqueInput
 }
 
-export type FileCreateNestedManyWithoutPacksImageInput = {
-  create?: Prisma.XOR<Prisma.FileCreateWithoutPacksImageInput, Prisma.FileUncheckedCreateWithoutPacksImageInput> | Prisma.FileCreateWithoutPacksImageInput[] | Prisma.FileUncheckedCreateWithoutPacksImageInput[]
-  connectOrCreate?: Prisma.FileCreateOrConnectWithoutPacksImageInput | Prisma.FileCreateOrConnectWithoutPacksImageInput[]
+export type FileCreateNestedManyWithoutPackImageInput = {
+  create?: Prisma.XOR<Prisma.FileCreateWithoutPackImageInput, Prisma.FileUncheckedCreateWithoutPackImageInput> | Prisma.FileCreateWithoutPackImageInput[] | Prisma.FileUncheckedCreateWithoutPackImageInput[]
+  connectOrCreate?: Prisma.FileCreateOrConnectWithoutPackImageInput | Prisma.FileCreateOrConnectWithoutPackImageInput[]
   connect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
 }
 
-export type FileUncheckedCreateNestedManyWithoutPacksImageInput = {
-  create?: Prisma.XOR<Prisma.FileCreateWithoutPacksImageInput, Prisma.FileUncheckedCreateWithoutPacksImageInput> | Prisma.FileCreateWithoutPacksImageInput[] | Prisma.FileUncheckedCreateWithoutPacksImageInput[]
-  connectOrCreate?: Prisma.FileCreateOrConnectWithoutPacksImageInput | Prisma.FileCreateOrConnectWithoutPacksImageInput[]
+export type FileUncheckedCreateNestedManyWithoutPackImageInput = {
+  create?: Prisma.XOR<Prisma.FileCreateWithoutPackImageInput, Prisma.FileUncheckedCreateWithoutPackImageInput> | Prisma.FileCreateWithoutPackImageInput[] | Prisma.FileUncheckedCreateWithoutPackImageInput[]
+  connectOrCreate?: Prisma.FileCreateOrConnectWithoutPackImageInput | Prisma.FileCreateOrConnectWithoutPackImageInput[]
   connect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
 }
 
@@ -736,29 +703,29 @@ export type FileUpdateOneWithoutPackIconNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.FileUpdateToOneWithWhereWithoutPackIconInput, Prisma.FileUpdateWithoutPackIconInput>, Prisma.FileUncheckedUpdateWithoutPackIconInput>
 }
 
-export type FileUpdateManyWithoutPacksImageNestedInput = {
-  create?: Prisma.XOR<Prisma.FileCreateWithoutPacksImageInput, Prisma.FileUncheckedCreateWithoutPacksImageInput> | Prisma.FileCreateWithoutPacksImageInput[] | Prisma.FileUncheckedCreateWithoutPacksImageInput[]
-  connectOrCreate?: Prisma.FileCreateOrConnectWithoutPacksImageInput | Prisma.FileCreateOrConnectWithoutPacksImageInput[]
-  upsert?: Prisma.FileUpsertWithWhereUniqueWithoutPacksImageInput | Prisma.FileUpsertWithWhereUniqueWithoutPacksImageInput[]
+export type FileUpdateManyWithoutPackImageNestedInput = {
+  create?: Prisma.XOR<Prisma.FileCreateWithoutPackImageInput, Prisma.FileUncheckedCreateWithoutPackImageInput> | Prisma.FileCreateWithoutPackImageInput[] | Prisma.FileUncheckedCreateWithoutPackImageInput[]
+  connectOrCreate?: Prisma.FileCreateOrConnectWithoutPackImageInput | Prisma.FileCreateOrConnectWithoutPackImageInput[]
+  upsert?: Prisma.FileUpsertWithWhereUniqueWithoutPackImageInput | Prisma.FileUpsertWithWhereUniqueWithoutPackImageInput[]
   set?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
   disconnect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
   delete?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
   connect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
-  update?: Prisma.FileUpdateWithWhereUniqueWithoutPacksImageInput | Prisma.FileUpdateWithWhereUniqueWithoutPacksImageInput[]
-  updateMany?: Prisma.FileUpdateManyWithWhereWithoutPacksImageInput | Prisma.FileUpdateManyWithWhereWithoutPacksImageInput[]
+  update?: Prisma.FileUpdateWithWhereUniqueWithoutPackImageInput | Prisma.FileUpdateWithWhereUniqueWithoutPackImageInput[]
+  updateMany?: Prisma.FileUpdateManyWithWhereWithoutPackImageInput | Prisma.FileUpdateManyWithWhereWithoutPackImageInput[]
   deleteMany?: Prisma.FileScalarWhereInput | Prisma.FileScalarWhereInput[]
 }
 
-export type FileUncheckedUpdateManyWithoutPacksImageNestedInput = {
-  create?: Prisma.XOR<Prisma.FileCreateWithoutPacksImageInput, Prisma.FileUncheckedCreateWithoutPacksImageInput> | Prisma.FileCreateWithoutPacksImageInput[] | Prisma.FileUncheckedCreateWithoutPacksImageInput[]
-  connectOrCreate?: Prisma.FileCreateOrConnectWithoutPacksImageInput | Prisma.FileCreateOrConnectWithoutPacksImageInput[]
-  upsert?: Prisma.FileUpsertWithWhereUniqueWithoutPacksImageInput | Prisma.FileUpsertWithWhereUniqueWithoutPacksImageInput[]
+export type FileUncheckedUpdateManyWithoutPackImageNestedInput = {
+  create?: Prisma.XOR<Prisma.FileCreateWithoutPackImageInput, Prisma.FileUncheckedCreateWithoutPackImageInput> | Prisma.FileCreateWithoutPackImageInput[] | Prisma.FileUncheckedCreateWithoutPackImageInput[]
+  connectOrCreate?: Prisma.FileCreateOrConnectWithoutPackImageInput | Prisma.FileCreateOrConnectWithoutPackImageInput[]
+  upsert?: Prisma.FileUpsertWithWhereUniqueWithoutPackImageInput | Prisma.FileUpsertWithWhereUniqueWithoutPackImageInput[]
   set?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
   disconnect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
   delete?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
   connect?: Prisma.FileWhereUniqueInput | Prisma.FileWhereUniqueInput[]
-  update?: Prisma.FileUpdateWithWhereUniqueWithoutPacksImageInput | Prisma.FileUpdateWithWhereUniqueWithoutPacksImageInput[]
-  updateMany?: Prisma.FileUpdateManyWithWhereWithoutPacksImageInput | Prisma.FileUpdateManyWithWhereWithoutPacksImageInput[]
+  update?: Prisma.FileUpdateWithWhereUniqueWithoutPackImageInput | Prisma.FileUpdateWithWhereUniqueWithoutPackImageInput[]
+  updateMany?: Prisma.FileUpdateManyWithWhereWithoutPackImageInput | Prisma.FileUpdateManyWithWhereWithoutPackImageInput[]
   deleteMany?: Prisma.FileScalarWhereInput | Prisma.FileScalarWhereInput[]
 }
 
@@ -777,8 +744,8 @@ export type FileCreateWithoutLocalFileInput = {
   modImage?: Prisma.ModCreateNestedOneWithoutImagesInput
   shaderFile?: Prisma.ShaderFileCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutIconInput
-  shadeIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
-  packsImage?: Prisma.PackCreateNestedManyWithoutImagesInput
+  shaderIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
+  packImage?: Prisma.PackCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackCreateNestedOneWithoutIconInput
 }
 
@@ -790,7 +757,7 @@ export type FileUncheckedCreateWithoutLocalFileInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
-  shadeId?: string | null
+  shaderId?: string | null
   user?: Prisma.UserUncheckedCreateNestedOneWithoutAvatarInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedCreateNestedOneWithoutIconInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedCreateNestedOneWithoutIconInput
@@ -798,7 +765,7 @@ export type FileUncheckedCreateWithoutLocalFileInput = {
   modIcon?: Prisma.ModUncheckedCreateNestedOneWithoutIconInput
   shaderFile?: Prisma.ShaderFileUncheckedCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutIconInput
-  packsImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackUncheckedCreateNestedOneWithoutIconInput
 }
 
@@ -833,8 +800,8 @@ export type FileUpdateWithoutLocalFileInput = {
   modImage?: Prisma.ModUpdateOneWithoutImagesNestedInput
   shaderFile?: Prisma.ShaderFileUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutIconNestedInput
-  shadeIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
-  packsImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
+  shaderIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
+  packImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUpdateOneWithoutIconNestedInput
 }
 
@@ -846,7 +813,7 @@ export type FileUncheckedUpdateWithoutLocalFileInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUncheckedUpdateOneWithoutAvatarNestedInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedUpdateOneWithoutIconNestedInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedUpdateOneWithoutIconNestedInput
@@ -854,7 +821,7 @@ export type FileUncheckedUpdateWithoutLocalFileInput = {
   modIcon?: Prisma.ModUncheckedUpdateOneWithoutIconNestedInput
   shaderFile?: Prisma.ShaderFileUncheckedUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutIconNestedInput
-  packsImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUncheckedUpdateOneWithoutIconNestedInput
 }
 
@@ -873,8 +840,8 @@ export type FileCreateWithoutUserInput = {
   modImage?: Prisma.ModCreateNestedOneWithoutImagesInput
   shaderFile?: Prisma.ShaderFileCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutIconInput
-  shadeIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
-  packsImage?: Prisma.PackCreateNestedManyWithoutImagesInput
+  shaderIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
+  packImage?: Prisma.PackCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackCreateNestedOneWithoutIconInput
 }
 
@@ -883,18 +850,18 @@ export type FileUncheckedCreateWithoutUserInput = {
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
-  shadeId?: string | null
+  shaderId?: string | null
+  localFile?: Prisma.LocalFileUncheckedCreateNestedOneWithoutFileInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedCreateNestedOneWithoutIconInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedCreateNestedOneWithoutIconInput
   modFile?: Prisma.ModFileUncheckedCreateNestedOneWithoutFileInput
   modIcon?: Prisma.ModUncheckedCreateNestedOneWithoutIconInput
   shaderFile?: Prisma.ShaderFileUncheckedCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutIconInput
-  packsImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackUncheckedCreateNestedOneWithoutIconInput
 }
 
@@ -929,8 +896,8 @@ export type FileUpdateWithoutUserInput = {
   modImage?: Prisma.ModUpdateOneWithoutImagesNestedInput
   shaderFile?: Prisma.ShaderFileUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutIconNestedInput
-  shadeIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
-  packsImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
+  shaderIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
+  packImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUpdateOneWithoutIconNestedInput
 }
 
@@ -939,18 +906,18 @@ export type FileUncheckedUpdateWithoutUserInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localFile?: Prisma.LocalFileUncheckedUpdateOneWithoutFileNestedInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedUpdateOneWithoutIconNestedInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedUpdateOneWithoutIconNestedInput
   modFile?: Prisma.ModFileUncheckedUpdateOneWithoutFileNestedInput
   modIcon?: Prisma.ModUncheckedUpdateOneWithoutIconNestedInput
   shaderFile?: Prisma.ShaderFileUncheckedUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutIconNestedInput
-  packsImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUncheckedUpdateOneWithoutIconNestedInput
 }
 
@@ -969,8 +936,8 @@ export type FileCreateWithoutMinecraftLoaderInput = {
   modImage?: Prisma.ModCreateNestedOneWithoutImagesInput
   shaderFile?: Prisma.ShaderFileCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutIconInput
-  shadeIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
-  packsImage?: Prisma.PackCreateNestedManyWithoutImagesInput
+  shaderIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
+  packImage?: Prisma.PackCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackCreateNestedOneWithoutIconInput
 }
 
@@ -979,18 +946,18 @@ export type FileUncheckedCreateWithoutMinecraftLoaderInput = {
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
-  shadeId?: string | null
+  shaderId?: string | null
+  localFile?: Prisma.LocalFileUncheckedCreateNestedOneWithoutFileInput
   user?: Prisma.UserUncheckedCreateNestedOneWithoutAvatarInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedCreateNestedOneWithoutIconInput
   modFile?: Prisma.ModFileUncheckedCreateNestedOneWithoutFileInput
   modIcon?: Prisma.ModUncheckedCreateNestedOneWithoutIconInput
   shaderFile?: Prisma.ShaderFileUncheckedCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutIconInput
-  packsImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackUncheckedCreateNestedOneWithoutIconInput
 }
 
@@ -1025,8 +992,8 @@ export type FileUpdateWithoutMinecraftLoaderInput = {
   modImage?: Prisma.ModUpdateOneWithoutImagesNestedInput
   shaderFile?: Prisma.ShaderFileUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutIconNestedInput
-  shadeIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
-  packsImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
+  shaderIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
+  packImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUpdateOneWithoutIconNestedInput
 }
 
@@ -1035,18 +1002,18 @@ export type FileUncheckedUpdateWithoutMinecraftLoaderInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localFile?: Prisma.LocalFileUncheckedUpdateOneWithoutFileNestedInput
   user?: Prisma.UserUncheckedUpdateOneWithoutAvatarNestedInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedUpdateOneWithoutIconNestedInput
   modFile?: Prisma.ModFileUncheckedUpdateOneWithoutFileNestedInput
   modIcon?: Prisma.ModUncheckedUpdateOneWithoutIconNestedInput
   shaderFile?: Prisma.ShaderFileUncheckedUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutIconNestedInput
-  packsImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUncheckedUpdateOneWithoutIconNestedInput
 }
 
@@ -1065,8 +1032,8 @@ export type FileCreateWithoutShaderLoaderInput = {
   modImage?: Prisma.ModCreateNestedOneWithoutImagesInput
   shaderFile?: Prisma.ShaderFileCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutIconInput
-  shadeIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
-  packsImage?: Prisma.PackCreateNestedManyWithoutImagesInput
+  shaderIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
+  packImage?: Prisma.PackCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackCreateNestedOneWithoutIconInput
 }
 
@@ -1075,18 +1042,18 @@ export type FileUncheckedCreateWithoutShaderLoaderInput = {
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
-  shadeId?: string | null
+  shaderId?: string | null
+  localFile?: Prisma.LocalFileUncheckedCreateNestedOneWithoutFileInput
   user?: Prisma.UserUncheckedCreateNestedOneWithoutAvatarInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedCreateNestedOneWithoutIconInput
   modFile?: Prisma.ModFileUncheckedCreateNestedOneWithoutFileInput
   modIcon?: Prisma.ModUncheckedCreateNestedOneWithoutIconInput
   shaderFile?: Prisma.ShaderFileUncheckedCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutIconInput
-  packsImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackUncheckedCreateNestedOneWithoutIconInput
 }
 
@@ -1121,8 +1088,8 @@ export type FileUpdateWithoutShaderLoaderInput = {
   modImage?: Prisma.ModUpdateOneWithoutImagesNestedInput
   shaderFile?: Prisma.ShaderFileUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutIconNestedInput
-  shadeIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
-  packsImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
+  shaderIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
+  packImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUpdateOneWithoutIconNestedInput
 }
 
@@ -1131,18 +1098,18 @@ export type FileUncheckedUpdateWithoutShaderLoaderInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localFile?: Prisma.LocalFileUncheckedUpdateOneWithoutFileNestedInput
   user?: Prisma.UserUncheckedUpdateOneWithoutAvatarNestedInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedUpdateOneWithoutIconNestedInput
   modFile?: Prisma.ModFileUncheckedUpdateOneWithoutFileNestedInput
   modIcon?: Prisma.ModUncheckedUpdateOneWithoutIconNestedInput
   shaderFile?: Prisma.ShaderFileUncheckedUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutIconNestedInput
-  packsImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUncheckedUpdateOneWithoutIconNestedInput
 }
 
@@ -1161,8 +1128,8 @@ export type FileCreateWithoutModFileInput = {
   modImage?: Prisma.ModCreateNestedOneWithoutImagesInput
   shaderFile?: Prisma.ShaderFileCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutIconInput
-  shadeIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
-  packsImage?: Prisma.PackCreateNestedManyWithoutImagesInput
+  shaderIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
+  packImage?: Prisma.PackCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackCreateNestedOneWithoutIconInput
 }
 
@@ -1171,18 +1138,18 @@ export type FileUncheckedCreateWithoutModFileInput = {
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
-  shadeId?: string | null
+  shaderId?: string | null
+  localFile?: Prisma.LocalFileUncheckedCreateNestedOneWithoutFileInput
   user?: Prisma.UserUncheckedCreateNestedOneWithoutAvatarInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedCreateNestedOneWithoutIconInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedCreateNestedOneWithoutIconInput
   modIcon?: Prisma.ModUncheckedCreateNestedOneWithoutIconInput
   shaderFile?: Prisma.ShaderFileUncheckedCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutIconInput
-  packsImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackUncheckedCreateNestedOneWithoutIconInput
 }
 
@@ -1217,8 +1184,8 @@ export type FileUpdateWithoutModFileInput = {
   modImage?: Prisma.ModUpdateOneWithoutImagesNestedInput
   shaderFile?: Prisma.ShaderFileUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutIconNestedInput
-  shadeIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
-  packsImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
+  shaderIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
+  packImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUpdateOneWithoutIconNestedInput
 }
 
@@ -1227,18 +1194,18 @@ export type FileUncheckedUpdateWithoutModFileInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localFile?: Prisma.LocalFileUncheckedUpdateOneWithoutFileNestedInput
   user?: Prisma.UserUncheckedUpdateOneWithoutAvatarNestedInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedUpdateOneWithoutIconNestedInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedUpdateOneWithoutIconNestedInput
   modIcon?: Prisma.ModUncheckedUpdateOneWithoutIconNestedInput
   shaderFile?: Prisma.ShaderFileUncheckedUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutIconNestedInput
-  packsImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUncheckedUpdateOneWithoutIconNestedInput
 }
 
@@ -1257,8 +1224,8 @@ export type FileCreateWithoutModIconInput = {
   modImage?: Prisma.ModCreateNestedOneWithoutImagesInput
   shaderFile?: Prisma.ShaderFileCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutIconInput
-  shadeIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
-  packsImage?: Prisma.PackCreateNestedManyWithoutImagesInput
+  shaderIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
+  packImage?: Prisma.PackCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackCreateNestedOneWithoutIconInput
 }
 
@@ -1267,18 +1234,18 @@ export type FileUncheckedCreateWithoutModIconInput = {
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
-  shadeId?: string | null
+  shaderId?: string | null
+  localFile?: Prisma.LocalFileUncheckedCreateNestedOneWithoutFileInput
   user?: Prisma.UserUncheckedCreateNestedOneWithoutAvatarInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedCreateNestedOneWithoutIconInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedCreateNestedOneWithoutIconInput
   modFile?: Prisma.ModFileUncheckedCreateNestedOneWithoutFileInput
   shaderFile?: Prisma.ShaderFileUncheckedCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutIconInput
-  packsImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackUncheckedCreateNestedOneWithoutIconInput
 }
 
@@ -1302,8 +1269,8 @@ export type FileCreateWithoutModImageInput = {
   modIcon?: Prisma.ModCreateNestedOneWithoutIconInput
   shaderFile?: Prisma.ShaderFileCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutIconInput
-  shadeIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
-  packsImage?: Prisma.PackCreateNestedManyWithoutImagesInput
+  shaderIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
+  packImage?: Prisma.PackCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackCreateNestedOneWithoutIconInput
 }
 
@@ -1312,10 +1279,10 @@ export type FileUncheckedCreateWithoutModImageInput = {
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shadeId?: string | null
+  shaderId?: string | null
+  localFile?: Prisma.LocalFileUncheckedCreateNestedOneWithoutFileInput
   user?: Prisma.UserUncheckedCreateNestedOneWithoutAvatarInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedCreateNestedOneWithoutIconInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedCreateNestedOneWithoutIconInput
@@ -1323,7 +1290,7 @@ export type FileUncheckedCreateWithoutModImageInput = {
   modIcon?: Prisma.ModUncheckedCreateNestedOneWithoutIconInput
   shaderFile?: Prisma.ShaderFileUncheckedCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutIconInput
-  packsImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackUncheckedCreateNestedOneWithoutIconInput
 }
 
@@ -1363,8 +1330,8 @@ export type FileUpdateWithoutModIconInput = {
   modImage?: Prisma.ModUpdateOneWithoutImagesNestedInput
   shaderFile?: Prisma.ShaderFileUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutIconNestedInput
-  shadeIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
-  packsImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
+  shaderIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
+  packImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUpdateOneWithoutIconNestedInput
 }
 
@@ -1373,18 +1340,18 @@ export type FileUncheckedUpdateWithoutModIconInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localFile?: Prisma.LocalFileUncheckedUpdateOneWithoutFileNestedInput
   user?: Prisma.UserUncheckedUpdateOneWithoutAvatarNestedInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedUpdateOneWithoutIconNestedInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedUpdateOneWithoutIconNestedInput
   modFile?: Prisma.ModFileUncheckedUpdateOneWithoutFileNestedInput
   shaderFile?: Prisma.ShaderFileUncheckedUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutIconNestedInput
-  packsImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUncheckedUpdateOneWithoutIconNestedInput
 }
 
@@ -1412,11 +1379,10 @@ export type FileScalarWhereInput = {
   name?: Prisma.StringFilter<"File"> | string
   role?: Prisma.StringFilter<"File"> | string
   externalUrl?: Prisma.StringNullableFilter<"File"> | string | null
-  localFileid?: Prisma.StringNullableFilter<"File"> | string | null
   createdAt?: Prisma.DateTimeFilter<"File"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"File"> | Date | string
   modId?: Prisma.StringNullableFilter<"File"> | string | null
-  shadeId?: Prisma.StringNullableFilter<"File"> | string | null
+  shaderId?: Prisma.StringNullableFilter<"File"> | string | null
 }
 
 export type FileCreateWithoutShaderFileInput = {
@@ -1434,8 +1400,8 @@ export type FileCreateWithoutShaderFileInput = {
   modIcon?: Prisma.ModCreateNestedOneWithoutIconInput
   modImage?: Prisma.ModCreateNestedOneWithoutImagesInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutIconInput
-  shadeIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
-  packsImage?: Prisma.PackCreateNestedManyWithoutImagesInput
+  shaderIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
+  packImage?: Prisma.PackCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackCreateNestedOneWithoutIconInput
 }
 
@@ -1444,18 +1410,18 @@ export type FileUncheckedCreateWithoutShaderFileInput = {
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
-  shadeId?: string | null
+  shaderId?: string | null
+  localFile?: Prisma.LocalFileUncheckedCreateNestedOneWithoutFileInput
   user?: Prisma.UserUncheckedCreateNestedOneWithoutAvatarInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedCreateNestedOneWithoutIconInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedCreateNestedOneWithoutIconInput
   modFile?: Prisma.ModFileUncheckedCreateNestedOneWithoutFileInput
   modIcon?: Prisma.ModUncheckedCreateNestedOneWithoutIconInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutIconInput
-  packsImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackUncheckedCreateNestedOneWithoutIconInput
 }
 
@@ -1490,8 +1456,8 @@ export type FileUpdateWithoutShaderFileInput = {
   modIcon?: Prisma.ModUpdateOneWithoutIconNestedInput
   modImage?: Prisma.ModUpdateOneWithoutImagesNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutIconNestedInput
-  shadeIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
-  packsImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
+  shaderIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
+  packImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUpdateOneWithoutIconNestedInput
 }
 
@@ -1500,18 +1466,18 @@ export type FileUncheckedUpdateWithoutShaderFileInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localFile?: Prisma.LocalFileUncheckedUpdateOneWithoutFileNestedInput
   user?: Prisma.UserUncheckedUpdateOneWithoutAvatarNestedInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedUpdateOneWithoutIconNestedInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedUpdateOneWithoutIconNestedInput
   modFile?: Prisma.ModFileUncheckedUpdateOneWithoutFileNestedInput
   modIcon?: Prisma.ModUncheckedUpdateOneWithoutIconNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutIconNestedInput
-  packsImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUncheckedUpdateOneWithoutIconNestedInput
 }
 
@@ -1530,8 +1496,8 @@ export type FileCreateWithoutShadersInput = {
   modIcon?: Prisma.ModCreateNestedOneWithoutIconInput
   modImage?: Prisma.ModCreateNestedOneWithoutImagesInput
   shaderFile?: Prisma.ShaderFileCreateNestedOneWithoutFileInput
-  shadeIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
-  packsImage?: Prisma.PackCreateNestedManyWithoutImagesInput
+  shaderIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
+  packImage?: Prisma.PackCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackCreateNestedOneWithoutIconInput
 }
 
@@ -1540,18 +1506,18 @@ export type FileUncheckedCreateWithoutShadersInput = {
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
-  shadeId?: string | null
+  shaderId?: string | null
+  localFile?: Prisma.LocalFileUncheckedCreateNestedOneWithoutFileInput
   user?: Prisma.UserUncheckedCreateNestedOneWithoutAvatarInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedCreateNestedOneWithoutIconInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedCreateNestedOneWithoutIconInput
   modFile?: Prisma.ModFileUncheckedCreateNestedOneWithoutFileInput
   modIcon?: Prisma.ModUncheckedCreateNestedOneWithoutIconInput
   shaderFile?: Prisma.ShaderFileUncheckedCreateNestedOneWithoutFileInput
-  packsImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackUncheckedCreateNestedOneWithoutIconInput
 }
 
@@ -1560,7 +1526,7 @@ export type FileCreateOrConnectWithoutShadersInput = {
   create: Prisma.XOR<Prisma.FileCreateWithoutShadersInput, Prisma.FileUncheckedCreateWithoutShadersInput>
 }
 
-export type FileCreateWithoutShadeIconInput = {
+export type FileCreateWithoutShaderIconInput = {
   id?: string
   name: string
   role: string
@@ -1576,19 +1542,19 @@ export type FileCreateWithoutShadeIconInput = {
   modImage?: Prisma.ModCreateNestedOneWithoutImagesInput
   shaderFile?: Prisma.ShaderFileCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutIconInput
-  packsImage?: Prisma.PackCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackCreateNestedOneWithoutIconInput
 }
 
-export type FileUncheckedCreateWithoutShadeIconInput = {
+export type FileUncheckedCreateWithoutShaderIconInput = {
   id?: string
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
+  localFile?: Prisma.LocalFileUncheckedCreateNestedOneWithoutFileInput
   user?: Prisma.UserUncheckedCreateNestedOneWithoutAvatarInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedCreateNestedOneWithoutIconInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedCreateNestedOneWithoutIconInput
@@ -1596,17 +1562,17 @@ export type FileUncheckedCreateWithoutShadeIconInput = {
   modIcon?: Prisma.ModUncheckedCreateNestedOneWithoutIconInput
   shaderFile?: Prisma.ShaderFileUncheckedCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutIconInput
-  packsImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
   packIcon?: Prisma.PackUncheckedCreateNestedOneWithoutIconInput
 }
 
-export type FileCreateOrConnectWithoutShadeIconInput = {
+export type FileCreateOrConnectWithoutShaderIconInput = {
   where: Prisma.FileWhereUniqueInput
-  create: Prisma.XOR<Prisma.FileCreateWithoutShadeIconInput, Prisma.FileUncheckedCreateWithoutShadeIconInput>
+  create: Prisma.XOR<Prisma.FileCreateWithoutShaderIconInput, Prisma.FileUncheckedCreateWithoutShaderIconInput>
 }
 
-export type FileCreateManyShadeIconInputEnvelope = {
-  data: Prisma.FileCreateManyShadeIconInput | Prisma.FileCreateManyShadeIconInput[]
+export type FileCreateManyShaderIconInputEnvelope = {
+  data: Prisma.FileCreateManyShaderIconInput | Prisma.FileCreateManyShaderIconInput[]
   skipDuplicates?: boolean
 }
 
@@ -1636,8 +1602,8 @@ export type FileUpdateWithoutShadersInput = {
   modIcon?: Prisma.ModUpdateOneWithoutIconNestedInput
   modImage?: Prisma.ModUpdateOneWithoutImagesNestedInput
   shaderFile?: Prisma.ShaderFileUpdateOneWithoutFileNestedInput
-  shadeIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
-  packsImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
+  shaderIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
+  packImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUpdateOneWithoutIconNestedInput
 }
 
@@ -1646,35 +1612,35 @@ export type FileUncheckedUpdateWithoutShadersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localFile?: Prisma.LocalFileUncheckedUpdateOneWithoutFileNestedInput
   user?: Prisma.UserUncheckedUpdateOneWithoutAvatarNestedInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedUpdateOneWithoutIconNestedInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedUpdateOneWithoutIconNestedInput
   modFile?: Prisma.ModFileUncheckedUpdateOneWithoutFileNestedInput
   modIcon?: Prisma.ModUncheckedUpdateOneWithoutIconNestedInput
   shaderFile?: Prisma.ShaderFileUncheckedUpdateOneWithoutFileNestedInput
-  packsImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUncheckedUpdateOneWithoutIconNestedInput
 }
 
-export type FileUpsertWithWhereUniqueWithoutShadeIconInput = {
+export type FileUpsertWithWhereUniqueWithoutShaderIconInput = {
   where: Prisma.FileWhereUniqueInput
-  update: Prisma.XOR<Prisma.FileUpdateWithoutShadeIconInput, Prisma.FileUncheckedUpdateWithoutShadeIconInput>
-  create: Prisma.XOR<Prisma.FileCreateWithoutShadeIconInput, Prisma.FileUncheckedCreateWithoutShadeIconInput>
+  update: Prisma.XOR<Prisma.FileUpdateWithoutShaderIconInput, Prisma.FileUncheckedUpdateWithoutShaderIconInput>
+  create: Prisma.XOR<Prisma.FileCreateWithoutShaderIconInput, Prisma.FileUncheckedCreateWithoutShaderIconInput>
 }
 
-export type FileUpdateWithWhereUniqueWithoutShadeIconInput = {
+export type FileUpdateWithWhereUniqueWithoutShaderIconInput = {
   where: Prisma.FileWhereUniqueInput
-  data: Prisma.XOR<Prisma.FileUpdateWithoutShadeIconInput, Prisma.FileUncheckedUpdateWithoutShadeIconInput>
+  data: Prisma.XOR<Prisma.FileUpdateWithoutShaderIconInput, Prisma.FileUncheckedUpdateWithoutShaderIconInput>
 }
 
-export type FileUpdateManyWithWhereWithoutShadeIconInput = {
+export type FileUpdateManyWithWhereWithoutShaderIconInput = {
   where: Prisma.FileScalarWhereInput
-  data: Prisma.XOR<Prisma.FileUpdateManyMutationInput, Prisma.FileUncheckedUpdateManyWithoutShadeIconInput>
+  data: Prisma.XOR<Prisma.FileUpdateManyMutationInput, Prisma.FileUncheckedUpdateManyWithoutShaderIconInput>
 }
 
 export type FileCreateWithoutPackIconInput = {
@@ -1693,8 +1659,8 @@ export type FileCreateWithoutPackIconInput = {
   modImage?: Prisma.ModCreateNestedOneWithoutImagesInput
   shaderFile?: Prisma.ShaderFileCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutIconInput
-  shadeIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
-  packsImage?: Prisma.PackCreateNestedManyWithoutImagesInput
+  shaderIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
+  packImage?: Prisma.PackCreateNestedManyWithoutImagesInput
 }
 
 export type FileUncheckedCreateWithoutPackIconInput = {
@@ -1702,11 +1668,11 @@ export type FileUncheckedCreateWithoutPackIconInput = {
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
-  shadeId?: string | null
+  shaderId?: string | null
+  localFile?: Prisma.LocalFileUncheckedCreateNestedOneWithoutFileInput
   user?: Prisma.UserUncheckedCreateNestedOneWithoutAvatarInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedCreateNestedOneWithoutIconInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedCreateNestedOneWithoutIconInput
@@ -1714,7 +1680,7 @@ export type FileUncheckedCreateWithoutPackIconInput = {
   modIcon?: Prisma.ModUncheckedCreateNestedOneWithoutIconInput
   shaderFile?: Prisma.ShaderFileUncheckedCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderUncheckedCreateNestedManyWithoutIconInput
-  packsImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
+  packImage?: Prisma.PackUncheckedCreateNestedManyWithoutImagesInput
 }
 
 export type FileCreateOrConnectWithoutPackIconInput = {
@@ -1722,7 +1688,7 @@ export type FileCreateOrConnectWithoutPackIconInput = {
   create: Prisma.XOR<Prisma.FileCreateWithoutPackIconInput, Prisma.FileUncheckedCreateWithoutPackIconInput>
 }
 
-export type FileCreateWithoutPacksImageInput = {
+export type FileCreateWithoutPackImageInput = {
   id?: string
   name: string
   role: string
@@ -1738,20 +1704,20 @@ export type FileCreateWithoutPacksImageInput = {
   modImage?: Prisma.ModCreateNestedOneWithoutImagesInput
   shaderFile?: Prisma.ShaderFileCreateNestedOneWithoutFileInput
   shaders?: Prisma.ShaderCreateNestedManyWithoutIconInput
-  shadeIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
+  shaderIcon?: Prisma.ShaderCreateNestedOneWithoutImagesInput
   packIcon?: Prisma.PackCreateNestedOneWithoutIconInput
 }
 
-export type FileUncheckedCreateWithoutPacksImageInput = {
+export type FileUncheckedCreateWithoutPackImageInput = {
   id?: string
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
-  shadeId?: string | null
+  shaderId?: string | null
+  localFile?: Prisma.LocalFileUncheckedCreateNestedOneWithoutFileInput
   user?: Prisma.UserUncheckedCreateNestedOneWithoutAvatarInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedCreateNestedOneWithoutIconInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedCreateNestedOneWithoutIconInput
@@ -1762,9 +1728,9 @@ export type FileUncheckedCreateWithoutPacksImageInput = {
   packIcon?: Prisma.PackUncheckedCreateNestedOneWithoutIconInput
 }
 
-export type FileCreateOrConnectWithoutPacksImageInput = {
+export type FileCreateOrConnectWithoutPackImageInput = {
   where: Prisma.FileWhereUniqueInput
-  create: Prisma.XOR<Prisma.FileCreateWithoutPacksImageInput, Prisma.FileUncheckedCreateWithoutPacksImageInput>
+  create: Prisma.XOR<Prisma.FileCreateWithoutPackImageInput, Prisma.FileUncheckedCreateWithoutPackImageInput>
 }
 
 export type FileUpsertWithoutPackIconInput = {
@@ -1794,8 +1760,8 @@ export type FileUpdateWithoutPackIconInput = {
   modImage?: Prisma.ModUpdateOneWithoutImagesNestedInput
   shaderFile?: Prisma.ShaderFileUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutIconNestedInput
-  shadeIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
-  packsImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
+  shaderIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
+  packImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
 }
 
 export type FileUncheckedUpdateWithoutPackIconInput = {
@@ -1803,11 +1769,11 @@ export type FileUncheckedUpdateWithoutPackIconInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localFile?: Prisma.LocalFileUncheckedUpdateOneWithoutFileNestedInput
   user?: Prisma.UserUncheckedUpdateOneWithoutAvatarNestedInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedUpdateOneWithoutIconNestedInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedUpdateOneWithoutIconNestedInput
@@ -1815,23 +1781,23 @@ export type FileUncheckedUpdateWithoutPackIconInput = {
   modIcon?: Prisma.ModUncheckedUpdateOneWithoutIconNestedInput
   shaderFile?: Prisma.ShaderFileUncheckedUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutIconNestedInput
-  packsImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
 }
 
-export type FileUpsertWithWhereUniqueWithoutPacksImageInput = {
+export type FileUpsertWithWhereUniqueWithoutPackImageInput = {
   where: Prisma.FileWhereUniqueInput
-  update: Prisma.XOR<Prisma.FileUpdateWithoutPacksImageInput, Prisma.FileUncheckedUpdateWithoutPacksImageInput>
-  create: Prisma.XOR<Prisma.FileCreateWithoutPacksImageInput, Prisma.FileUncheckedCreateWithoutPacksImageInput>
+  update: Prisma.XOR<Prisma.FileUpdateWithoutPackImageInput, Prisma.FileUncheckedUpdateWithoutPackImageInput>
+  create: Prisma.XOR<Prisma.FileCreateWithoutPackImageInput, Prisma.FileUncheckedCreateWithoutPackImageInput>
 }
 
-export type FileUpdateWithWhereUniqueWithoutPacksImageInput = {
+export type FileUpdateWithWhereUniqueWithoutPackImageInput = {
   where: Prisma.FileWhereUniqueInput
-  data: Prisma.XOR<Prisma.FileUpdateWithoutPacksImageInput, Prisma.FileUncheckedUpdateWithoutPacksImageInput>
+  data: Prisma.XOR<Prisma.FileUpdateWithoutPackImageInput, Prisma.FileUncheckedUpdateWithoutPackImageInput>
 }
 
-export type FileUpdateManyWithWhereWithoutPacksImageInput = {
+export type FileUpdateManyWithWhereWithoutPackImageInput = {
   where: Prisma.FileScalarWhereInput
-  data: Prisma.XOR<Prisma.FileUpdateManyMutationInput, Prisma.FileUncheckedUpdateManyWithoutPacksImageInput>
+  data: Prisma.XOR<Prisma.FileUpdateManyMutationInput, Prisma.FileUncheckedUpdateManyWithoutPackImageInput>
 }
 
 export type FileCreateManyModImageInput = {
@@ -1839,10 +1805,9 @@ export type FileCreateManyModImageInput = {
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  shadeId?: string | null
+  shaderId?: string | null
 }
 
 export type FileUpdateWithoutModImageInput = {
@@ -1860,8 +1825,8 @@ export type FileUpdateWithoutModImageInput = {
   modIcon?: Prisma.ModUpdateOneWithoutIconNestedInput
   shaderFile?: Prisma.ShaderFileUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutIconNestedInput
-  shadeIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
-  packsImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
+  shaderIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
+  packImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUpdateOneWithoutIconNestedInput
 }
 
@@ -1870,10 +1835,10 @@ export type FileUncheckedUpdateWithoutModImageInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localFile?: Prisma.LocalFileUncheckedUpdateOneWithoutFileNestedInput
   user?: Prisma.UserUncheckedUpdateOneWithoutAvatarNestedInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedUpdateOneWithoutIconNestedInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedUpdateOneWithoutIconNestedInput
@@ -1881,7 +1846,7 @@ export type FileUncheckedUpdateWithoutModImageInput = {
   modIcon?: Prisma.ModUncheckedUpdateOneWithoutIconNestedInput
   shaderFile?: Prisma.ShaderFileUncheckedUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutIconNestedInput
-  packsImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUncheckedUpdateOneWithoutIconNestedInput
 }
 
@@ -1890,24 +1855,22 @@ export type FileUncheckedUpdateManyWithoutModImageInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type FileCreateManyShadeIconInput = {
+export type FileCreateManyShaderIconInput = {
   id?: string
   name: string
   role: string
   externalUrl?: string | null
-  localFileid?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   modId?: string | null
 }
 
-export type FileUpdateWithoutShadeIconInput = {
+export type FileUpdateWithoutShaderIconInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1923,19 +1886,19 @@ export type FileUpdateWithoutShadeIconInput = {
   modImage?: Prisma.ModUpdateOneWithoutImagesNestedInput
   shaderFile?: Prisma.ShaderFileUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutIconNestedInput
-  packsImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUpdateOneWithoutIconNestedInput
 }
 
-export type FileUncheckedUpdateWithoutShadeIconInput = {
+export type FileUncheckedUpdateWithoutShaderIconInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localFile?: Prisma.LocalFileUncheckedUpdateOneWithoutFileNestedInput
   user?: Prisma.UserUncheckedUpdateOneWithoutAvatarNestedInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedUpdateOneWithoutIconNestedInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedUpdateOneWithoutIconNestedInput
@@ -1943,22 +1906,21 @@ export type FileUncheckedUpdateWithoutShadeIconInput = {
   modIcon?: Prisma.ModUncheckedUpdateOneWithoutIconNestedInput
   shaderFile?: Prisma.ShaderFileUncheckedUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUncheckedUpdateManyWithoutIconNestedInput
-  packsImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
+  packImage?: Prisma.PackUncheckedUpdateManyWithoutImagesNestedInput
   packIcon?: Prisma.PackUncheckedUpdateOneWithoutIconNestedInput
 }
 
-export type FileUncheckedUpdateManyWithoutShadeIconInput = {
+export type FileUncheckedUpdateManyWithoutShaderIconInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type FileUpdateWithoutPacksImageInput = {
+export type FileUpdateWithoutPackImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1974,20 +1936,20 @@ export type FileUpdateWithoutPacksImageInput = {
   modImage?: Prisma.ModUpdateOneWithoutImagesNestedInput
   shaderFile?: Prisma.ShaderFileUpdateOneWithoutFileNestedInput
   shaders?: Prisma.ShaderUpdateManyWithoutIconNestedInput
-  shadeIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
+  shaderIcon?: Prisma.ShaderUpdateOneWithoutImagesNestedInput
   packIcon?: Prisma.PackUpdateOneWithoutIconNestedInput
 }
 
-export type FileUncheckedUpdateWithoutPacksImageInput = {
+export type FileUncheckedUpdateWithoutPackImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localFile?: Prisma.LocalFileUncheckedUpdateOneWithoutFileNestedInput
   user?: Prisma.UserUncheckedUpdateOneWithoutAvatarNestedInput
   minecraftLoader?: Prisma.MinecraftLoaderUncheckedUpdateOneWithoutIconNestedInput
   shaderLoader?: Prisma.ShaderLoaderUncheckedUpdateOneWithoutIconNestedInput
@@ -1998,16 +1960,15 @@ export type FileUncheckedUpdateWithoutPacksImageInput = {
   packIcon?: Prisma.PackUncheckedUpdateOneWithoutIconNestedInput
 }
 
-export type FileUncheckedUpdateManyWithoutPacksImageInput = {
+export type FileUncheckedUpdateManyWithoutPackImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   externalUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  localFileid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   modId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  shadeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  shaderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -2017,12 +1978,12 @@ export type FileUncheckedUpdateManyWithoutPacksImageInput = {
 
 export type FileCountOutputType = {
   shaders: number
-  packsImage: number
+  packImage: number
 }
 
 export type FileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   shaders?: boolean | FileCountOutputTypeCountShadersArgs
-  packsImage?: boolean | FileCountOutputTypeCountPacksImageArgs
+  packImage?: boolean | FileCountOutputTypeCountPackImageArgs
 }
 
 /**
@@ -2045,7 +2006,7 @@ export type FileCountOutputTypeCountShadersArgs<ExtArgs extends runtime.Types.Ex
 /**
  * FileCountOutputType without action
  */
-export type FileCountOutputTypeCountPacksImageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type FileCountOutputTypeCountPackImageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PackWhereInput
 }
 
@@ -2055,11 +2016,10 @@ export type FileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   name?: boolean
   role?: boolean
   externalUrl?: boolean
-  localFileid?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   modId?: boolean
-  shadeId?: boolean
+  shaderId?: boolean
   localFile?: boolean | Prisma.File$localFileArgs<ExtArgs>
   user?: boolean | Prisma.File$userArgs<ExtArgs>
   minecraftLoader?: boolean | Prisma.File$minecraftLoaderArgs<ExtArgs>
@@ -2069,8 +2029,8 @@ export type FileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   modImage?: boolean | Prisma.File$modImageArgs<ExtArgs>
   shaderFile?: boolean | Prisma.File$shaderFileArgs<ExtArgs>
   shaders?: boolean | Prisma.File$shadersArgs<ExtArgs>
-  shadeIcon?: boolean | Prisma.File$shadeIconArgs<ExtArgs>
-  packsImage?: boolean | Prisma.File$packsImageArgs<ExtArgs>
+  shaderIcon?: boolean | Prisma.File$shaderIconArgs<ExtArgs>
+  packImage?: boolean | Prisma.File$packImageArgs<ExtArgs>
   packIcon?: boolean | Prisma.File$packIconArgs<ExtArgs>
   _count?: boolean | Prisma.FileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["file"]>
@@ -2080,14 +2040,12 @@ export type FileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   role?: boolean
   externalUrl?: boolean
-  localFileid?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   modId?: boolean
-  shadeId?: boolean
-  localFile?: boolean | Prisma.File$localFileArgs<ExtArgs>
+  shaderId?: boolean
   modImage?: boolean | Prisma.File$modImageArgs<ExtArgs>
-  shadeIcon?: boolean | Prisma.File$shadeIconArgs<ExtArgs>
+  shaderIcon?: boolean | Prisma.File$shaderIconArgs<ExtArgs>
 }, ExtArgs["result"]["file"]>
 
 export type FileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2095,14 +2053,12 @@ export type FileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   role?: boolean
   externalUrl?: boolean
-  localFileid?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   modId?: boolean
-  shadeId?: boolean
-  localFile?: boolean | Prisma.File$localFileArgs<ExtArgs>
+  shaderId?: boolean
   modImage?: boolean | Prisma.File$modImageArgs<ExtArgs>
-  shadeIcon?: boolean | Prisma.File$shadeIconArgs<ExtArgs>
+  shaderIcon?: boolean | Prisma.File$shaderIconArgs<ExtArgs>
 }, ExtArgs["result"]["file"]>
 
 export type FileSelectScalar = {
@@ -2110,14 +2066,13 @@ export type FileSelectScalar = {
   name?: boolean
   role?: boolean
   externalUrl?: boolean
-  localFileid?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   modId?: boolean
-  shadeId?: boolean
+  shaderId?: boolean
 }
 
-export type FileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "role" | "externalUrl" | "localFileid" | "createdAt" | "updatedAt" | "modId" | "shadeId", ExtArgs["result"]["file"]>
+export type FileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "role" | "externalUrl" | "createdAt" | "updatedAt" | "modId" | "shaderId", ExtArgs["result"]["file"]>
 export type FileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   localFile?: boolean | Prisma.File$localFileArgs<ExtArgs>
   user?: boolean | Prisma.File$userArgs<ExtArgs>
@@ -2128,20 +2083,18 @@ export type FileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   modImage?: boolean | Prisma.File$modImageArgs<ExtArgs>
   shaderFile?: boolean | Prisma.File$shaderFileArgs<ExtArgs>
   shaders?: boolean | Prisma.File$shadersArgs<ExtArgs>
-  shadeIcon?: boolean | Prisma.File$shadeIconArgs<ExtArgs>
-  packsImage?: boolean | Prisma.File$packsImageArgs<ExtArgs>
+  shaderIcon?: boolean | Prisma.File$shaderIconArgs<ExtArgs>
+  packImage?: boolean | Prisma.File$packImageArgs<ExtArgs>
   packIcon?: boolean | Prisma.File$packIconArgs<ExtArgs>
   _count?: boolean | Prisma.FileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type FileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  localFile?: boolean | Prisma.File$localFileArgs<ExtArgs>
   modImage?: boolean | Prisma.File$modImageArgs<ExtArgs>
-  shadeIcon?: boolean | Prisma.File$shadeIconArgs<ExtArgs>
+  shaderIcon?: boolean | Prisma.File$shaderIconArgs<ExtArgs>
 }
 export type FileIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  localFile?: boolean | Prisma.File$localFileArgs<ExtArgs>
   modImage?: boolean | Prisma.File$modImageArgs<ExtArgs>
-  shadeIcon?: boolean | Prisma.File$shadeIconArgs<ExtArgs>
+  shaderIcon?: boolean | Prisma.File$shaderIconArgs<ExtArgs>
 }
 
 export type $FilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2156,8 +2109,8 @@ export type $FilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     modImage: Prisma.$ModPayload<ExtArgs> | null
     shaderFile: Prisma.$ShaderFilePayload<ExtArgs> | null
     shaders: Prisma.$ShaderPayload<ExtArgs>[]
-    shadeIcon: Prisma.$ShaderPayload<ExtArgs> | null
-    packsImage: Prisma.$PackPayload<ExtArgs>[]
+    shaderIcon: Prisma.$ShaderPayload<ExtArgs> | null
+    packImage: Prisma.$PackPayload<ExtArgs>[]
     packIcon: Prisma.$PackPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -2165,11 +2118,10 @@ export type $FilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     name: string
     role: string
     externalUrl: string | null
-    localFileid: string | null
     createdAt: Date
     updatedAt: Date
     modId: string | null
-    shadeId: string | null
+    shaderId: string | null
   }, ExtArgs["result"]["file"]>
   composites: {}
 }
@@ -2573,8 +2525,8 @@ export interface Prisma__FileClient<T, Null = never, ExtArgs extends runtime.Typ
   modImage<T extends Prisma.File$modImageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.File$modImageArgs<ExtArgs>>): Prisma.Prisma__ModClient<runtime.Types.Result.GetResult<Prisma.$ModPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   shaderFile<T extends Prisma.File$shaderFileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.File$shaderFileArgs<ExtArgs>>): Prisma.Prisma__ShaderFileClient<runtime.Types.Result.GetResult<Prisma.$ShaderFilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   shaders<T extends Prisma.File$shadersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.File$shadersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShaderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  shadeIcon<T extends Prisma.File$shadeIconArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.File$shadeIconArgs<ExtArgs>>): Prisma.Prisma__ShaderClient<runtime.Types.Result.GetResult<Prisma.$ShaderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  packsImage<T extends Prisma.File$packsImageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.File$packsImageArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shaderIcon<T extends Prisma.File$shaderIconArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.File$shaderIconArgs<ExtArgs>>): Prisma.Prisma__ShaderClient<runtime.Types.Result.GetResult<Prisma.$ShaderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  packImage<T extends Prisma.File$packImageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.File$packImageArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   packIcon<T extends Prisma.File$packIconArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.File$packIconArgs<ExtArgs>>): Prisma.Prisma__PackClient<runtime.Types.Result.GetResult<Prisma.$PackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2609,11 +2561,10 @@ export interface FileFieldRefs {
   readonly name: Prisma.FieldRef<"File", 'String'>
   readonly role: Prisma.FieldRef<"File", 'String'>
   readonly externalUrl: Prisma.FieldRef<"File", 'String'>
-  readonly localFileid: Prisma.FieldRef<"File", 'String'>
   readonly createdAt: Prisma.FieldRef<"File", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"File", 'DateTime'>
   readonly modId: Prisma.FieldRef<"File", 'String'>
-  readonly shadeId: Prisma.FieldRef<"File", 'String'>
+  readonly shaderId: Prisma.FieldRef<"File", 'String'>
 }
     
 
@@ -3191,9 +3142,9 @@ export type File$shadersArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 /**
- * File.shadeIcon
+ * File.shaderIcon
  */
-export type File$shadeIconArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type File$shaderIconArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Shader
    */
@@ -3210,9 +3161,9 @@ export type File$shadeIconArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * File.packsImage
+ * File.packImage
  */
-export type File$packsImageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type File$packImageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Pack
    */

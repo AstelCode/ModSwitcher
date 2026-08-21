@@ -11,7 +11,6 @@ export class AuthUseCase {
   async execute(email: string, password: string): Promise<void> {
     const { userRepository, tokenService, hashService, tokenStorageService } =
       this.deps;
-
     const user = await userRepository.getByEmail(email);
     if (!user) throw new Error("User not found");
     const isValid = await hashService.compare(user.password, password);

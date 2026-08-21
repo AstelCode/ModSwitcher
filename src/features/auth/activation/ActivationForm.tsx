@@ -1,6 +1,4 @@
 "use client";
-import { ActivateUserAction } from "@/app/actions/user/auth/activation/ActivateUser.action";
-import { ResendActivationEmailAction } from "@/app/actions/user/auth/activation/ResendActivationEmail.action";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -9,7 +7,11 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { ROUTES } from "@/constants/routes";
+import {
+  ActivateUserAction,
+  ResendActivationEmailAction,
+} from "@/core/presentation/user";
+import { ROUTES } from "@/lib/constants/routes";
 import Link from "next/link";
 import { useState } from "react";
 

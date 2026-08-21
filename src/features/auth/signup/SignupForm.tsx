@@ -1,8 +1,4 @@
 "use client";
-import {
-  RegisterUserAction,
-  RegisterUserActionState,
-} from "@/app/actions/user/signup/RegisterUser.action";
 import { SubmitButton } from "@/components/shared/SubmitButton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
@@ -22,7 +18,11 @@ import Link from "next/link";
 import { useActionState, useState } from "react";
 import { PasswordValidation } from "./PasswordValidationInput";
 import { EmailValidationInput } from "./EmailValidationInput";
-import { ROUTES } from "@/constants/routes";
+import {
+  RegisterUserAction,
+  RegisterUserActionState,
+} from "@/core/presentation/user";
+import { ROUTES } from "@/lib/constants/routes";
 const initialState: RegisterUserActionState = {};
 
 export function SignUpForm() {

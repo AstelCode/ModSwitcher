@@ -285,7 +285,7 @@ export type PackCreateInput = {
   status?: $Enums.PackStatus
   author?: Prisma.UserCreateNestedOneWithoutPacksInput
   icon?: Prisma.FileCreateNestedOneWithoutPackIconInput
-  images?: Prisma.FileCreateNestedManyWithoutPacksImageInput
+  images?: Prisma.FileCreateNestedManyWithoutPackImageInput
   packVersions?: Prisma.PackVersionCreateNestedManyWithoutPackInput
   comments?: Prisma.CommentCreateNestedManyWithoutPackInput
 }
@@ -299,7 +299,7 @@ export type PackUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: $Enums.PackStatus
-  images?: Prisma.FileUncheckedCreateNestedManyWithoutPacksImageInput
+  images?: Prisma.FileUncheckedCreateNestedManyWithoutPackImageInput
   packVersions?: Prisma.PackVersionUncheckedCreateNestedManyWithoutPackInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPackInput
 }
@@ -313,7 +313,7 @@ export type PackUpdateInput = {
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
   author?: Prisma.UserUpdateOneWithoutPacksNestedInput
   icon?: Prisma.FileUpdateOneWithoutPackIconNestedInput
-  images?: Prisma.FileUpdateManyWithoutPacksImageNestedInput
+  images?: Prisma.FileUpdateManyWithoutPackImageNestedInput
   packVersions?: Prisma.PackVersionUpdateManyWithoutPackNestedInput
   comments?: Prisma.CommentUpdateManyWithoutPackNestedInput
 }
@@ -327,7 +327,7 @@ export type PackUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
-  images?: Prisma.FileUncheckedUpdateManyWithoutPacksImageNestedInput
+  images?: Prisma.FileUncheckedUpdateManyWithoutPackImageNestedInput
   packVersions?: Prisma.PackVersionUncheckedUpdateManyWithoutPackNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutPackNestedInput
 }
@@ -601,7 +601,7 @@ export type PackCreateWithoutIconInput = {
   updatedAt?: Date | string
   status?: $Enums.PackStatus
   author?: Prisma.UserCreateNestedOneWithoutPacksInput
-  images?: Prisma.FileCreateNestedManyWithoutPacksImageInput
+  images?: Prisma.FileCreateNestedManyWithoutPackImageInput
   packVersions?: Prisma.PackVersionCreateNestedManyWithoutPackInput
   comments?: Prisma.CommentCreateNestedManyWithoutPackInput
 }
@@ -614,7 +614,7 @@ export type PackUncheckedCreateWithoutIconInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: $Enums.PackStatus
-  images?: Prisma.FileUncheckedCreateNestedManyWithoutPacksImageInput
+  images?: Prisma.FileUncheckedCreateNestedManyWithoutPackImageInput
   packVersions?: Prisma.PackVersionUncheckedCreateNestedManyWithoutPackInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPackInput
 }
@@ -673,7 +673,7 @@ export type PackUpdateWithoutIconInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
   author?: Prisma.UserUpdateOneWithoutPacksNestedInput
-  images?: Prisma.FileUpdateManyWithoutPacksImageNestedInput
+  images?: Prisma.FileUpdateManyWithoutPackImageNestedInput
   packVersions?: Prisma.PackVersionUpdateManyWithoutPackNestedInput
   comments?: Prisma.CommentUpdateManyWithoutPackNestedInput
 }
@@ -686,7 +686,7 @@ export type PackUncheckedUpdateWithoutIconInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
-  images?: Prisma.FileUncheckedUpdateManyWithoutPacksImageNestedInput
+  images?: Prisma.FileUncheckedUpdateManyWithoutPackImageNestedInput
   packVersions?: Prisma.PackVersionUncheckedUpdateManyWithoutPackNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutPackNestedInput
 }
@@ -699,7 +699,7 @@ export type PackCreateWithoutAuthorInput = {
   updatedAt?: Date | string
   status?: $Enums.PackStatus
   icon?: Prisma.FileCreateNestedOneWithoutPackIconInput
-  images?: Prisma.FileCreateNestedManyWithoutPacksImageInput
+  images?: Prisma.FileCreateNestedManyWithoutPackImageInput
   packVersions?: Prisma.PackVersionCreateNestedManyWithoutPackInput
   comments?: Prisma.CommentCreateNestedManyWithoutPackInput
 }
@@ -712,7 +712,7 @@ export type PackUncheckedCreateWithoutAuthorInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: $Enums.PackStatus
-  images?: Prisma.FileUncheckedCreateNestedManyWithoutPacksImageInput
+  images?: Prisma.FileUncheckedCreateNestedManyWithoutPackImageInput
   packVersions?: Prisma.PackVersionUncheckedCreateNestedManyWithoutPackInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPackInput
 }
@@ -752,7 +752,7 @@ export type PackCreateWithoutPackVersionsInput = {
   status?: $Enums.PackStatus
   author?: Prisma.UserCreateNestedOneWithoutPacksInput
   icon?: Prisma.FileCreateNestedOneWithoutPackIconInput
-  images?: Prisma.FileCreateNestedManyWithoutPacksImageInput
+  images?: Prisma.FileCreateNestedManyWithoutPackImageInput
   comments?: Prisma.CommentCreateNestedManyWithoutPackInput
 }
 
@@ -765,7 +765,7 @@ export type PackUncheckedCreateWithoutPackVersionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: $Enums.PackStatus
-  images?: Prisma.FileUncheckedCreateNestedManyWithoutPacksImageInput
+  images?: Prisma.FileUncheckedCreateNestedManyWithoutPackImageInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutPackInput
 }
 
@@ -794,7 +794,7 @@ export type PackUpdateWithoutPackVersionsInput = {
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
   author?: Prisma.UserUpdateOneWithoutPacksNestedInput
   icon?: Prisma.FileUpdateOneWithoutPackIconNestedInput
-  images?: Prisma.FileUpdateManyWithoutPacksImageNestedInput
+  images?: Prisma.FileUpdateManyWithoutPackImageNestedInput
   comments?: Prisma.CommentUpdateManyWithoutPackNestedInput
 }
 
@@ -807,7 +807,7 @@ export type PackUncheckedUpdateWithoutPackVersionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
-  images?: Prisma.FileUncheckedUpdateManyWithoutPacksImageNestedInput
+  images?: Prisma.FileUncheckedUpdateManyWithoutPackImageNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutPackNestedInput
 }
 
@@ -820,7 +820,7 @@ export type PackCreateWithoutCommentsInput = {
   status?: $Enums.PackStatus
   author?: Prisma.UserCreateNestedOneWithoutPacksInput
   icon?: Prisma.FileCreateNestedOneWithoutPackIconInput
-  images?: Prisma.FileCreateNestedManyWithoutPacksImageInput
+  images?: Prisma.FileCreateNestedManyWithoutPackImageInput
   packVersions?: Prisma.PackVersionCreateNestedManyWithoutPackInput
 }
 
@@ -833,7 +833,7 @@ export type PackUncheckedCreateWithoutCommentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: $Enums.PackStatus
-  images?: Prisma.FileUncheckedCreateNestedManyWithoutPacksImageInput
+  images?: Prisma.FileUncheckedCreateNestedManyWithoutPackImageInput
   packVersions?: Prisma.PackVersionUncheckedCreateNestedManyWithoutPackInput
 }
 
@@ -862,7 +862,7 @@ export type PackUpdateWithoutCommentsInput = {
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
   author?: Prisma.UserUpdateOneWithoutPacksNestedInput
   icon?: Prisma.FileUpdateOneWithoutPackIconNestedInput
-  images?: Prisma.FileUpdateManyWithoutPacksImageNestedInput
+  images?: Prisma.FileUpdateManyWithoutPackImageNestedInput
   packVersions?: Prisma.PackVersionUpdateManyWithoutPackNestedInput
 }
 
@@ -875,7 +875,7 @@ export type PackUncheckedUpdateWithoutCommentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
-  images?: Prisma.FileUncheckedUpdateManyWithoutPacksImageNestedInput
+  images?: Prisma.FileUncheckedUpdateManyWithoutPackImageNestedInput
   packVersions?: Prisma.PackVersionUncheckedUpdateManyWithoutPackNestedInput
 }
 
@@ -934,7 +934,7 @@ export type PackUpdateWithoutAuthorInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
   icon?: Prisma.FileUpdateOneWithoutPackIconNestedInput
-  images?: Prisma.FileUpdateManyWithoutPacksImageNestedInput
+  images?: Prisma.FileUpdateManyWithoutPackImageNestedInput
   packVersions?: Prisma.PackVersionUpdateManyWithoutPackNestedInput
   comments?: Prisma.CommentUpdateManyWithoutPackNestedInput
 }
@@ -947,7 +947,7 @@ export type PackUncheckedUpdateWithoutAuthorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumPackStatusFieldUpdateOperationsInput | $Enums.PackStatus
-  images?: Prisma.FileUncheckedUpdateManyWithoutPacksImageNestedInput
+  images?: Prisma.FileUncheckedUpdateManyWithoutPackImageNestedInput
   packVersions?: Prisma.PackVersionUncheckedUpdateManyWithoutPackNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutPackNestedInput
 }

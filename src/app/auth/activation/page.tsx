@@ -1,4 +1,3 @@
-"use server";
 import { UserNotFoundError } from "@/core/application/Errors/UserNotFound";
 import { UserAlreadyActiveUseCase } from "@/core/application/use-cases/user/activation/UserAlreadyActive.usecase";
 import { serviceContext } from "@/core/infrastructure/container";
@@ -12,6 +11,7 @@ type ActivationPageProps = {
   }>;
 };
 
+export const instant = false;
 export default async function ActivationPage({
   searchParams,
 }: ActivationPageProps) {

@@ -2,8 +2,10 @@ import {
   LocalFileFilter,
   LocalFilePagination,
   LocalFileRepository,
+  LocalFileUpdateData,
 } from "@/core/domain/port/file/LocalFileRepository";
-import { PrismaClient, LocalFile } from "./connection/client";
+import { PrismaClient } from "./connection/client";
+import { LocalFile } from "@/core/domain/model";
 
 export class LocalFileRepositoryPrisma implements LocalFileRepository {
   constructor(private readonly prisma: PrismaClient) {}
@@ -26,7 +28,7 @@ export class LocalFileRepositoryPrisma implements LocalFileRepository {
       take: data?.pagination?.limit,
       skip: data?.pagination?.offset,
     });
-    return localFiles;
+    return localFiles.map((item) => new LocalFile(item));
   }
 
   async getById(id: string): Promise<LocalFile | undefined> {
@@ -35,7 +37,8 @@ export class LocalFileRepositoryPrisma implements LocalFileRepository {
         id: id,
       },
     });
-    return localFile;
+    if (!localFile) return;
+    return new LocalFile(localFile);
   }
 
   async create(localFile: LocalFile): Promise<LocalFile> {
@@ -43,9 +46,9 @@ export class LocalFileRepositoryPrisma implements LocalFileRepository {
     const createdLocalFile = await this.prisma.localFile.create({
       data: localFilePersistence,
     });
-    return createdLocalFile;
+    return new LocalFile(createdLocalFile);
   }
-  async update(id: string, localFile: LocalFile): Promise<LocalFile> {
+  async update(id: string, localFile: LocalFileUpdateData): Promise<LocalFile> {
     const updatedLocalFile = await this.prisma.localFile.update({
       where: {
         id: id,
@@ -61,7 +64,7 @@ export class LocalFileRepositoryPrisma implements LocalFileRepository {
         sha256: localFile.sha256,
       },
     });
-    return updatedLocalFile;
+    return new LocalFile(updatedLocalFile);
   }
 
   async delete(id: string): Promise<void> {

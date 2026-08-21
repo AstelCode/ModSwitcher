@@ -20,6 +20,7 @@ export interface LocalFilePersistence {
   bucket: string;
   extension: string;
   sha256?: string | null;
+  fileId?: string | null;
 }
 export interface LocalFileJson {
   id: string;
@@ -61,6 +62,13 @@ export class LocalFile {
   }
 
   toPersistence(): LocalFilePersistence {
+    if (!this.name) throw new Error("LocalFile must have a name");
+    if (!this.size) throw new Error("LocalFile must have a size");
+    if (!this.mimeType) throw new Error("LocalFile must have a mimeType");
+    if (!this.path) throw new Error("LocalFile must have a path");
+    if (!this.url) throw new Error("LocalFile must have a url");
+    if (!this.bucket) throw new Error("LocalFile must have a bucket");
+    if (!this.extension) throw new Error("LocalFile must have a extension");
     return {
       name: this.name,
       size: this.size,
@@ -69,7 +77,7 @@ export class LocalFile {
       url: this.url,
       bucket: this.bucket,
       extension: this.extension,
-      sha256: this.sha256,
+      sha256: this.sha256 ? this.sha256 : null,
     };
   }
   toJson(): LocalFileJson {

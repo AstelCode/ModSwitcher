@@ -1741,7 +1741,8 @@ export const LocalFileScalarFieldEnum = {
   extension: 'extension',
   sha256: 'sha256',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  fileId: 'fileId'
 } as const
 
 export type LocalFileScalarFieldEnum = (typeof LocalFileScalarFieldEnum)[keyof typeof LocalFileScalarFieldEnum]
@@ -1752,11 +1753,10 @@ export const FileScalarFieldEnum = {
   name: 'name',
   role: 'role',
   externalUrl: 'externalUrl',
-  localFileid: 'localFileid',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   modId: 'modId',
-  shadeId: 'shadeId'
+  shaderId: 'shaderId'
 } as const
 
 export type FileScalarFieldEnum = (typeof FileScalarFieldEnum)[keyof typeof FileScalarFieldEnum]

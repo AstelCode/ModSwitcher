@@ -4,6 +4,7 @@ import { ServiceContext } from "../application/port";
 import {
   CommentRepositoryPrisma,
   FileRepositoryPrisma,
+  LocalFileRepositoryPrisma,
   MinecraftLoaderRepositoryPrisma,
   MinecraftVersionRepositoryPrisma,
   ModConflictRepositoryPrisma,
@@ -37,6 +38,7 @@ const prisma = new PrismaClient({
 });
 
 const fileRepository = new FileRepositoryPrisma(prisma);
+const localFileRepository = new LocalFileRepositoryPrisma(prisma);
 export const serviceContext: ServiceContext = {
   tokenStorageService: new TokenStorageServiceNext(),
   userRepository: new UserRepositoryPrisma(prisma),
@@ -60,5 +62,5 @@ export const serviceContext: ServiceContext = {
   activationCodeService: new ActivationCodeServiceUUID(),
   secretKeyService: new SecretKeyServiceLocal(),
   emailService: new EmailServiceResend(),
-  fileService: new FileServiceLocal(fileRepository),
+  fileService: new FileServiceLocal(fileRepository, localFileRepository),
 };

@@ -25,7 +25,8 @@ model LocalFile {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  file File?
+  fileId String? @unique
+  file   File?   @relation(fields: [fileId], references: [id])
 }
 
 model File {
@@ -34,8 +35,7 @@ model File {
   role        String
   externalUrl String?
 
-  localFile   LocalFile? @relation(fields: [localFileid], references: [id])
-  localFileid String?    @unique
+  localFile LocalFile?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -53,11 +53,11 @@ model File {
   //* shaders
   shaderFile ShaderFile?
   shaders    Shader[]    @relation("shader_icon")
-  shadeIcon  Shader?     @relation("shader_image", fields: [shadeId], references: [id])
-  shadeId    String?
+  shaderIcon Shader?     @relation("shader_image", fields: [shaderId], references: [id])
+  shaderId   String?
 
-  packsImage Pack[] @relation("pack_image")
-  packIcon   Pack?
+  packImage Pack[] @relation("pack_image")
+  packIcon  Pack?
 }
 
 enum UserStatus {

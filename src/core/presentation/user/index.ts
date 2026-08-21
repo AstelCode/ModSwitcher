@@ -4,3 +4,4 @@ export * from "./signup";
 export * from "./signin";
 export * from "./session";
 export * from "./recovery";
+export * from "./avatar";
