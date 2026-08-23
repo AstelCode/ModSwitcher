@@ -1,6 +1,6 @@
 "use server";
 
-import { PasswordRecoveryUseCase } from "@/core/application/use-cases/user/passwordRecovery/PasswordRecovery.usecase";
+import { PasswordRecoveryUseCase } from "@/core/application/use-cases/user/auth/recovery-password/PasswordRecovery.usecase";
 import { serviceContext } from "@/core/infrastructure/container";
 import { ROUTES } from "@/lib/constants/routes";
 import { redirect } from "next/navigation";

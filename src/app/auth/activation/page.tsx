@@ -1,5 +1,5 @@
-import { UserNotFoundError } from "@/core/application/Errors/UserNotFound";
-import { UserAlreadyActiveUseCase } from "@/core/application/use-cases/user/activation/UserAlreadyActive.usecase";
+import { UserNotFoundError } from "@/core/errors/UserNotFound";
+import { UserIsActiveUseCase } from "@/core/application/use-cases/user/auth/activation/UserIsActive.usecase";
 import { serviceContext } from "@/core/infrastructure/container";
 import { ActivationForm } from "@/features/auth/activation/ActivationForm";
 import { ROUTES } from "@/lib/constants/routes";
@@ -17,7 +17,7 @@ export default async function ActivationPage({
 }: ActivationPageProps) {
   const token = (await searchParams).token;
   if (!token) return <div>Token not found</div>;
-  const userAlreadyActive = new UserAlreadyActiveUseCase(serviceContext);
+  const userAlreadyActive = new UserIsActiveUseCase(serviceContext);
   let active = false;
   try {
     active = await userAlreadyActive.execute(token);

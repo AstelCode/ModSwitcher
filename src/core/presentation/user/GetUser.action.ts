@@ -1,9 +1,9 @@
 "use server";
 
-import { GetSessionUseCase } from "@/core/application/use-cases/user";
-import { GetUserUseCase } from "@/core/application/use-cases/user/GetUser.usecase";
+import { GetSessionUseCase } from "@/core/application/use-cases/user/auth/session/GetSession.usecase";
+import { GetUserUseCase } from "@/core/application/use-cases/user/profile/GetUser.usecase";
 import { UserJson } from "@/core/domain/model/user";
-import { serviceContext } from "@/core/infrastructure/container";
+import { serviceContext } from "@infrastructure/container";
 import { cacheLife, cacheTag } from "next/cache";
 
 async function GetUserCached(userId: string) {

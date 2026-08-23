@@ -1,5 +1,5 @@
 import { GetUserAction } from "@/core/presentation/user";
-import { ExplorerNav } from "@/features/Explorer/ExplorerNav";
+import { ExplorerNav } from "@/features/explorer/ExplorerNav";
 import { UserContextProvider } from "@/hooks/UserContext";
 export const instant = false;
 export default async function DashboradLayout({

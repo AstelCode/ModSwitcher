@@ -1,11 +1,9 @@
 "use server";
 
-import {
-  GetSessionUseCase,
-  UpdateUsernameUseCase,
-} from "@/core/application/use-cases/user";
+import { GetSessionUseCase } from "@use-cases/user/auth/session/GetSession.usecase";
 import { serviceContext } from "@/core/infrastructure/container";
 import { refresh, revalidateTag } from "next/cache";
+import { UpdateUsernameUseCase } from "@use-cases/user/profile/update/UpdateUsername.usecase";
 
 export interface UpdateUsernameActionState {
   error?: string;

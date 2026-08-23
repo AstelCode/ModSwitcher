@@ -1,9 +1,7 @@
 "use server";
 
-import {
-  GetSessionUseCase,
-  UpdateUserAvatarUseCase,
-} from "@/core/application/use-cases/user";
+import { UpdateUserAvatarUseCase } from "@use-cases/user/profile";
+import { GetSessionUseCase } from "@use-cases/user/auth/session/GetSession.usecase";
 import { serviceContext } from "@/core/infrastructure/container";
 import { refresh, revalidateTag } from "next/cache";
 

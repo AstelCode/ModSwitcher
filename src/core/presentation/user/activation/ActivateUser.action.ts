@@ -1,10 +1,7 @@
 "use server";
-import { serviceContext } from "@/core/infrastructure/container";
-import {
-  ActivateUserUseCase,
-  InvalidActivationCodeError,
-} from "@/core/application/use-cases/user/activation/ActivateUser.usecase";
-
+import { ActivateUserUseCase } from "@use-cases/user/auth/activation/ActivateUser.usecase";
+import { InvalidActivationCodeError } from "@/core/errors/InvalidActivationCode";
+import { serviceContext } from "@infrastructure/container";
 export type ActivationUserActionState = {
   error?: string;
   isValidCode?: boolean;

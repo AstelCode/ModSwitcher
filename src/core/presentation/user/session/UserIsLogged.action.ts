@@ -1,6 +1,6 @@
 "use server";
-import { GetSessionUseCase } from "@/core/application/use-cases/user";
-import { UserIsLoggedUseCase } from "@/core/application/use-cases/user/session/UserIsLogged.usecase";
+import { GetSessionUseCase } from "@use-cases/user/auth/session/GetSession.usecase";
+import { UserIsLoggedUseCase } from "@/core/application/use-cases/user/auth/session/UserIsLogged.usecase";
 import { serviceContext } from "@/core/infrastructure/container";
 import { cacheLife } from "next/cache";
 

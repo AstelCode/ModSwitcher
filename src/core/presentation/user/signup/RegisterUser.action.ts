@@ -1,6 +1,6 @@
 "use server";
 import { serviceContext } from "@/core/infrastructure/container";
-import { CreateUserUseCase } from "@/core/application/use-cases/user/create/CreateUser.usecase";
+import { CreateUserUseCase } from "@/core/application/use-cases/user/auth/signup/CreateUser.usecase";
 import { redirect } from "next/navigation";
 import { ROUTES } from "@/lib/constants/routes";
 

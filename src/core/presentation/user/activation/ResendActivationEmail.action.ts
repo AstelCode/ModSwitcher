@@ -1,6 +1,6 @@
 "use server";
 
-import { ResendActivationEmailUseCase } from "@/core/application/use-cases/user/activation/ResendActivationEmail.usecase";
+import { ResendActivationEmailUseCase } from "@/core/application/use-cases/user/auth/activation/ResendActivationEmail.usecase";
 import { serviceContext } from "@/core/infrastructure/container";
 
 type ResendActivationResult = {

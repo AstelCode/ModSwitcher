@@ -1,10 +1,8 @@
 "use server";
 
-import {
-  GetSessionUseCase,
-  UpdatePasswordUseCase,
-} from "@/core/application/use-cases/user";
-import { serviceContext } from "@/core/infrastructure/container";
+import { UpdatePasswordUseCase } from "@use-cases/user/profile/update";
+import { GetSessionUseCase } from "@use-cases/user/auth/session/GetSession.usecase";
+import { serviceContext } from "@infrastructure/container";
 
 export interface UpdatePasswordActionState {
   error?: string;

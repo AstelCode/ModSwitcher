@@ -19,7 +19,13 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@use-cases/*": ["./src/core/application/use-cases/*"],
+      "@application-port/*": ["./src/core/application/port/*"],
+      "@model/*": ["./src/core/domain/model/*"],
+      "@domain-port/*": ["./src/core/domain/port/*"],
+      "@infrastructure/*": ["./src/core/infrastructure/*"],
+      "@presentation/*": ["./src/core/presentation/*"]
     }
   },
   "include": [
