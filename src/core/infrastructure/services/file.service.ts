@@ -146,7 +146,9 @@ export class FileServiceLocal implements FileService {
     const file = await this.fileRepository.getById(id, { localFile: true });
     if (file?.localFile) {
       const localFilePath = file.localFile.path;
-      await unlink(localFilePath);
+      try {
+        await unlink(localFilePath);
+      } catch (e) {}
     }
     await this.fileRepository.delete(id);
   }

@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Sidebar,
   SidebarContent,
@@ -9,29 +10,10 @@ import {
   SidebarMenuItem,
   SidebarProvider,
 } from "@/components/ui/sidebar";
-import { Users } from "lucide-react";
+import { DashboardSidebar } from "@/features/dashboard/DashboardSidebar";
+import { Link, SquareChevronLeft, Users } from "lucide-react";
 
+export const instant = false;
 export default async function DashboardPage() {
-  return (
-    <SidebarProvider>
-      <Sidebar>
-        <SidebarHeader></SidebarHeader>
-        <SidebarContent>
-          <SidebarGroup>
-            <SidebarGroupLabel>
-              <span className="text-base">Administration</span>
-            </SidebarGroupLabel>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <Users />
-                  users
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroup>
-        </SidebarContent>
-      </Sidebar>
-    </SidebarProvider>
-  );
+  return <div></div>;
 }
