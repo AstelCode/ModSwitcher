@@ -15,18 +15,14 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useActionState, useState } from "react";
+import { useState } from "react";
 import { PasswordValidation } from "./PasswordValidationInput";
 import { EmailValidationInput } from "./EmailValidationInput";
-import {
-  RegisterUserAction,
-  RegisterUserActionState,
-} from "@/core/presentation/user";
+import { RegisterUserAction } from "@/core/presentation/user";
 import { ROUTES } from "@/lib/constants/routes";
-const initialState: RegisterUserActionState = {};
 
 export function SignUpForm() {
-  const [state, formAction] = useActionState(RegisterUserAction, initialState);
+  const [error, setError] = useState<string | undefined>(undefined);
   const [hasErrorPassword, setHasErrorPassword] = useState<boolean>(false);
   const [hasErrorEmail, setHasErrorEmail] = useState<boolean>(false);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,21 +31,29 @@ export function SignUpForm() {
       return;
     }
   };
+  const handleAction = async (formData: FormData) => {
+    const result = await RegisterUserAction(formData);
+    if (result.error) {
+      setError(result.error);
+    } else {
+      setError(undefined);
+    }
+  };
 
   return (
     <form
       className="flex flex-col w-full max-w-sm"
       onSubmit={handleSubmit}
-      action={formAction}
+      action={handleAction}
     >
       <Card className="w-full max-w-md">
         <CardHeader>
           <h1 className="text-2xl font-bold text-center">Register</h1>
         </CardHeader>
-        {state.error && (
+        {error && (
           <Alert variant="destructive" className="max-w-[95%] mx-auto">
             <AlertTitle>Error</AlertTitle>
-            <AlertDescription>{state.error}</AlertDescription>
+            <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
         <CardContent>

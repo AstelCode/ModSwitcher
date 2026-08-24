@@ -1,7 +1,7 @@
 import { FileModel } from "@/core/domain/model/file/File";
 
 export interface UploadLocalFileInput {
-  stream: AsyncIterable<Uint8Array>;
+  stream: ReadableStream<Uint8Array<ArrayBuffer>>;
   filename: string;
   contentType: string;
   size?: number;
@@ -9,7 +9,7 @@ export interface UploadLocalFileInput {
 }
 
 export interface FileDownload {
-  stream: AsyncIterable<Uint8Array>;
+  stream: ReadableStream<Uint8Array<ArrayBuffer>>;
   name: string;
   contentType: string;
   size?: number;
@@ -30,7 +30,11 @@ export interface FileService {
       packImageId?: string;
     },
   ): Promise<FileModel>;
-  update(id: string, input: UploadLocalFileInput | string): Promise<void>;
+  update(
+    id: string,
+    name: string,
+    input: UploadLocalFileInput | string,
+  ): Promise<void>;
   delete(id: string): Promise<void>;
   deleteList(ids: string[]): Promise<void>;
   getFileUrl(id: string): Promise<string>;

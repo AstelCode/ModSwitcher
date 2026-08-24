@@ -14,7 +14,7 @@ import { User } from "lucide-react";
 import { ChangePasswordDialog } from "./ChangePasswordDialog";
 import { ChangeUserNameDialog } from "./ChangeUserNameDialog";
 import { useUserContext } from "@/hooks/UserContext";
-import { ChangeAvatar } from "./ChangeAvatar.";
+import { ChangeAvatar } from "./ChangeAvatar";
 
 export function ProfileDialog({
   open,
@@ -30,7 +30,7 @@ export function ProfileDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[80vw] h-[80vh]   2xl:max-w-[50rem]  sm:max-w-[50rem] overflow-hidden flex flex-col">
+      <DialogContent className="w-[80vw] h-[80vh]   2xl:max-w-200  sm:max-w-200 overflow-hidden flex flex-col">
         <SidebarProvider
           style={{ "--sidebar-width": "10rem" } as React.CSSProperties}
           className="min-h-full"

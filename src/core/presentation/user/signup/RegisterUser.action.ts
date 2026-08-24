@@ -10,17 +10,15 @@ export type RegisterUserActionState = {
 };
 
 export async function RegisterUserAction(
-  prevState: RegisterUserActionState,
   formData: FormData,
 ): Promise<RegisterUserActionState> {
   const username = formData.get("name") as string;
   const password = formData.get("password") as string;
   const email = formData.get("email") as string;
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  const registerUserUseCase = new CreateUserUseCase(serviceContext);
+  const createUserUseCase = new CreateUserUseCase(serviceContext);
   let token: string;
   try {
-    token = await registerUserUseCase.execute({
+    token = await createUserUseCase.execute({
       email,
       username,
       password,

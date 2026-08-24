@@ -6,4 +6,5 @@ export const ROUTES = {
   AUTH_VALIDATE_RECOVERY_TOKEN: "/auth/recovery/verify",
   AUTH_CHANGE_PASSWORD: "/auth/recovery/change-password",
   EXPLORER: "/explorer",
+  DASHBOARD: "/dashboard",
 };

@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { UpdateUserAvatarAction } from "@/core/presentation/user";
 import { useUserContext } from "@/hooks/UserContext";
-import { Check, Edit, Upload, X } from "lucide-react";
+import { Check, Edit, Trash, Upload, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 
@@ -15,6 +15,8 @@ export function ChangeAvatar() {
     !user?.avatar?.externalUrl ? undefined : user.avatar.externalUrl,
   );
   const [isEdited, setIsEdited] = useState<boolean>(false);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
+
   const handleUpload = () => {
     if (!fileInputRef.current) return;
     fileInputRef.current?.click();
@@ -31,6 +33,21 @@ export function ChangeAvatar() {
   };
 
   const handleAction = async (formData: FormData) => {
+    if (!isUploading) {
+      formData.delete("avatar");
+      setImageSrc(undefined);
+    }
+
+    const file = formData.get("avatar") as File;
+    if (file) {
+      // 1MB
+      if (file.size > 1024 * 1024 * 1) {
+        toast.error("File size must be less than 1MB", {
+          position: "top-center",
+        });
+        return;
+      }
+    }
     const state = await UpdateUserAvatarAction(formData);
     if (state.error) {
       toast.error(state.error, {
@@ -40,6 +57,7 @@ export function ChangeAvatar() {
     }
 
     setIsEdited(false);
+    setIsUploading(false);
   };
 
   const handleSubmit = () => {
@@ -54,7 +72,7 @@ export function ChangeAvatar() {
             {imageSrc && (
               <img src={imageSrc} className="w-full h-full object-cover" />
             )}
-            {isEdited && (
+            {isUploading && (
               <div
                 className="w-full h-full flex items-center justify-center cursor-pointer absolute top-0 left-0 bg-card/50"
                 onClick={handleUpload}
@@ -65,12 +83,28 @@ export function ChangeAvatar() {
           </div>
           {isEdited ? (
             <div className="absolute -right-10 top-[50%] translate-y-[-50%] w-10 gap-2 flex  flex-col">
-              <Button variant="default" onClick={handleSubmit}>
-                <Check size={20} />
-              </Button>
-              <Button variant="destructive" onClick={handleClose}>
-                <X />
-              </Button>
+              {!isUploading ? (
+                <>
+                  <Button
+                    variant="default"
+                    onClick={() => setIsUploading(true)}
+                  >
+                    <Upload />
+                  </Button>
+                  <Button variant="destructive" onClick={handleSubmit}>
+                    <Trash size={20} />
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button variant="default" onClick={handleSubmit}>
+                    <Check size={20} />
+                  </Button>
+                  <Button variant="destructive" onClick={handleClose}>
+                    <X />
+                  </Button>
+                </>
+              )}
             </div>
           ) : (
             <div className="absolute -top-4 -right-4">

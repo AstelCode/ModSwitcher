@@ -1,5 +1,6 @@
 import { UserJson } from "@/core/domain/model/user/User";
 import { ServiceContext } from "../../../port/ServiceContext";
+import { UserNotFoundError } from "@/core/errors/UserNotFound";
 
 type Deps = Pick<
   ServiceContext,
@@ -15,7 +16,7 @@ export class GetUserUseCase {
       packs: true,
       mods: true,
     });
-    if (!user) throw new Error("User not found");
+    if (!user) throw new UserNotFoundError();
     return user.toJson();
   }
 }

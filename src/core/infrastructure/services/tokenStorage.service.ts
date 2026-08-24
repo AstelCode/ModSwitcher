@@ -4,7 +4,8 @@ import { cookies } from "next/headers";
 export class TokenStorageServiceNext implements TokenStorageService {
   async get(): Promise<string | null> {
     const cookieStore = await cookies();
-    return cookieStore.get("access_token")?.value ?? null;
+    const token = cookieStore.get("access_token")?.value ?? null;
+    return token;
   }
   async set(token: string): Promise<void> {
     const cookieStore = await cookies();

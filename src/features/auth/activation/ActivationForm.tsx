@@ -11,35 +11,32 @@ import {
   ActivateUserAction,
   ResendActivationEmailAction,
 } from "@/core/presentation/user";
-import { ROUTES } from "@/lib/constants/routes";
-import Link from "next/link";
 import { useState } from "react";
 
 type ActivationFormProps = {
-  userAlreadyActive: boolean;
   token: string;
+  secretKey?: string;
 };
 
 export function ActivationForm(props: ActivationFormProps) {
-  const [isActive, setIsActive] = useState<boolean>(props.userAlreadyActive);
   const token = props.token;
+  const secretKey = props.secretKey;
 
   const [isValidCode, setIsValidCode] = useState<boolean | undefined>();
   const [error, setError] = useState<string>("");
 
   const handleComplete = async (value: string) => {
-    const result = await ActivateUserAction({}, token, value);
+    const result = await ActivateUserAction(token, value, secretKey);
     setIsValidCode(result.isValidCode);
     if (result.error) {
       setError(result.error);
     } else {
-      setIsActive(true);
       setError("");
     }
   };
 
   const handleResend = async () => {
-    await ResendActivationEmailAction({}, token);
+    await ResendActivationEmailAction(token);
     setIsValidCode(undefined);
     setError("");
   };
@@ -65,19 +62,7 @@ export function ActivationForm(props: ActivationFormProps) {
             </>
           )}
 
-          {isValidCode != false && isActive && (
-            <>
-              <p>You are already active</p>
-              <Link
-                href={ROUTES.EXPLORER}
-                className="mt-5 px-4 py-2 rounded-md bg-primary text-white"
-              >
-                Go to explorer
-              </Link>
-            </>
-          )}
-
-          {isValidCode != false && !isActive && (
+          {isValidCode != false && (
             <>
               <p>Please check your email for the activation link</p>
               <InputOTP maxLength={6} onComplete={handleComplete}>

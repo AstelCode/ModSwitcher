@@ -16,13 +16,17 @@ export async function UpdateUserAvatarAction(
   const getSessionUserUseCase = new GetSessionUseCase(serviceContext);
   try {
     const payload = await getSessionUserUseCase.execute();
-    await updateUserAvatarUseCase.execute(payload.userId, {
-      stream: file.stream(),
-      filename: file.name,
-      contentType: file.type,
-      size: file.size,
-      extension: file.name.split(".").pop(),
-    });
+    if (file) {
+      await updateUserAvatarUseCase.execute(payload.userId, {
+        stream: file.stream(),
+        filename: file.name,
+        contentType: file.type,
+        size: file.size,
+        extension: file.name.split(".").pop(),
+      });
+    } else {
+      await updateUserAvatarUseCase.execute(payload.userId, null);
+    }
     revalidateTag(`user:${payload.userId}`, "max");
   } catch (e) {
     if (e instanceof Error) return { error: e.message };

@@ -8,7 +8,6 @@ type ResendActivationResult = {
 };
 
 export async function ResendActivationEmailAction(
-  prevState: ResendActivationResult,
   token: string,
 ): Promise<ResendActivationResult> {
   const resendActivationEmailUseCase = new ResendActivationEmailUseCase(

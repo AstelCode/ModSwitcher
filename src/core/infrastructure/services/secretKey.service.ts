@@ -1,12 +1,12 @@
 import { SecretKeyService } from "@/core/application/port/SecretKeyService";
-
+const secretKey = process.env.SECRET_KEY;
 export class SecretKeyServiceLocal implements SecretKeyService {
   async generate(): Promise<string> {
-    if (process.env.SECRET_KEY == undefined)
-      throw new Error("Secret key not set");
-    return process.env.SECRET_KEY;
+    if (secretKey == undefined) throw new Error("Secret key not set");
+    return secretKey;
   }
   async verify(key: string): Promise<boolean> {
-    return key == process.env.SECRET_KEY;
+    console.log(key, "---", secretKey);
+    return key == secretKey;
   }
 }

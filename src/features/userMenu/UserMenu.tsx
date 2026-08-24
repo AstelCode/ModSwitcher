@@ -6,8 +6,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { UserJson } from "@/core/domain/model";
-import { ChevronDown, CircleUser, LogOut, User } from "lucide-react";
+import {
+  ChevronDown,
+  CircleUser,
+  LayoutDashboard,
+  LogOut,
+  User,
+} from "lucide-react";
 import { ProfileDialog } from "../profile/ProfileDialog";
 import { useState } from "react";
 import { LogoutAction } from "@/core/presentation/user";
@@ -26,6 +31,10 @@ export function UserMenu() {
 
   const handleClick = () => {
     router.push(ROUTES.AUTH_LOGIN);
+  };
+
+  const handleDashboard = () => {
+    router.push(ROUTES.DASHBOARD);
   };
 
   if (!user) {
@@ -57,6 +66,12 @@ export function UserMenu() {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuGroup>
+            {(user.role == "superuser" || user.role == "admin") && (
+              <DropdownMenuItem onClick={handleDashboard}>
+                <LayoutDashboard />
+                Dashboard
+              </DropdownMenuItem>
+            )}
             <DropdownMenuItem onClick={() => setOpen(!open)}>
               <User />
               Profile
