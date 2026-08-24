@@ -15,8 +15,8 @@
     "incremental": true,
     "plugins": [
       {
-        "name": "next"
-      }
+        "name": "next",
+      },
     ],
     "paths": {
       "@/*": ["./src/*"],
@@ -25,8 +25,8 @@
       "@model/*": ["./src/core/domain/model/*"],
       "@domain-port/*": ["./src/core/domain/port/*"],
       "@infrastructure/*": ["./src/core/infrastructure/*"],
-      "@presentation/*": ["./src/core/presentation/*"]
-    }
+      "@presentation/*": ["./src/core/presentation/*"],
+    },
   },
   "include": [
     "next-env.d.ts",
@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }

@@ -5,7 +5,7 @@ import { PanelLeftOpen } from "lucide-react";
 
 export default function UserPage() {
   return (
-    <div>
+    <div className="p-4">
       <DataTable />
     </div>
   );
