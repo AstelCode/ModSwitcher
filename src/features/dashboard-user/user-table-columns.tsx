@@ -63,8 +63,12 @@ export function getColumns(props?: GetColumnsProps) {
       header: "Avatar",
       cell: ({ row }) => {
         const avatarUrl = row.getValue("avatarUrl") as string;
-        // eslint-disable-next-line @next/next/no-img-element
-        return avatarUrl ? <img src={avatarUrl} alt="avatar" /> : <User />;
+        return avatarUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={avatarUrl} alt="avatar" className="mx-auto" />
+        ) : (
+          <User className="mx-auto" />
+        );
       },
     }),
     columnHelper.accessor("name", {
@@ -91,6 +95,7 @@ export function getColumns(props?: GetColumnsProps) {
     }),
     columnHelper.accessor("status", {
       header: "Status",
+      filterFn: "equalsString",
       cell: ({ row }) => {
         const status = row.getValue("status") as UserStatus;
         if (status == "inactive") {
@@ -106,6 +111,7 @@ export function getColumns(props?: GetColumnsProps) {
     }),
     columnHelper.accessor("role", {
       header: "Role",
+      filterFn: "equalsString",
       cell: ({ row }) => {
         const role = row.getValue("role") as UserRole;
         if (role == "admin") {
@@ -147,7 +153,7 @@ export function getColumns(props?: GetColumnsProps) {
       id: "actions",
       enableHiding: false,
       cell: ({ row }) => {
-        const id = row.getValue("id") as string;
+        const id = row.original.id;
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
