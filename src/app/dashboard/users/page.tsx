@@ -1,12 +1,12 @@
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Table, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { DataTable } from "@/features/dashboard-user/user-table";
-import { PanelLeftOpen } from "lucide-react";
+import { listUsersAction } from "@/core/presentation/admin/ListUsers.action";
+import { DataTable } from "@/features/dashboard-user/table/UserTable";
 
-export default function UserPage() {
+export const instant = false;
+export default async function UserPage() {
+  const users = await listUsersAction();
   return (
     <div className="p-4">
-      <DataTable />
+      <DataTable data={users} />
     </div>
   );
 }

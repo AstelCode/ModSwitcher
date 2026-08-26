@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { ReactTable, useTable } from "@tanstack/react-table";
+import { useTable } from "@tanstack/react-table";
 
 import {
   Table,
@@ -12,9 +12,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { features } from "./user-table-features";
-import { getColumns, UserItem } from "./user-table-columns";
-import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -24,118 +21,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useState } from "react";
+import { getColumns } from "./UserTableColumns";
+import { features } from "./UserTableFeatures";
+import { UserTableFilter } from "./UserTableFilter";
+import { UserJson } from "@/core/domain/model";
 
-function TableFilter({ table }: { table: ReactTable<any, UserItem, any> }) {
-  const statusList = ["active", "inactive"];
-  const options = ["name", "email"];
-  const roles = ["superuser", "user", "admin"];
-
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-
-  function handleFilterSelect(option: string) {
-    setSelectedOption(option);
-  }
-
-  function handleSelectStatus(option: string) {
-    table.getColumn("status")?.setFilterValue(option);
-  }
-
-  function handleSelectRole(option: string) {
-    table.getColumn("role")?.setFilterValue(option);
-  }
-
-  return (
-    <div className="flex gap-2">
-      <Input
-        placeholder={`Filter ${selectedOption}s...`}
-        value={
-          (table.getColumn(selectedOption)?.getFilterValue() as string) ?? ""
-        }
-        onChange={(event) =>
-          table.getColumn(selectedOption)?.setFilterValue(event.target.value)
-        }
-        className="max-w-sm"
-      />
-      <Select defaultValue={selectedOption} onValueChange={handleFilterSelect}>
-        <SelectTrigger className="w-45 min-w-0">
-          <SelectValue placeholder="Filter" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Filters</SelectLabel>
-            {options.map((option) => (
-              <SelectItem key={option} value={option}>
-                {option}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-
-      <Select onValueChange={handleSelectStatus}>
-        <SelectTrigger className="w-45 min-w-0">
-          <SelectValue placeholder="Status" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Status</SelectLabel>
-            <SelectItem value="">Empty</SelectItem>
-            {statusList.map((option) => (
-              <SelectItem key={option} value={option}>
-                {option}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-      <Select onValueChange={handleSelectRole}>
-        <SelectTrigger className="w-45 min-w-0">
-          <SelectValue placeholder="Role" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Role</SelectLabel>
-            <SelectItem value="">Empty</SelectItem>
-            {roles.map((option) => (
-              <SelectItem key={option} value={option}>
-                {option}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-    </div>
-  );
-}
-
-export function DataTable() {
+export function DataTable({ data }: { data: UserJson[] }) {
   const columns = getColumns({
     convertToAdmin: async (id) => {
       console.log(id);
     },
   });
-  const data: UserItem[] = [
-    {
-      id: "hola",
-      name: "sax",
-      email: "email1@gmail.com",
-      role: "superuser",
-      status: "inactive",
-      avatarUrl: "",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  ];
+
   const table = useTable({
     features,
     data,
@@ -145,7 +42,7 @@ export function DataTable() {
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
-        <TableFilter table={table as any} />
+        <UserTableFilter table={table as any} />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">

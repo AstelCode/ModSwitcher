@@ -2,7 +2,7 @@
 
 import { createColumnHelper } from "@tanstack/react-table";
 
-import { type DataTableFeatures } from "./user-table-features";
+import { type DataTableFeatures } from "./UserTableFeatures";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown, Info, MoreHorizontal, Trash, User } from "lucide-react";
@@ -14,22 +14,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { DropdownMenuTrigger } from "radix-ui/dropdown-menu";
-import { UserStatus } from "@/core/domain/model";
+import { UserJson, UserStatus } from "@/core/domain/model";
 import { UserRole } from "@/core/infrastructure/repositories/prisma/connection/enums";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
-export type UserItem = {
-  id: string;
-  name: string;
-  email: string;
-  status: UserStatus;
-  avatarUrl: string;
-  createdAt: Date;
-  updatedAt: Date;
-  role: UserRole;
-};
-
-const columnHelper = createColumnHelper<DataTableFeatures, UserItem>();
+const columnHelper = createColumnHelper<DataTableFeatures, UserJson>();
 
 interface GetColumnsProps {
   onDelete?: (id: string) => Promise<void>;
@@ -59,22 +49,26 @@ export function getColumns(props?: GetColumnsProps) {
       enableSorting: false,
       enableHiding: false,
     }),
-    columnHelper.accessor("avatarUrl", {
+    columnHelper.accessor("avatar", {
       header: "Avatar",
       cell: ({ row }) => {
-        const avatarUrl = row.getValue("avatarUrl") as string;
+        const username = row.original.username as string;
+        const avatarUrl = row.original.avatar?.externalUrl as string;
         return avatarUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={avatarUrl} alt="avatar" className="mx-auto" />
+          <div className="size-9.5 rounded-full overflow-hidden mx-auto">
+            <Avatar className="w-full h-full">
+              <AvatarImage src={avatarUrl} alt={username} />
+            </Avatar>
+          </div>
         ) : (
           <User className="mx-auto" />
         );
       },
     }),
-    columnHelper.accessor("name", {
+    columnHelper.accessor("username", {
       header: "Name",
       cell: ({ row }) => (
-        <div className="capitalize">{row.getValue("name")}</div>
+        <div className="capitalize">{row.getValue("username")}</div>
       ),
     }),
     columnHelper.accessor("email", {

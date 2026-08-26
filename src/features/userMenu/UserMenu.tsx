@@ -52,12 +52,14 @@ export function UserMenu() {
         <DropdownMenuTrigger asChild>
           <div className="flex gap-1.5 items-center justify-center cursor-pointer">
             {user.avatar && (
-              <Avatar>
-                <AvatarImage
-                  src={user.avatar.externalUrl!}
-                  alt={user.username!}
-                />
-              </Avatar>
+              <div className="size-9.5 rounded-full overflow-hidden mx-auto">
+                <Avatar className="w-full h-full">
+                  <AvatarImage
+                    src={user.avatar.externalUrl!}
+                    alt={user.username!}
+                  />
+                </Avatar>
+              </div>
             )}
             {!user.avatar && <CircleUser size={30} />}
             <span>{user.username}</span>
