@@ -14,12 +14,18 @@ async function GetUserCached(userId: string) {
   return getUserUseCase.execute(userId);
 }
 
-export async function GetUserAction(): Promise<UserJson | null> {
+export async function GetUserAction(
+  cache: boolean = true,
+): Promise<UserJson | null> {
+  const getSessionUseCase = new GetSessionUseCase(serviceContext);
+  const getUserUseCase = new GetUserUseCase(serviceContext);
   try {
-    const getSessionUseCase = new GetSessionUseCase(serviceContext);
     const { userId } = await getSessionUseCase.execute();
-    const user = await GetUserCached(userId);
-    return user;
+    if (cache) {
+      const user = await GetUserCached(userId);
+      return user;
+    }
+    return getUserUseCase.execute(userId);
   } catch (_) {
     return null;
   }

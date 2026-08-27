@@ -25,11 +25,37 @@ import { getColumns } from "./UserTableColumns";
 import { features } from "./UserTableFeatures";
 import { UserTableFilter } from "./UserTableFilter";
 import { UserJson } from "@/core/domain/model";
+import { useDialog } from "@/hooks/DialogContext";
 
-export function DataTable({ data }: { data: UserJson[] }) {
+interface DataTableProps {
+  /*   convertToAdmin?: (id: string) => Promise<void>;
+  convertToUser?: (id: string) => Promise<void>;
+  deleteUser?: (id: string) => Promise<void>;
+  info?: (id: string) => Promise<void>;
+  */ data: UserJson[];
+}
+
+export function DataTable({
+  /*  convertToAdmin,
+  convertToUser,
+  deleteUser,
+  info, */
+  data,
+}: DataTableProps) {
+  const { open } = useDialog();
+
   const columns = getColumns({
     convertToAdmin: async (id) => {
-      console.log(id);
+      open("convertToAdmin", { id });
+    },
+    convertToUser: async (id) => {
+      open("convertToUser", { id });
+    },
+    deleteUser: async (id) => {
+      open("deleteUser", { id });
+    },
+    info: async (id) => {
+      open("info", { id });
     },
   });
 

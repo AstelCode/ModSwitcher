@@ -10,7 +10,7 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const user = await GetUserAction();
+  const user = await GetUserAction(false);
 
   if (!user || user.role == "user") {
     redirect("/explorer");

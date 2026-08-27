@@ -1,12 +1,13 @@
 import { listUsersAction } from "@/core/presentation/admin/ListUsers.action";
-import { DataTable } from "@/features/dashboard-user/table/UserTable";
+import { DashboardUsersClient } from "@/features/dashboard-user/DashboardUsersClient";
 
 export const instant = false;
 export default async function UserPage() {
   const users = await listUsersAction();
+
   return (
     <div className="p-4">
-      <DataTable data={users} />
+      <DashboardUsersClient users={users} />
     </div>
   );
 }

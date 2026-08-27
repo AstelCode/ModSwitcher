@@ -18,6 +18,11 @@ import { UserJson, UserStatus } from "@/core/domain/model";
 import { UserRole } from "@/core/infrastructure/repositories/prisma/connection/enums";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const columnHelper = createColumnHelper<DataTableFeatures, UserJson>();
 
@@ -25,7 +30,8 @@ interface GetColumnsProps {
   onDelete?: (id: string) => Promise<void>;
   convertToAdmin?: (id: string) => Promise<void>;
   convertToUser?: (id: string) => Promise<void>;
-  convertToSuperUser?: (id: string) => Promise<void>;
+  deleteUser?: (id: string) => Promise<void>;
+  info?: (id: string) => Promise<void>;
 }
 
 export function getColumns(props?: GetColumnsProps) {
@@ -156,9 +162,9 @@ export function getColumns(props?: GetColumnsProps) {
                 <MoreHorizontal />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-auto min-w-0">
+            <DropdownMenuContent align="end" className="w-40 min-w-0">
               <DropdownMenuGroup>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={async () => await props?.info?.(id)}>
                   <span>Info</span>
                   <Info className="ml-auto" />
                 </DropdownMenuItem>
@@ -167,7 +173,7 @@ export function getColumns(props?: GetColumnsProps) {
                     onClick={async () => await props?.convertToAdmin?.(id)}
                   >
                     <span>Convert to Admin</span>
-                    <User className="ml-auto" />
+                    <User className="ml-auto size-5" />
                   </DropdownMenuItem>
                 )}
                 {row.getValue("role") == "admin" && (
@@ -178,15 +184,10 @@ export function getColumns(props?: GetColumnsProps) {
                     <User className="ml-auto" />
                   </DropdownMenuItem>
                 )}
-                {row.getValue("role") == "superuser" && (
-                  <DropdownMenuItem
-                    onClick={async () => await props?.convertToUser?.(id)}
-                  >
-                    <span>Convert to User</span>
-                    <User className="ml-auto" />
-                  </DropdownMenuItem>
-                )}
-                <DropdownMenuItem variant="destructive">
+                <DropdownMenuItem
+                  variant="destructive"
+                  onClick={async () => await props?.deleteUser?.(id)}
+                >
                   <span>Delete</span>
                   <Trash className="ml-auto" />
                 </DropdownMenuItem>
